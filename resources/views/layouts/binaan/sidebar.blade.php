@@ -75,7 +75,15 @@
                     </ul>
                     <ul class="nav nav-treeview ms-5">
                         <li class="nav-item ">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('binaanPemberdayaan') }}" class="nav-link">
+                                <i class="far fa-file nav-icon ml-3"></i>
+                                <p>Pemberdayaan</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview ms-5">
+                        <li class="nav-item ">
+                            <a href="{{ route('binaanTenagapustaka') }}" class="nav-link">
                                 <i class="far fa-file nav-icon ml-3"></i>
                                 <p>Tenaga Pustaka</p>
                             </a>
@@ -83,7 +91,7 @@
                     </ul>
                     <ul class="nav nav-treeview ms-5">
                         <li class="nav-item ">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('binaanSarana') }}" class="nav-link">
                                 <i class="far fa-file nav-icon ml-3"></i>
                                 <p>Sarana/Prasarana</p>
                             </a>

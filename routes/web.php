@@ -48,14 +48,23 @@ Route::get('/binaan', function () {
     return view('binaan.index');
 });
 Route::get('/binaan/kondisi-umum', function () {
-    return view('binaan.dataumum.kondisiumum.index');
+    return view('binaan.datainput.kondisiumum.index');
 })->name('binaanKondisiUmum');
 Route::get('/binaan/bahan-pustaka', function () {
-    return view('binaan.dataumum.bahanpustaka.index');
+    return view('binaan.datainput.bahanpustaka.index');
 })->name('binaanBahanPustaka');
 Route::get('/binaan/administrasi', function () {
-    return view('binaan.dataumum.administrasi.index');
+    return view('binaan.datainput.administrasi.index');
 })->name('binaanAdministrasi');
+Route::get('/binaan/pemberdayaan', function () {
+    return view('binaan.datainput.pemberdayaan.index');
+})->name('binaanPemberdayaan');
+Route::get('/binaan/tenaga', function () {
+    return view('binaan.datainput.tenagapustaka.index');
+})->name('binaanTenagapustaka');
+Route::get('/binaan/sarana', function () {
+    return view('binaan.datainput.sarana.index');
+})->name('binaanSarana');
 // Route::get('/collection/dashboard', [CollectionController::class, 'dashboard'])->name('collectionDashboard');
 // Route::get('/collection/koleksi/datatables', [CollectionController::class, 'datatablesKoleksi'])->name('collectionKoleksi');
 // Route::get('/collection/sirkulasi/datatables', [CollectionController::class, 'datatablesSirkulasi'])->name('collectionSirkulasi');

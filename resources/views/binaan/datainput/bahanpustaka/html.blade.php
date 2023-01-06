@@ -8,87 +8,67 @@
                 <div class="container">
                     <form>
                         <div class="form-group row">
-                            <label for="npp" class="col-sm-3 col-form-label col-form-label-sm">NPP (Nomor Pokok
-                                Perpustakaan)
+                            <label for="npp" class="col-sm-3 col-form-label col-form-label-sm">Buku Pedoman Katalog
                             </label>
-                            <div class="col-sm-9">
-                                <input type="email" class="form-control form-control-sm" id="npp">
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control form-control-sm" id="npp">
+                            </div>
+                            <div class="col-sm-4">
+                                <label for="image-input">
+                                    <a title="Upload Foto">
+                                        <img id="buku-katalog"
+                                            src="https://w7.pngwing.com/pngs/914/512/png-transparent-icloud-clip-cart-upload-computer-icons-computer-file-icon-drawing-upload-miscellaneous-blue-image-file-formats.png"
+                                            alt="Katalog" class="rounded" style="cursor:pointer" height="30px"
+                                            width="50px">
+                                    </a>
+                                </label>
+                                <input id="image-input" type="file" style="display: none;"
+                                    accept="image/png, image/jpg, image/jpeg" />
+                                <span class="ml-2">Detail Foto</span>
                             </div>
                         </div>
+                        <hr>
                         <div class="form-group row">
-                            <label for="sk-pendirian" class="col-sm-3 col-form-label col-form-label-sm">SK Pendirian
+                            <label for="sk-pendirian" class="col-sm-3 col-form-label col-form-label-sm">Buku Pedoman
+                                Klasifikasi
+                            </label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control form-control-sm" id="sk-pendirian">
+                            </div>
+                            <div class="col-sm-4">
+                                <label for="image-input">
+                                    <a title="Upload Foto">
+                                        <img id="buku-katalog"
+                                            src="https://w7.pngwing.com/pngs/914/512/png-transparent-icloud-clip-cart-upload-computer-icons-computer-file-icon-drawing-upload-miscellaneous-blue-image-file-formats.png"
+                                            alt="Katalog" class="rounded" style="cursor:pointer" height="30px"
+                                            width="50px">
+                                    </a>
+                                </label>
+                                <input id="image-input" type="file" style="display: none;"
+                                    accept="image/png, image/jpg, image/jpeg" />
+                                <span class="ml-2">Detail Foto</span>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="form-group row">
+                            <label for="visi-misi" class="col-sm-3 col-form-label col-form-label-sm">Program Aplikasi
                                 Perpustakaan
                             </label>
-                            <div class="col-sm-9">
-                                <input type="email" class="form-control form-control-sm" id="sk-pendirian">
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control form-control-sm" id="visi-misi">
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="visi-misi" class="col-sm-3 col-form-label col-form-label-sm">Visi dan Misi
-                                Perpustakaan
-                            </label>
-                            <div class="col-sm-9">
-                                <input type="email" class="form-control form-control-sm" id="visi-misi">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="siswa" class="col-sm-3 col-form-label col-form-label-sm">Jumlah Siswa
-                            </label>
-                            <div class="col-sm-9">
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <div class="input-group input-group-sm">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text" id="inputGroup-sizing-sm">Pria</span>
-                                            </div>
-                                            <input type="text" class="form-control" aria-label="Sizing example input"
-                                                aria-describedby="inputGroup-sizing-sm">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <div class="input-group input-group-sm">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text" id="inputGroup-sizing-sm">Wanita</span>
-                                            </div>
-                                            <input type="text" class="form-control" aria-label="Sizing example input"
-                                                aria-describedby="inputGroup-sizing-sm">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="siswa" class="col-sm-3 col-form-label col-form-label-sm">Jumlah Guru & Staf
-                            </label>
-                            <div class="col-sm-9">
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <div class="input-group input-group-sm ">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text" id="inputGroup-sizing-sm">Pria</span>
-                                            </div>
-                                            <input type="text" class="form-control" aria-label="Sizing example input"
-                                                aria-describedby="inputGroup-sizing-sm">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <div class="input-group input-group-sm">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text" id="inputGroup-sizing-sm">Wanita</span>
-                                            </div>
-                                            <input type="text" class="form-control" aria-label="Sizing example input"
-                                                aria-describedby="inputGroup-sizing-sm">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="visi-misi" class="col-sm-3 col-form-label col-form-label-sm">Jumlah Rombongan
-                                Belajar
-                            </label>
-                            <div class="col-sm-2">
-                                <input type="email" class="form-control form-control-sm" id="visi-misi">
+                            <div class="col-sm-4">
+                                <label for="image-input">
+                                    <a title="Upload Foto">
+                                        <img id="buku-katalog"
+                                            src="https://w7.pngwing.com/pngs/914/512/png-transparent-icloud-clip-cart-upload-computer-icons-computer-file-icon-drawing-upload-miscellaneous-blue-image-file-formats.png"
+                                            alt="Katalog" class="rounded" style="cursor:pointer" height="30px"
+                                            width="50px">
+                                    </a>
+                                </label>
+                                <input id="image-input" type="file" style="display: none;"
+                                    accept="image/png, image/jpg, image/jpeg" />
+                                <span class="ml-2">Detail Foto</span>
                             </div>
                         </div>
                         <hr>

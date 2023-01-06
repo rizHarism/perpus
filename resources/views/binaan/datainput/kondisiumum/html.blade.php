@@ -15,6 +15,7 @@
                                 <input type="email" class="form-control form-control-sm" id="npp">
                             </div>
                         </div>
+                        <hr>
                         <div class="form-group row">
                             <label for="sk-pendirian" class="col-sm-3 col-form-label col-form-label-sm">SK Pendirian
                                 Perpustakaan
@@ -23,6 +24,7 @@
                                 <input type="email" class="form-control form-control-sm" id="sk-pendirian">
                             </div>
                         </div>
+                        <hr>
                         <div class="form-group row">
                             <label for="visi-misi" class="col-sm-3 col-form-label col-form-label-sm">Visi dan Misi
                                 Perpustakaan
@@ -31,6 +33,7 @@
                                 <input type="email" class="form-control form-control-sm" id="visi-misi">
                             </div>
                         </div>
+                        <hr>
                         <div class="form-group row">
                             <label for="siswa" class="col-sm-3 col-form-label col-form-label-sm">Jumlah Siswa
                             </label>
@@ -39,7 +42,8 @@
                                     <div class="col-sm-3">
                                         <div class="input-group input-group-sm">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text" id="inputGroup-sizing-sm">Pria</span>
+                                                <span class="input-group-text"
+                                                    id="inputGroup-sizing-sm">Laki-Laki</span>
                                             </div>
                                             <input type="text" class="form-control" aria-label="Sizing example input"
                                                 aria-describedby="inputGroup-sizing-sm">
@@ -48,7 +52,8 @@
                                     <div class="col-sm-3">
                                         <div class="input-group input-group-sm">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text" id="inputGroup-sizing-sm">Wanita</span>
+                                                <span class="input-group-text"
+                                                    id="inputGroup-sizing-sm">Perempuan</span>
                                             </div>
                                             <input type="text" class="form-control" aria-label="Sizing example input"
                                                 aria-describedby="inputGroup-sizing-sm">
@@ -57,6 +62,7 @@
                                 </div>
                             </div>
                         </div>
+                        <hr>
                         <div class="form-group row">
                             <label for="siswa" class="col-sm-3 col-form-label col-form-label-sm">Jumlah Guru & Staf
                             </label>
@@ -65,7 +71,8 @@
                                     <div class="col-sm-3">
                                         <div class="input-group input-group-sm ">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text" id="inputGroup-sizing-sm">Pria</span>
+                                                <span class="input-group-text"
+                                                    id="inputGroup-sizing-sm">Laki-Laki</span>
                                             </div>
                                             <input type="text" class="form-control" aria-label="Sizing example input"
                                                 aria-describedby="inputGroup-sizing-sm">
@@ -74,7 +81,8 @@
                                     <div class="col-sm-3">
                                         <div class="input-group input-group-sm">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text" id="inputGroup-sizing-sm">Wanita</span>
+                                                <span class="input-group-text"
+                                                    id="inputGroup-sizing-sm">Perempuan</span>
                                             </div>
                                             <input type="text" class="form-control" aria-label="Sizing example input"
                                                 aria-describedby="inputGroup-sizing-sm">
@@ -83,6 +91,7 @@
                                 </div>
                             </div>
                         </div>
+                        <hr>
                         <div class="form-group row">
                             <label for="visi-misi" class="col-sm-3 col-form-label col-form-label-sm">Jumlah Rombongan
                                 Belajar
