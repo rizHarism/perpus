@@ -99,7 +99,7 @@
                     </ul>
                     <ul class="nav nav-treeview ms-5">
                         <li class="nav-item ">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('binaanKoleksi') }}" class="nav-link">
                                 <i class="far fa-file nav-icon ml-3"></i>
                                 <p>Koleksi</p>
                             </a>
@@ -107,7 +107,7 @@
                     </ul>
                     <ul class="nav nav-treeview ms-5">
                         <li class="nav-item ">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('binaanLayanan') }}" class="nav-link">
                                 <i class="far fa-file nav-icon ml-3"></i>
                                 <p>Layanan</p>
                             </a>

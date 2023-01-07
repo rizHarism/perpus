@@ -65,6 +65,12 @@ Route::get('/binaan/tenaga', function () {
 Route::get('/binaan/sarana', function () {
     return view('binaan.datainput.sarana.index');
 })->name('binaanSarana');
+Route::get('/binaan/koleksi', function () {
+    return view('binaan.datainput.koleksi.index');
+})->name('binaanKoleksi');
+Route::get('/binaan/layanan', function () {
+    return view('binaan.datainput.layanan.index');
+})->name('binaanLayanan');
 // Route::get('/collection/dashboard', [CollectionController::class, 'dashboard'])->name('collectionDashboard');
 // Route::get('/collection/koleksi/datatables', [CollectionController::class, 'datatablesKoleksi'])->name('collectionKoleksi');
 // Route::get('/collection/sirkulasi/datatables', [CollectionController::class, 'datatablesSirkulasi'])->name('collectionSirkulasi');
