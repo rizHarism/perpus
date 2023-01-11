@@ -2,8 +2,8 @@
 @section('title', 'Bahan Pustaka')
 @section('breadcrumb', 'Bahan Pustaka')
 @section('content')
-    @include('binaan.dataumum.bahanpustaka.html')
+    @include('binaan.datainput.bahanpustaka.html')
 @endsection
 @section('extra_javascript')
-    @include('binaan.dataumum.bahanpustaka.javascript')
+    @include('binaan.datainput.bahanpustaka.javascript')
 @endsection

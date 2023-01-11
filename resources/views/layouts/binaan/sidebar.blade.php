@@ -44,7 +44,7 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-copy"></i>
                         <p>
-                            Data Umum
+                            Data Input
                             <i class="fas fa-angle-left right"></i>
                             {{-- <span class="badge badge-info right">6</span> --}}
                         </p>
@@ -73,13 +73,53 @@
                             </a>
                         </li>
                     </ul>
+                    <ul class="nav nav-treeview ms-5">
+                        <li class="nav-item ">
+                            <a href="{{ route('binaanPemberdayaan') }}" class="nav-link">
+                                <i class="far fa-file nav-icon ml-3"></i>
+                                <p>Pemberdayaan</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview ms-5">
+                        <li class="nav-item ">
+                            <a href="{{ route('binaanTenagapustaka') }}" class="nav-link">
+                                <i class="far fa-file nav-icon ml-3"></i>
+                                <p>Tenaga Pustaka</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview ms-5">
+                        <li class="nav-item ">
+                            <a href="{{ route('binaanSarana') }}" class="nav-link">
+                                <i class="far fa-file nav-icon ml-3"></i>
+                                <p>Sarana/Prasarana</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview ms-5">
+                        <li class="nav-item ">
+                            <a href="{{ route('binaanKoleksi') }}" class="nav-link">
+                                <i class="far fa-file nav-icon ml-3"></i>
+                                <p>Koleksi</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview ms-5">
+                        <li class="nav-item ">
+                            <a href="{{ route('binaanLayanan') }}" class="nav-link">
+                                <i class="far fa-file nav-icon ml-3"></i>
+                                <p>Layanan</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
 
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-copy"></i>
                         <p>
-                            Data Umum
+                            Data Statistik
                             <i class="fas fa-angle-left right"></i>
                             {{-- <span class="badge badge-info right">6</span> --}}
                         </p>
@@ -88,7 +128,7 @@
                         <li class="nav-item ">
                             <a href="#" class="nav-link">
                                 <i class="far fa-file nav-icon ml-3"></i>
-                                <p>Kondisi Umum</p>
+                                <p>Statistik Koleksi</p>
                             </a>
                         </li>
                     </ul>
@@ -96,7 +136,7 @@
                         <li class="nav-item ">
                             <a href="#" class="nav-link">
                                 <i class="far fa-file nav-icon ml-3"></i>
-                                <p>Bahan Pustaka</p>
+                                <p>Statistik Layanan</p>
                             </a>
                         </li>
                     </ul>
@@ -104,7 +144,7 @@
                         <li class="nav-item ">
                             <a href="#" class="nav-link">
                                 <i class="far fa-file nav-icon ml-3"></i>
-                                <p>Administrasi</p>
+                                <p>Statistik Sirkulasi</p>
                             </a>
                         </li>
                     </ul>

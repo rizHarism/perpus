@@ -16,6 +16,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function () {
+    return view('front-page.index');
+})->name('home');
+
+Route::get('/inlislite/login', function () {
+    return view('login-page.inlislite');
+})->name('loginInlislite');
+Route::get('/inlislite/login', function () {
+    return view('login-page.inlislite');
+})->name('loginInlislite');
+
 Route::get('/collection/catalogue', [CollectionController::class, 'collectionCatalogue'])->name('collectionCatalogue');
 Route::get('/collection/catalogue/{years}/filter', [CollectionController::class, 'collectionCatalogueFilter'])->name('collectionCatalogueFilter');
 Route::get('/collection/klas', [CollectionController::class, 'collectionKlas'])->name('collectionKlas');
@@ -46,16 +57,31 @@ Route::get('/member/pekerjaan/{status}/filter', [MemberController::class, 'membe
 
 Route::get('/binaan', function () {
     return view('binaan.index');
-});
+})->name('binaanIndex');
 Route::get('/binaan/kondisi-umum', function () {
-    return view('binaan.dataumum.kondisiumum.index');
+    return view('binaan.datainput.kondisiumum.index');
 })->name('binaanKondisiUmum');
 Route::get('/binaan/bahan-pustaka', function () {
-    return view('binaan.dataumum.bahanpustaka.index');
+    return view('binaan.datainput.bahanpustaka.index');
 })->name('binaanBahanPustaka');
 Route::get('/binaan/administrasi', function () {
-    return view('binaan.dataumum.administrasi.index');
+    return view('binaan.datainput.administrasi.index');
 })->name('binaanAdministrasi');
+Route::get('/binaan/pemberdayaan', function () {
+    return view('binaan.datainput.pemberdayaan.index');
+})->name('binaanPemberdayaan');
+Route::get('/binaan/tenaga', function () {
+    return view('binaan.datainput.tenagapustaka.index');
+})->name('binaanTenagapustaka');
+Route::get('/binaan/sarana', function () {
+    return view('binaan.datainput.sarana.index');
+})->name('binaanSarana');
+Route::get('/binaan/koleksi', function () {
+    return view('binaan.datainput.koleksi.index');
+})->name('binaanKoleksi');
+Route::get('/binaan/layanan', function () {
+    return view('binaan.datainput.layanan.index');
+})->name('binaanLayanan');
 // Route::get('/collection/dashboard', [CollectionController::class, 'dashboard'])->name('collectionDashboard');
 // Route::get('/collection/koleksi/datatables', [CollectionController::class, 'datatablesKoleksi'])->name('collectionKoleksi');
 // Route::get('/collection/sirkulasi/datatables', [CollectionController::class, 'datatablesSirkulasi'])->name('collectionSirkulasi');
