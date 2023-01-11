@@ -16,6 +16,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function () {
+    return view('front-page.index');
+})->name('home');
+
+Route::get('/inlislite/login', function () {
+    return view('login-page.inlislite');
+})->name('loginInlislite');
+Route::get('/inlislite/login', function () {
+    return view('login-page.inlislite');
+})->name('loginInlislite');
+
 Route::get('/collection/catalogue', [CollectionController::class, 'collectionCatalogue'])->name('collectionCatalogue');
 Route::get('/collection/catalogue/{years}/filter', [CollectionController::class, 'collectionCatalogueFilter'])->name('collectionCatalogueFilter');
 Route::get('/collection/klas', [CollectionController::class, 'collectionKlas'])->name('collectionKlas');
@@ -46,7 +57,7 @@ Route::get('/member/pekerjaan/{status}/filter', [MemberController::class, 'membe
 
 Route::get('/binaan', function () {
     return view('binaan.index');
-});
+})->name('binaanIndex');
 Route::get('/binaan/kondisi-umum', function () {
     return view('binaan.datainput.kondisiumum.index');
 })->name('binaanKondisiUmum');
