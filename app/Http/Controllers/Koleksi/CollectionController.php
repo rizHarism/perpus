@@ -208,7 +208,7 @@ class CollectionController extends Controller
     public function collectionLocationFilter($years)
     {
         $year = explode(',', $years);
-        $result = DB::table('Locations')
+        $result = DB::table('locations')
             ->select('locations.ID', 'locations.Name', DB::raw('count(collections.Location_id) as total'))
             ->leftjoin('collections', 'locations.ID', '=', 'collections.Location_id')
             ->leftjoin('catalogs', 'catalogs.ID', '=', 'collections.Catalog_id')
