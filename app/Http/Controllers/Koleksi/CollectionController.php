@@ -190,7 +190,7 @@ class CollectionController extends Controller
     public function collectionLocation()
     {
 
-        $result = DB::table('Locations')
+        $result = DB::table('locations')
             ->select('locations.ID', 'locations.Name', DB::raw('count(collections.Location_id) as total'))
             ->leftjoin('collections', 'locations.ID', '=', 'collections.Location_id')
             ->groupBy('locations.Name')
