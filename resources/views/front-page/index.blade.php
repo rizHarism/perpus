@@ -59,6 +59,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @include('layouts.assets.stylesheet')
     <title>Document</title>
     <style>
@@ -115,7 +116,7 @@
             top: 55%;
             left: 25%;
             transform: translate(-50%, -50%);
-            width: 400px;
+            /* width: 400px; */
             padding: 30px 30px;
             border-radius: 10px;
             box-shadow: 7px 7px 60px #000;

@@ -7,13 +7,13 @@
                     <form id="filter-usia">
                         <div class="row">
                             <div class="col-sm-3">
-                                <label for="exampleInputEmail1">Status Pustakawan</label>
+                                <label for="exampleInputEmail1">Status Pemustaka</label>
                                 <div class="row">
                                     <div class="col-10">
                                         <select class="custom-select custom-select-sm mb-3" id="status">
-                                            <option value="0">Semua Pustakawan</option>
-                                            <option value="aktif">Pustakawan Aktif</option>
-                                            <option value="nonaktif">Pustakawan Non Aktif</option>
+                                            <option value="0">Semua Pemustaka</option>
+                                            <option value="aktif">Pemustaka Aktif</option>
+                                            <option value="nonaktif">Pemustaka Non Aktif</option>
                                         </select>
                                     </div>
                                     <div class="col-2">
