@@ -40,6 +40,16 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        'inlislite' => [
+            'driver' => 'session',
+            'provider' => 'inlislite',
+        ],
+
+        'binaan' => [
+            'driver' => 'session',
+            'provider' => 'binaan',
+        ]
     ],
 
     /*
@@ -65,10 +75,15 @@ return [
             'model' => App\Models\User::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'inlislite' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User\InlisliteUser::class,
+        ],
+
+        'binaan' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User\BinaanUser::class,
+        ],
     ],
 
     /*
