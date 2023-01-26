@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Catalog extends Model
 {
     use HasFactory;
-
+    protected $connection = 'inlislite';
     protected $table = 'catalogs';
     protected $primaryKey = 'ID';
 

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Location extends Model
 {
     use HasFactory;
-
+    protected $connection = 'inlislite';
     protected $table = 'locations';
     protected $primaryKey = 'ID';
 

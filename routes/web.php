@@ -88,3 +88,7 @@ Route::get('/binaan/layanan', function () {
 
 
 // Route::get('/user', [UserController::class, 'index']);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home2');

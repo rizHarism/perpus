@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class JobStatus extends Model
 {
     use HasFactory;
-
+    protected $connection = 'inlislite';
     protected $table = 'master_pekerjaan';
     protected $primaryKey = 'id';
 

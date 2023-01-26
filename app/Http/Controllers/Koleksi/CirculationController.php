@@ -19,14 +19,14 @@ class CirculationController extends Controller
     {
 
         $location_library = LocationLibrary::orderBy('ID', 'asc')->get();
-        $catalogLoan = DB::table('collectionloanitems')
+        $catalogLoan = DB::connection('inlislite')->table('collectionloanitems')
             ->select('collectionloanitems.ID', 'catalogs.ID')
             ->join('collections', 'collections.ID', '=', 'collectionloanitems.Collection_id')
             ->join('catalogs', 'catalogs.ID', '=', 'collections.Catalog_id')
             ->where('collectionloanitems.LoanStatus', '=', 'Loan')
             ->groupBy('catalogs.ID')
             ->get();
-        $collectionLoan = DB::table('collectionloanitems')->where('LoanStatus', '=', 'Loan')->get();
+        $collectionLoan = DB::connection('inlislite')->table('collectionloanitems')->where('LoanStatus', '=', 'Loan')->get();
 
         $response = [
             'message' => 'Data Sirkulasi Catalog dan Koleksi',
@@ -44,7 +44,7 @@ class CirculationController extends Controller
         if ($_req[0] == 0) {
             // dd('koselamse');
             $title = 'Data Sirkulasi Katalog Tahun Terbit ' . $_req[1] . ' s/d ' . $_req[2] . ' Keseluruhan';
-            $catalogLoan = DB::table('collectionloanitems')
+            $catalogLoan = DB::connection('inlislite')->table('collectionloanitems')
                 ->select('collectionloanitems.ID', 'catalogs.ID')
                 ->join('collections', 'collections.ID', '=', 'collectionloanitems.Collection_id')
                 ->join('catalogs', 'catalogs.ID', '=', 'collections.Catalog_id')
@@ -52,7 +52,7 @@ class CirculationController extends Controller
                 ->where('catalogs.PublishYear', '>=', $_req[1])->where('catalogs.PublishYear', '<=', $_req[2])
                 ->groupBy('catalogs.ID')
                 ->get();
-            $collectionLoan = DB::table('collectionloanitems')
+            $collectionLoan = DB::connection('inlislite')->table('collectionloanitems')
                 ->select('collectionloanitems.ID', 'catalogs.ID')
                 ->join('collections', 'collections.ID', '=', 'collectionloanitems.Collection_id')
                 ->join('catalogs', 'catalogs.ID', '=', 'collections.Catalog_id')
@@ -63,7 +63,7 @@ class CirculationController extends Controller
         } else {
             $location_library = LocationLibrary::where('ID', $_req[0])->pluck('Name');
             $title = 'Data Sirkulasi Katalog Tahun Terbit ' . $_req[1] . ' s/d ' . $_req[2] . ' di ' . $location_library[0];
-            $catalogLoan = DB::table('collectionloanitems')
+            $catalogLoan = DB::connection('inlislite')->table('collectionloanitems')
                 ->select('collectionloanitems.ID', 'catalogs.ID')
                 ->join('collections', 'collections.ID', '=', 'collectionloanitems.Collection_id')
                 ->join('catalogs', 'catalogs.ID', '=', 'collections.Catalog_id')
@@ -72,7 +72,7 @@ class CirculationController extends Controller
                 ->where('catalogs.PublishYear', '>=', $_req[1])->where('catalogs.PublishYear', '<=', $_req[2])
                 ->groupBy('catalogs.ID')
                 ->get();
-            $collectionLoan = DB::table('collectionloanitems')
+            $collectionLoan = DB::connection('inlislite')->table('collectionloanitems')
                 ->select('collectionloanitems.ID', 'catalogs.ID')
                 ->join('collections', 'collections.ID', '=', 'collectionloanitems.Collection_id')
                 ->join('catalogs', 'catalogs.ID', '=', 'collections.Catalog_id')
@@ -526,14 +526,14 @@ class CirculationController extends Controller
     public function circulationPekerjaan()
     {
         $location_library = LocationLibrary::orderBy('ID', 'asc')->get();
-        $sirkulasi = DB::table('members')
+        $sirkulasi = DB::connection('inlislite')->table('members')
             ->select('collectionloanitems.ID', 'collectionloanitems.member_id', 'members.Job_id')
             ->join('collectionloanitems', 'members.id', '=', 'collectionloanitems.member_id')
             ->where('LoanStatus', '=', 'Loan')
             ->groupBy('collectionloanitems.member_id')
             ->orderBy('members.id', 'asc');
 
-        $result = DB::table('master_pekerjaan')
+        $result = DB::connection('inlislite')->table('master_pekerjaan')
             ->select('master_pekerjaan.id', 'master_pekerjaan.Pekerjaan', DB::raw('count(sirkulasi.Job_id) as total'))
             ->joinSub($sirkulasi, 'sirkulasi', function ($join) {
                 $join->on('master_pekerjaan.id', '=', 'sirkulasi.Job_id');
@@ -554,7 +554,7 @@ class CirculationController extends Controller
         $lokasi = $_data[0];
         $year1 = $_data[1];
         $year2 = $_data[2];
-        $sirkulasi = DB::table('members')
+        $sirkulasi = DB::connection('inlislite')->table('members')
             ->select('collectionloanitems.ID', 'collectionloanitems.member_id', 'members.Job_id', 'collections.Location_Library_id')
             ->leftjoin('collectionloanitems', 'members.id', '=', 'collectionloanitems.member_id')
             ->leftjoin('collections', 'collections.id', '=', 'collectionloanitems.Collection_id')
@@ -565,7 +565,7 @@ class CirculationController extends Controller
             return $query->where('collections.Location_Library_id', $lokasi);
         })->groupBy('collectionloanitems.member_id')
             ->orderBy('members.id', 'asc');
-        $result = DB::table('master_pekerjaan')
+        $result = DB::connection('inlislite')->table('master_pekerjaan')
             ->select('master_pekerjaan.id', 'master_pekerjaan.Pekerjaan', DB::raw('count(sirkulasi.Job_id) as total'))
             ->leftjoinSub($sirkulasi, 'sirkulasi', function ($join) {
                 $join->on('master_pekerjaan.id', '=', 'sirkulasi.Job_id');

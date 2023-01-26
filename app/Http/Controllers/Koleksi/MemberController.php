@@ -217,7 +217,7 @@ class MemberController extends Controller
 
     public function memberPekerjaan()
     {
-        $result = DB::table('members')->select('master_pekerjaan.id', 'master_pekerjaan.Pekerjaan', DB::raw('count(master_pekerjaan.Pekerjaan) as total'))
+        $result = DB::connection('inlislite')->table('members')->select('master_pekerjaan.id', 'master_pekerjaan.Pekerjaan', DB::raw('count(master_pekerjaan.Pekerjaan) as total'))
             ->join('master_pekerjaan', 'master_pekerjaan.id', '=', 'members.Job_id')
             ->groupBy('master_pekerjaan.Pekerjaan')->orderby('master_pekerjaan.id')->get();
         $response = [
@@ -233,25 +233,25 @@ class MemberController extends Controller
 
         if ($status == "0") {
             $message = 'Data Status Pekerjaan Pemustaka';
-            $result = DB::table('members')->select('master_pekerjaan.id', 'master_pekerjaan.Pekerjaan', DB::raw('count(master_pekerjaan.Pekerjaan) as total'))
+            $result = DB::connection('inlislite')->table('members')->select('master_pekerjaan.id', 'master_pekerjaan.Pekerjaan', DB::raw('count(master_pekerjaan.Pekerjaan) as total'))
                 ->join('master_pekerjaan', 'master_pekerjaan.id', '=', 'members.Job_id')
                 ->groupBy('master_pekerjaan.Pekerjaan')->orderby('master_pekerjaan.id')->get();
         } elseif ($status == "aktif") {
             $message = 'Data Status Pekerjaan Pemustaka Aktif';
-            $member = DB::table('members')->select('members.Job_id')->whereExists(function ($query) {
+            $member = DB::connection('inlislite')->table('members')->select('members.Job_id')->whereExists(function ($query) {
                 $query->select(DB::raw('ID'))->from('collectionloanitems')->where('LoanDate', '>=', DB::raw('DATE_SUB(now(), INTERVAL 6 MONTH)'))->whereColumn('collectionloanitems.member_id', 'members.id');
             });
-            $result = DB::table('master_pekerjaan')
+            $result = DB::connection('inlislite')->table('master_pekerjaan')
                 ->select('master_pekerjaan.id', 'master_pekerjaan.Pekerjaan', DB::raw('count(members.Job_id) as total'))
                 ->leftjoinSub($member, 'members', function ($join) {
                     $join->on('master_pekerjaan.id', '=', 'members.Job_id');
                 })->groupBy('master_pekerjaan.Pekerjaan')->orderby('master_pekerjaan.id')->get();
         } elseif ($status == "nonaktif") {
             $message = 'Data Status Pekerjaan Pemustaka Non Aktif';
-            $member = DB::table('members')->whereNotExists(function ($query) {
+            $member = DB::connection('inlislite')->table('members')->whereNotExists(function ($query) {
                 $query->select(DB::raw('ID'))->from('collectionloanitems')->where('LoanDate', '>=', DB::raw('DATE_SUB(now(), INTERVAL 6 MONTH)'))->whereColumn('collectionloanitems.member_id', 'members.id');
             });
-            $result = DB::table('master_pekerjaan')
+            $result = DB::connection('inlislite')->table('master_pekerjaan')
                 ->select('master_pekerjaan.id', 'master_pekerjaan.Pekerjaan', DB::raw('count(members.Job_id) as total'))
                 ->leftjoinSub($member, 'members', function ($join) {
                     $join->on('master_pekerjaan.id', '=', 'members.Job_id');
