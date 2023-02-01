@@ -1,58 +1,3 @@
-{{-- <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    @include('layouts.assets.stylesheet')
-    <title>Aplikasi SIM Perpustakaan Kota Blitar</title>
-    <style>
-        /* body {
-            background-image: url("{{ asset('assets/image/background/soekarno.jpg') }}");
-            background-repeat: no-repeat;
-            background-size: contain;
-            background-position: center;
-            width: 100%;
-            height: auto;
-        } */
-
-        body {
-            background: url("{{ asset('assets/image/background/soekarno.jpg') }}") no-repeat center center fixed;
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
-        }
-
-        #button-page {
-            width: 100px;
-            height: 100px;
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            margin: auto;
-        }
-    </style>
-</head>
-
-<body>
-    <div id="button-page">
-        <a href="{{ route('loginInlislite') }}" class="btn btn-secondary" onclick="location.href=">Inlislite</a>
-        <hr>
-        <button class="btn btn-secondary">Binaan</button>
-        <hr>
-        <button class="btn btn-secondary">Capaian</button>
-        <hr>
-        <button class="btn btn-secondary">Survey</button>
-        <hr>
-        <button class="btn btn-secondary">Tupoksi</button>
-    </div>
-</body>
-
-</html> --}}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -252,12 +197,12 @@
                 </div>
                 <hr>
                 <div class="control mt-2">
-                    <label for="name">Nama Pengguna</label>
-                    <input type="text" id="name">
+                    <label for="name">E-mail</label>
+                    <input type="text" id="email" name="email">
                 </div>
                 <div class="control">
                     <label for="psw">Kata Sandi</label>
-                    <input type="password" id="psw">
+                    <input type="password" id="psw" name="password">
                 </div>
                 <br>
                 <div class="control">

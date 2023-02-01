@@ -14,4 +14,14 @@ class InlisliteUser extends Authenticatable
     protected $guard = 'inlislite';
     protected $table = 'inlislite_user';
     protected $primaryKey = 'id';
+
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+    ];
+
+    protected $hidden = [
+        'password',
+    ];
 }
