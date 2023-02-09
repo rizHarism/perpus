@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -20,7 +21,7 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
+    // use AuthenticatesUsers;
 
     /**
      * Where to redirect users after login.
@@ -48,9 +49,23 @@ class LoginController extends Controller
             'password' => 'required|min:6'
         ]);
 
-        if (Auth::guard('inlislite')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
+        if (Auth::guard('inlislite')->attempt(['email' => $request->email, 'password' => $request->password])) {
 
-            return redirect()->intended('/admin');
+            return redirect()->intended('/inlislite/collection/catalogue');
+        }
+        return back()->withInput($request->only('email', 'remember'));
+    }
+
+    public function binaanLogin(Request $request)
+    {
+        $this->validate($request, [
+            'email'   => 'required|email',
+            'password' => 'required|min:6'
+        ]);
+
+        if (Auth::guard('binaan')->attempt(['email' => $request->email, 'password' => $request->password])) {
+
+            return redirect()->intended('/binaan/binaan');
         }
         return back()->withInput($request->only('email', 'remember'));
     }

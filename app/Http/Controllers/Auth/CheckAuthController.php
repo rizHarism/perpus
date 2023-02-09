@@ -13,14 +13,16 @@ class CheckAuthController extends Controller
     public function inlisliteAuth()
     {
         return response()->json([
-            'auth' => Auth::guard('inlislite')->check()
+            'auth' => Auth::guard('inlislite')->check(),
+            'route' => 'inlislite/collection/catalogue'
         ]);
     }
 
     public function binaanAuth()
     {
         return response()->json([
-            'auth' => Auth::guard('binaan')->check()
+            'auth' => Auth::guard('binaan')->check(),
+            'route' => 'binaan/binaan/'
         ]);
     }
 }

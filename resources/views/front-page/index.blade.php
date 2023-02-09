@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {{-- <meta name="csrf-token" content="{{ csrf_token() }}" /> --}}
     @include('layouts.assets.stylesheet')
     <title>Document</title>
     <style>
@@ -192,7 +193,8 @@
         </div>
 
         <div class="form-container mt-3" id="form-login" style="display: none">
-            <form id="login-form" method="GET">
+            <form id="login-form" method="POST">
+                @csrf
                 <div class="back-button mt-0" style="cursor: pointer"><i class="fa fa-chevron-circle-left"> </i> Kembali
                 </div>
                 <hr>
@@ -218,14 +220,37 @@
     $(document).ready(function() {
         $(".btn-custom").click(function() {
             let val = $(this).data('id');
+            let urlCheck = null;
+            let csrf_token = '{{ csrf_token() }}'
+
+            console.log(val);
 
             if (val == 'koleksi') {
-                $('#login-form').attr('action', "{{ route('circulationCatalogue') }}");
+                $('#login-form').attr('action', "{{ route('inlisliteLogin') }}");
+                urlCheck = "{{ route('inlisliteAuth') }}";
             } else if (val == 'binaan') {
-                $('#login-form').attr('action', "{{ route('binaanIndex') }}");
+                $('#login-form').attr('action', "{{ route('binaanLogin') }}");
+                urlCheck = "{{ route('binaanAuth') }}";
             }
-            $("#button-group").fadeOut();
-            $("#form-login").delay(500).fadeIn('slow');
+
+            $.ajax({
+                type: "POST",
+                headers: {
+                    'X-CSRF-TOKEN': csrf_token,
+                },
+                url: urlCheck,
+                dataType: "json",
+                success: function(data) {
+                    console.log(data.auth)
+                    if (data.auth) {
+                        window.location.href = data.route;
+                    } else {
+                        $("#button-group").fadeOut();
+                        $("#form-login").delay(500).fadeIn('slow');
+                    }
+                }
+            });
+
         });
 
         $(".back-button").click(function() {

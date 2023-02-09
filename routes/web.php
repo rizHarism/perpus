@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\Auth\CheckAuthController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Koleksi\CollectionController;
 use App\Http\Controllers\Koleksi\CirculationController;
 use App\Http\Controllers\Koleksi\MemberController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,12 +23,18 @@ Route::get('/', function () {
     return view('front-page.index');
 })->name('home');
 
-Route::get('/inlislite/login', function () {
+// Route::get('/inlislite/login', function () {
+//     return view('login-page.inlislite');
+// })->name('loginInlislite');
+Route::get('/inlislite/logintrial', function () {
     return view('login-page.inlislite');
 })->name('loginInlislite');
-Route::get('/inlislite/login', function () {
-    return view('login-page.inlislite');
-})->name('loginInlislite');
+
+Route::post('inlislite/logincheck', [CheckAuthController::class, 'inlisliteAuth'])->name('inlisliteAuth');
+Route::post('binaan/logincheck', [CheckAuthController::class, 'binaanAuth'])->name('binaanAuth');
+
+Route::post('inlislite/login', [LoginController::class, 'inlisliteLogin'])->name('inlisliteLogin');
+Route::post('binaan/login', [LoginController::class, 'binaanLogin'])->name('binaanLogin');
 
 Route::group(['middleware' => 'auth:inlislite', 'prefix' => 'inlislite'], function () {
     Route::get('/collection/catalogue', [CollectionController::class, 'collectionCatalogue'])->name('collectionCatalogue');
@@ -56,33 +65,35 @@ Route::group(['middleware' => 'auth:inlislite', 'prefix' => 'inlislite'], functi
     Route::get('/member/pekerjaan/{status}/filter', [MemberController::class, 'memberPekerjaanFilter'])->name('memberPekerjaanFilter');
 });
 
-Route::get('/binaan', function () {
-    return view('binaan.index');
-})->name('binaanIndex');
-Route::get('/binaan/kondisi-umum', function () {
-    return view('binaan.datainput.kondisiumum.index');
-})->name('binaanKondisiUmum');
-Route::get('/binaan/bahan-pustaka', function () {
-    return view('binaan.datainput.bahanpustaka.index');
-})->name('binaanBahanPustaka');
-Route::get('/binaan/administrasi', function () {
-    return view('binaan.datainput.administrasi.index');
-})->name('binaanAdministrasi');
-Route::get('/binaan/pemberdayaan', function () {
-    return view('binaan.datainput.pemberdayaan.index');
-})->name('binaanPemberdayaan');
-Route::get('/binaan/tenaga', function () {
-    return view('binaan.datainput.tenagapustaka.index');
-})->name('binaanTenagapustaka');
-Route::get('/binaan/sarana', function () {
-    return view('binaan.datainput.sarana.index');
-})->name('binaanSarana');
-Route::get('/binaan/koleksi', function () {
-    return view('binaan.datainput.koleksi.index');
-})->name('binaanKoleksi');
-Route::get('/binaan/layanan', function () {
-    return view('binaan.datainput.layanan.index');
-})->name('binaanLayanan');
+Route::group(['middleware' => 'auth:binaan', 'prefix' => 'binaan'], function () {
+    Route::get('/binaan', function () {
+        return view('binaan.index');
+    })->name('binaanIndex');
+    Route::get('/binaan/kondisi-umum', function () {
+        return view('binaan.datainput.kondisiumum.index');
+    })->name('binaanKondisiUmum');
+    Route::get('/binaan/bahan-pustaka', function () {
+        return view('binaan.datainput.bahanpustaka.index');
+    })->name('binaanBahanPustaka');
+    Route::get('/binaan/administrasi', function () {
+        return view('binaan.datainput.administrasi.index');
+    })->name('binaanAdministrasi');
+    Route::get('/binaan/pemberdayaan', function () {
+        return view('binaan.datainput.pemberdayaan.index');
+    })->name('binaanPemberdayaan');
+    Route::get('/binaan/tenaga', function () {
+        return view('binaan.datainput.tenagapustaka.index');
+    })->name('binaanTenagapustaka');
+    Route::get('/binaan/sarana', function () {
+        return view('binaan.datainput.sarana.index');
+    })->name('binaanSarana');
+    Route::get('/binaan/koleksi', function () {
+        return view('binaan.datainput.koleksi.index');
+    })->name('binaanKoleksi');
+    Route::get('/binaan/layanan', function () {
+        return view('binaan.datainput.layanan.index');
+    })->name('binaanLayanan');
+});
 // Route::get('/collection/dashboard', [CollectionController::class, 'dashboard'])->name('collectionDashboard');
 // Route::get('/collection/koleksi/datatables', [CollectionController::class, 'datatablesKoleksi'])->name('collectionKoleksi');
 // Route::get('/collection/sirkulasi/datatables', [CollectionController::class, 'datatablesSirkulasi'])->name('collectionSirkulasi');
@@ -90,6 +101,6 @@ Route::get('/binaan/layanan', function () {
 
 // Route::get('/user', [UserController::class, 'index']);
 
-Auth::routes();
+// Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home2');

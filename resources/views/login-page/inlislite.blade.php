@@ -89,14 +89,15 @@
     <section>
         <div class="form-container">
             <h1>Inlislite Login</h1>
-            <form action="index.html">
+            <form action="{{ route('inlisliteLogin') }}" method="POST">
+                @csrf
                 <div class="control">
                     <label for="name">Nama Pengguna</label>
-                    <input type="text" id="name">
+                    <input type="email" id="name" name="email">
                 </div>
                 <div class="control">
                     <label for="psw">Kata Sandi</label>
-                    <input type="password" id="psw">
+                    <input type="password" id="psw" name="password">
                 </div>
                 <span>.</span>
                 {{-- <br> --}}
