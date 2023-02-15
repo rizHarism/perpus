@@ -16,14 +16,14 @@ class BinaanUserSeeder extends Seeder
     {
         //
         BinaanUser::create([
-            'name' => 'riski',
-            'email' => 'riski@gmail.com',
-            'password' => bcrypt('12345687'),
+            'name' => 'admin',
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt('admin111'),
         ],);
         BinaanUser::create([
-            'name' => 'bajong',
-            'email' => 'bajong@gmail.com',
-            'password' => bcrypt('12345687'),
+            'name' => 'user',
+            'email' => 'user@gmail.com',
+            'password' => bcrypt('user111'),
         ],);
     }
 }
