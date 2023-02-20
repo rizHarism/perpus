@@ -171,6 +171,12 @@
                         <li class="nav-item ">
                             <a href="#" class="nav-link">
                                 <i class="fas fa-users nav-icon ml-3"></i>
+                                <p>Data Perpustakaan</p>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-users nav-icon ml-3"></i>
                                 <p>Data User</p>
                             </a>
                         </li>
