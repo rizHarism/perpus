@@ -13,7 +13,7 @@ class Pemberdayaan extends Model
     protected $table = 'binaan_pemberdayaan';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'user_binaan_id',
+        'perpustakaan_id',
         'tahun',
         'slogan',
         'program_kerja',
@@ -26,6 +26,6 @@ class Pemberdayaan extends Model
 
     public function user_binaan()
     {
-        return $this->belongsTo(BinaanUser::class, 'user_binaan_id', 'id');
+        return $this->belongsTo(BinaanUser::class, 'perpustakaan_id', 'id');
     }
 }

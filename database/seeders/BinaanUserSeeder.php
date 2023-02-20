@@ -15,15 +15,17 @@ class BinaanUserSeeder extends Seeder
     public function run()
     {
         //
-        BinaanUser::create([
-            'name' => 'admin',
-            'email' => 'admin@gmail.com',
-            'password' => bcrypt('admin111'),
-        ],);
-        BinaanUser::create([
-            'name' => 'user',
-            'email' => 'user@gmail.com',
-            'password' => bcrypt('user111'),
-        ],);
+        // BinaanUser::create([
+        //     'name' => 'admin',
+        //     'email' => 'admin@gmail.com',
+        //     'password' => bcrypt('admin111'),
+        // ],);
+        // BinaanUser::create([
+        //     'name' => 'user',
+        //     'email' => 'user@gmail.com',
+        //     'password' => bcrypt('user111'),
+        // ],);
+
+        BinaanUser::factory(3)->create();
     }
 }

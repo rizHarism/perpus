@@ -65,7 +65,7 @@ class LoginController extends Controller
 
         if (Auth::guard('binaan')->attempt(['email' => $request->email, 'password' => $request->password])) {
 
-            return redirect()->intended('/binaan/binaan');
+            return redirect()->intended('/binaan/profile');
         }
         return back()->withInput($request->only('email', 'remember'));
     }

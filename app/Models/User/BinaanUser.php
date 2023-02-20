@@ -8,6 +8,7 @@ use App\Models\Binaan\Koleksi;
 use App\Models\Binaan\KondisiUmum;
 use App\Models\Binaan\Layanan;
 use App\Models\Binaan\Pemberdayaan;
+use App\Models\Binaan\Perpustakaan;
 use App\Models\Binaan\Tenaga;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -25,49 +26,16 @@ class BinaanUser extends Authenticatable
         'name',
         'email',
         'password',
+        'perpustakaan_id',
+        'avatar',
     ];
 
     protected $hidden = [
         'password',
     ];
 
-    public function kondisi_umum()
+    public function perpustakaan()
     {
-        return $this->hasMany(KondisiUmum::class, 'user_binaan_id', 'id');
-    }
-
-    public function bahan_pustaka()
-    {
-        return $this->hasMany(BahanPustaka::class, 'user_binaan_id', 'id');
-    }
-
-    public function administrasi()
-    {
-        return $this->hasMany(Administrasi::class, 'user_binaan_id', 'id');
-    }
-
-    public function pemberdayaan()
-    {
-        return $this->hasMany(Pemberdayaan::class, 'user_binaan_id', 'id');
-    }
-
-    public function tenaga()
-    {
-        return $this->hasMany(Tenaga::class, 'user_binaan_id', 'id');
-    }
-
-    public function sarana()
-    {
-        return $this->hasMany(Sarana::class, 'user_binaan_id', 'id');
-    }
-
-    public function koleksi()
-    {
-        return $this->hasMany(Koleksi::class, 'user_binaan_id', 'id');
-    }
-
-    public function layanan()
-    {
-        return $this->hasMany(Layanan::class, 'user_binaan_id', 'id');
+        return $this->belongsTo(Perpustakaan::class, 'perpustakaan_id', 'id');
     }
 }

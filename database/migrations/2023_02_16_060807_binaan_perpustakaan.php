@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class BinaanAdministrasiTable extends Migration
+class BinaanPerpustakaan extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class BinaanAdministrasiTable extends Migration
      */
     public function up()
     {
-        // create binaan_adminstrasi_table
-        Schema::create('binaan_administrasi', function (Blueprint $table) {
+        //
+        Schema::create('binaan_perpustakaan', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('perpustakaan_id');
-            $table->year('tahun');
-            $table->boolean('buku_induk');
-            $table->boolean('katalog_kartu');
-            $table->boolean('status');
+            $table->string('nama_sekolah');
+            $table->string('alamat_sekolah');
+            $table->string('nama_perpustakaan');
+            $table->string('nama_kepala');
+            $table->string('no_hp_kepala');
             $table->timestamps();
         });
     }
@@ -33,6 +33,6 @@ class BinaanAdministrasiTable extends Migration
     public function down()
     {
         //
-        Schema::dropIfExists('binaan_administrasi');
+        Schema::dropIfExists('binaan_perpustakaan');
     }
 }

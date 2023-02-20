@@ -16,7 +16,7 @@ class BinaanBahanPustakaTable extends Migration
         //create table binaan_bahan_pustaka
         Schema::create('binaan_bahan_pustaka', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_binaan_id');
+            $table->foreignId('perpustakaan_id');
             $table->year('tahun');
             $table->string('pedoman_katalog');
             $table->string('pedoman_klasifikasi');

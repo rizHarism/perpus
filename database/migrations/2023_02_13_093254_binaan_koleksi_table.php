@@ -16,7 +16,7 @@ class BinaanKoleksiTable extends Migration
         //create table binaan_koleksi
         Schema::create('binaan_koleksi', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_binaan_id');
+            $table->foreignId('perpustakaan_id');
             $table->year('tahun');
             $table->integer('buku_pelajaran_judul');
             $table->integer('buku_pelajaran_eksemplar');

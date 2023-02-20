@@ -16,14 +16,14 @@ class BinaanKondisiUmumTable extends Migration
         //create table binaan_kondisi_umum
         Schema::create('binaan_kondisi_umum', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_binaan_id');
+            $table->foreignId('perpustakaan_id');
             $table->year('tahun');
             $table->string('npp');
             $table->string('sk_pendirian');
             $table->integer('siswa_l');
             $table->integer('siswa_p');
-            $table->integer('staf_l');
-            $table->integer('staf_p');
+            $table->integer('staff_l');
+            $table->integer('staff_p');
             $table->boolean('status');
             $table->timestamps();
         });

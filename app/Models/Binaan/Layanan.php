@@ -13,12 +13,11 @@ class Layanan extends Model
     protected $table = 'binaan_layanan';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'user_binaan_id',
+        'perpustakaan_id',
         'tahun',
         'sistem_layanan',
-        'hari_start',
         'hari_awal',
-        'jam_buka',
+        'hari_akhir',
         'jam_buka',
         'jam_tutup',
         'pengunjung_siswa_laki',
@@ -38,6 +37,6 @@ class Layanan extends Model
 
     public function user_binaan()
     {
-        return $this->belongsTo(BinaanUser::class, 'user_binaan_id', 'id');
+        return $this->belongsTo(BinaanUser::class, 'perpustakaan_id', 'id');
     }
 }

@@ -16,11 +16,12 @@ class BinaanTenagaTable extends Migration
         //create table binaan_tenaga
         Schema::create('binaan_tenaga', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_binaan_id');
-            $table->tahun('tahun');
+            $table->foreignId('perpustakaan_id');
+            $table->year('tahun');
             $table->string('nama');
             $table->string('status_pegawai');
             $table->string('status_pendidikan');
+            $table->string('jenis_kelamin');
             $table->boolean('status');
             $table->timestamps();
         });

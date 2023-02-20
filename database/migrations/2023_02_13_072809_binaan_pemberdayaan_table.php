@@ -16,7 +16,7 @@ class BinaanPemberdayaanTable extends Migration
         //create table binaan_pemberdayaan
         Schema::create('binaan_pemberdayaan', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_binaan_id');
+            $table->foreignId('perpustakaan_id');
             $table->year('tahun');
             $table->boolean('slogan');
             $table->longText('program_kerja');

@@ -16,10 +16,10 @@ class BinaanSaranaTable extends Migration
         //create table binaan_sarana
         Schema::create('binaan_sarana', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_binaan_id');
+            $table->foreignId('perpustakaan_id');
             $table->year('tahun');
             $table->integer('luas_ruangan');
-            $table->integer('area_ruangan');
+            $table->longText('area_ruangan');
             $table->boolean('kebersihan');
             $table->boolean('kerapian');
             $table->integer('projector');

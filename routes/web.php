@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\CheckAuthController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Binaan\ProfileController;
 use App\Http\Controllers\Koleksi\CollectionController;
 use App\Http\Controllers\Koleksi\CirculationController;
 use App\Http\Controllers\Koleksi\MemberController;
@@ -66,9 +67,11 @@ Route::group(['middleware' => 'auth:inlislite', 'prefix' => 'inlislite'], functi
 });
 
 Route::group(['middleware' => 'auth:binaan', 'prefix' => 'binaan'], function () {
-    Route::get('/binaan', function () {
-        return view('binaan.index');
-    })->name('binaanIndex');
+    // Route::get('/profile', function () {
+    //     return view('binaan.index');
+    // })->name('binaanIndex');
+
+    Route::get('/profile', [ProfileController::class, 'show'])->name('binaanProfile');
     Route::get('/binaan/kondisi-umum', function () {
         return view('binaan.datainput.kondisiumum.index');
     })->name('binaanKondisiUmum');

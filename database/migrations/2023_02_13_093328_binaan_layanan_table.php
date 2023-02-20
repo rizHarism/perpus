@@ -16,7 +16,7 @@ class BinaanLayananTable extends Migration
         //create table binaan_layanan
         Schema::create('binaan_layanan', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_binaan_id');
+            $table->foreignId('perpustakaan_id');
             $table->year('tahun');
             $table->string('sistem_layanan');
             $table->string('hari_awal');

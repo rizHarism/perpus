@@ -13,7 +13,7 @@ class Sarana extends Model
     protected $table = 'binaan_sarana';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'user_binaan_id',
+        'perpustakaan_id',
         'tahun',
         'luas_ruangan',
         'area_ruangan',
@@ -42,6 +42,6 @@ class Sarana extends Model
 
     public function user_binaan()
     {
-        return $this->belongsTo(BinaanUser::class, 'user_binaan_id', 'id');
+        return $this->belongsTo(BinaanUser::class, 'perpustakaan_id', 'id');
     }
 }

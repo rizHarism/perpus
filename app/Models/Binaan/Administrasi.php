@@ -14,7 +14,7 @@ class Administrasi extends Model
     protected $table = 'binaan_administrasi';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'user_binaan_id',
+        'perpustakaan_id',
         'tahun',
         'buku_induk',
         'katalog_kartu',
@@ -23,6 +23,6 @@ class Administrasi extends Model
 
     public function user_binaan()
     {
-        return $this->belongsTo(BinaanUser::class, 'user_binaan_id', 'id');
+        return $this->belongsTo(BinaanUser::class, 'perpustakaan_id', 'id');
     }
 }
