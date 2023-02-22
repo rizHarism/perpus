@@ -69,4 +69,46 @@ class LoginController extends Controller
         }
         return back()->withInput($request->only('email', 'remember'));
     }
+
+    public function surveyLogin(Request $request)
+    {
+        $this->validate($request, [
+            'email'   => 'required|email',
+            'password' => 'required|min:6'
+        ]);
+
+        if (Auth::guard('survey')->attempt(['email' => $request->email, 'password' => $request->password])) {
+
+            return redirect()->intended('/pustakawan/profile');
+        }
+        return back()->withInput($request->only('email', 'remember'));
+    }
+
+    public function pustakawanLogin(Request $request)
+    {
+        $this->validate($request, [
+            'email'   => 'required|email',
+            'password' => 'required|min:6'
+        ]);
+
+        if (Auth::guard('pustakawan')->attempt(['email' => $request->email, 'password' => $request->password])) {
+
+            return redirect()->intended('/pustakawan/profile');
+        }
+        return back()->withInput($request->only('email', 'remember'));
+    }
+
+    public function bidangLogin(Request $request)
+    {
+        $this->validate($request, [
+            'email'   => 'required|email',
+            'password' => 'required|min:6'
+        ]);
+
+        if (Auth::guard('bidang')->attempt(['email' => $request->email, 'password' => $request->password])) {
+
+            return redirect()->intended('/bidang/profile');
+        }
+        return back()->withInput($request->only('email', 'remember'));
+    }
 }

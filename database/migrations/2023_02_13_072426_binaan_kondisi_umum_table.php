@@ -19,7 +19,9 @@ class BinaanKondisiUmumTable extends Migration
             $table->foreignId('perpustakaan_id');
             $table->year('tahun');
             $table->string('npp');
-            $table->string('sk_pendirian');
+            $table->string('sk_pendirian')->nullable();
+            $table->string('program_kerja')->nullable();
+            $table->string('visi_misi')->nullable();
             $table->integer('siswa_l');
             $table->integer('siswa_p');
             $table->integer('staff_l');

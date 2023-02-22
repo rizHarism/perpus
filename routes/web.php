@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('front-page.index');
-})->name('home');
+})->name('login');
 
 // Route::get('/inlislite/login', function () {
 //     return view('login-page.inlislite');
@@ -33,9 +33,15 @@ Route::get('/inlislite/logintrial', function () {
 
 Route::post('inlislite/logincheck', [CheckAuthController::class, 'inlisliteAuth'])->name('inlisliteAuth');
 Route::post('binaan/logincheck', [CheckAuthController::class, 'binaanAuth'])->name('binaanAuth');
+Route::post('survey/logincheck', [CheckAuthController::class, 'surveyAuth'])->name('surveyAuth');
+Route::post('pustakawan/logincheck', [CheckAuthController::class, 'surveyAuth'])->name('pustakawanAuth');
+Route::post('bidang/logincheck', [CheckAuthController::class, 'bidangAuth'])->name('bidangAuth');
 
 Route::post('inlislite/login', [LoginController::class, 'inlisliteLogin'])->name('inlisliteLogin');
 Route::post('binaan/login', [LoginController::class, 'binaanLogin'])->name('binaanLogin');
+Route::post('survey/login', [LoginController::class, 'surveyLogin'])->name('surveyLogin');
+Route::post('pustakawan/login', [LoginController::class, 'pustakawanLogin'])->name('pustakawanLogin');
+Route::post('bidang/login', [LoginController::class, 'bidangLogin'])->name('bidangLogin');
 
 Route::group(['middleware' => 'auth:inlislite', 'prefix' => 'inlislite'], function () {
     Route::get('/collection/catalogue', [CollectionController::class, 'collectionCatalogue'])->name('collectionCatalogue');
@@ -63,6 +69,9 @@ Route::group(['middleware' => 'auth:inlislite', 'prefix' => 'inlislite'], functi
     Route::get('/member/usia', [MemberController::class, 'memberUsia'])->name('memberUsia');
     Route::get('/member/usia/{status}/filter', [MemberController::class, 'memberUsiaFilter'])->name('memberUsiaFilter');
     Route::get('/member/pekerjaan', [MemberController::class, 'memberPekerjaan'])->name('memberPekerjaan');
+    Route::get('/member/pekerjaan/{status}/filter', [MemberController::class, 'memberPekerjaanFilter'])->name('memberPekerjaanFilter');
+
+    //route statistik
     Route::get('/member/pekerjaan/{status}/filter', [MemberController::class, 'memberPekerjaanFilter'])->name('memberPekerjaanFilter');
 });
 
@@ -97,6 +106,38 @@ Route::group(['middleware' => 'auth:binaan', 'prefix' => 'binaan'], function () 
         return view('binaan.datainput.layanan.index');
     })->name('binaanLayanan');
 });
+
+// Route::group(['middleware' => 'auth:survey', 'prefix' => 'survey'], function () {
+//     // Route::get('/profile', function () {
+//     //     return view('binaan.index');
+//     // })->name('binaanIndex');
+
+//     Route::get('/profile', [ProfileController::class, 'show'])->name('binaanProfile');
+//     Route::get('/binaan/kondisi-umum', function () {
+//         return view('binaan.datainput.kondisiumum.index');
+//     })->name('binaanKondisiUmum');
+//     Route::get('/binaan/bahan-pustaka', function () {
+//         return view('binaan.datainput.bahanpustaka.index');
+//     })->name('binaanBahanPustaka');
+//     Route::get('/binaan/administrasi', function () {
+//         return view('binaan.datainput.administrasi.index');
+//     })->name('binaanAdministrasi');
+//     Route::get('/binaan/pemberdayaan', function () {
+//         return view('binaan.datainput.pemberdayaan.index');
+//     })->name('binaanPemberdayaan');
+//     Route::get('/binaan/tenaga', function () {
+//         return view('binaan.datainput.tenagapustaka.index');
+//     })->name('binaanTenagapustaka');
+//     Route::get('/binaan/sarana', function () {
+//         return view('binaan.datainput.sarana.index');
+//     })->name('binaanSarana');
+//     Route::get('/binaan/koleksi', function () {
+//         return view('binaan.datainput.koleksi.index');
+//     })->name('binaanKoleksi');
+//     Route::get('/binaan/layanan', function () {
+//         return view('binaan.datainput.layanan.index');
+//     })->name('binaanLayanan');
+// });
 // Route::get('/collection/dashboard', [CollectionController::class, 'dashboard'])->name('collectionDashboard');
 // Route::get('/collection/koleksi/datatables', [CollectionController::class, 'datatablesKoleksi'])->name('collectionKoleksi');
 // Route::get('/collection/sirkulasi/datatables', [CollectionController::class, 'datatablesSirkulasi'])->name('collectionSirkulasi');

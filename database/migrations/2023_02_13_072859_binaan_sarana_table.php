@@ -19,7 +19,10 @@ class BinaanSaranaTable extends Migration
             $table->foreignId('perpustakaan_id');
             $table->year('tahun');
             $table->integer('luas_ruangan');
-            $table->longText('area_ruangan');
+            $table->boolean('area_koleksi');
+            $table->boolean('area_baca');
+            $table->boolean('area_kerja');
+            $table->boolean('area_multimedia');
             $table->boolean('kebersihan');
             $table->boolean('kerapian');
             $table->integer('projector');

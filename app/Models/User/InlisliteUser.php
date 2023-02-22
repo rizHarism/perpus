@@ -17,6 +17,7 @@ class InlisliteUser extends Authenticatable
 
     protected $fillable = [
         'name',
+        'username',
         'email',
         'password',
     ];

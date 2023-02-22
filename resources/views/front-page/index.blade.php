@@ -231,8 +231,16 @@
             } else if (val == 'binaan') {
                 $('#login-form').attr('action', "{{ route('binaanLogin') }}");
                 urlCheck = "{{ route('binaanAuth') }}";
+            } else if (val == 'survey') {
+                $('#login-form').attr('action', "{{ route('surveyLogin') }}");
+                urlCheck = "{{ route('surveyAuth') }}";
+            } else if (val == 'pustakawan') {
+                $('#login-form').attr('action', "{{ route('pustakawanLogin') }}");
+                urlCheck = "{{ route('pustakawanAuth') }}";
+            } else if (val == 'bidang') {
+                $('#login-form').attr('action', "{{ route('bidangLogin') }}");
+                urlCheck = "{{ route('bidangAuth') }}";
             }
-
             $.ajax({
                 type: "POST",
                 headers: {

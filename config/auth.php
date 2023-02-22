@@ -49,6 +49,18 @@ return [
         'binaan' => [
             'driver' => 'session',
             'provider' => 'binaan',
+        ],
+        'survey' => [
+            'driver' => 'session',
+            'provider' => 'survey',
+        ],
+        'pustakawan' => [
+            'driver' => 'session',
+            'provider' => 'pustakawan',
+        ],
+        'bidang' => [
+            'driver' => 'session',
+            'provider' => 'bidang',
         ]
     ],
 
@@ -84,7 +96,23 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User\BinaanUser::class,
         ],
+
+        'survey' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User\SurveyUser::class,
+        ],
+
+        'pustakawan' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User\PustakawanUser::class,
+        ],
+
+        'bidang' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User\BidangUser::class,
+        ],
     ],
+
 
     /*
     |--------------------------------------------------------------------------
