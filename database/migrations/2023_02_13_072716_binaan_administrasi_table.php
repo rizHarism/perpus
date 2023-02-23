@@ -18,8 +18,9 @@ class BinaanAdministrasiTable extends Migration
             $table->id();
             $table->foreignId('perpustakaan_id');
             $table->year('tahun');
-            $table->boolean('buku_induk');
-            $table->boolean('katalog_kartu');
+            $table->boolean('buku_induk')->default('0');
+            $table->boolean('buku_pengunjung')->default('0');
+            $table->boolean('katalog_kartu')->default('0');
             $table->boolean('status');
             $table->timestamps();
         });

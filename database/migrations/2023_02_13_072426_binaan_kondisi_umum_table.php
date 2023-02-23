@@ -22,10 +22,10 @@ class BinaanKondisiUmumTable extends Migration
             $table->string('sk_pendirian')->nullable();
             $table->string('program_kerja')->nullable();
             $table->string('visi_misi')->nullable();
-            $table->integer('siswa_l');
-            $table->integer('siswa_p');
-            $table->integer('staff_l');
-            $table->integer('staff_p');
+            $table->integer('siswa_l')->default('0');
+            $table->integer('siswa_p')->default('0');
+            $table->integer('staff_l')->default('0');
+            $table->integer('staff_p')->default('0');
             $table->boolean('status');
             $table->timestamps();
         });

@@ -18,9 +18,9 @@ class BinaanBahanPustakaTable extends Migration
             $table->id();
             $table->foreignId('perpustakaan_id');
             $table->year('tahun');
-            $table->string('pedoman_katalog');
-            $table->string('pedoman_klasifikasi');
-            $table->string('aplikasi_perpus');
+            $table->string('pedoman_katalog')->nullable();
+            $table->string('pedoman_klasifikasi')->nullable();
+            $table->string('aplikasi_perpus')->nullable();
             $table->boolean('status');
             $table->timestamps();
         });

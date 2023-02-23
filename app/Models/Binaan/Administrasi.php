@@ -17,6 +17,7 @@ class Administrasi extends Model
         'perpustakaan_id',
         'tahun',
         'buku_induk',
+        'buku_pengunjung',
         'katalog_kartu',
         'status',
     ];

@@ -17,6 +17,8 @@ class KondisiUmum extends Model
         'tahun',
         'npp',
         'sk_pendirian',
+        'program_kerja',
+        'visi_misi',
         'siswa_l',
         'siswa_p',
         'staf_l',

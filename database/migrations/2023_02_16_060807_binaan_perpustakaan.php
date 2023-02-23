@@ -16,11 +16,11 @@ class BinaanPerpustakaan extends Migration
         //
         Schema::create('binaan_perpustakaan', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_sekolah');
-            $table->string('alamat_sekolah');
-            $table->string('nama_perpustakaan');
-            $table->string('nama_kepala');
-            $table->string('no_hp_kepala');
+            $table->string('nama_sekolah')->nullable();
+            $table->string('alamat_sekolah')->nullable();
+            $table->string('nama_perpustakaan')->nullable();
+            $table->string('nama_kepala')->nullable();
+            $table->string('no_hp_kepala')->nullable();
             $table->timestamps();
         });
     }

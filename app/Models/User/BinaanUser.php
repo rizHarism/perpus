@@ -25,7 +25,7 @@ class BinaanUser extends Authenticatable
     protected $fillable = [
         'name',
         'username',
-        'email',
+        // 'email',
         'password',
         'perpustakaan_id',
         'avatar',
