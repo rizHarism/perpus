@@ -15,7 +15,6 @@ class KoleksiController extends Controller
     {
         $user_id = Auth::user()->perpustakaan_id;
         $koleksi = Koleksi::where('perpustakaan_id', $user_id)->first();
-
         return view('binaan.datainput.koleksi.index', [
             'koleksi' => $koleksi
         ]);
