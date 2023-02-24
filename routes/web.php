@@ -2,10 +2,17 @@
 
 use App\Http\Controllers\Auth\CheckAuthController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Binaan\AdministrasiController;
+use App\Http\Controllers\Binaan\BahanPustakaController;
+use App\Http\Controllers\Binaan\KondisiUmumController;
+use App\Http\Controllers\Binaan\PemberdayaanController;
 use App\Http\Controllers\Binaan\ProfileController;
+use App\Http\Controllers\Binaan\SaranaController;
+use App\Http\Controllers\Binaan\TenagaController;
 use App\Http\Controllers\Koleksi\CollectionController;
 use App\Http\Controllers\Koleksi\CirculationController;
 use App\Http\Controllers\Koleksi\MemberController;
+use App\Models\Binaan\KondisiUmum;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -81,24 +88,30 @@ Route::group(['middleware' => 'auth:binaan', 'prefix' => 'binaan'], function () 
     // })->name('binaanIndex');
 
     Route::get('/profile', [ProfileController::class, 'show'])->name('binaanProfile');
-    Route::get('/binaan/kondisi-umum', function () {
-        return view('binaan.datainput.kondisiumum.index');
-    })->name('binaanKondisiUmum');
-    Route::get('/binaan/bahan-pustaka', function () {
-        return view('binaan.datainput.bahanpustaka.index');
-    })->name('binaanBahanPustaka');
-    Route::get('/binaan/administrasi', function () {
-        return view('binaan.datainput.administrasi.index');
-    })->name('binaanAdministrasi');
-    Route::get('/binaan/pemberdayaan', function () {
-        return view('binaan.datainput.pemberdayaan.index');
-    })->name('binaanPemberdayaan');
-    Route::get('/binaan/tenaga', function () {
-        return view('binaan.datainput.tenagapustaka.index');
-    })->name('binaanTenagapustaka');
-    Route::get('/binaan/sarana', function () {
-        return view('binaan.datainput.sarana.index');
-    })->name('binaanSarana');
+    Route::get('/binaan/kondisi-umum', [KondisiUmumController::class, 'show'])->name('binaanKondisiUmum');
+    Route::get('/binaan/bahan-pustaka', [BahanPustakaController::class, 'show'])->name('binaanBahanPustaka');
+    Route::get('/binaan/administrasi', [AdministrasiController::class, 'show'])->name('binaanAdministrasi');
+    Route::get('/binaan/pemberdayaan', [PemberdayaanController::class, 'show'])->name('binaanPemberdayaan');
+    Route::get('/binaan/tenaga', [TenagaController::class, 'show'])->name('binaanTenagapustaka');
+    Route::get('/binaan/sarana', [SaranaController::class, 'show'])->name('binaanSarana');
+    // Route::get('/binaan/kondisi-umum', function () {
+    //     return view('binaan.datainput.kondisiumum.index');
+    // })->name('binaanKondisiUmum');
+    // Route::get('/binaan/bahan-pustaka', function () {
+    //     return view('binaan.datainput.bahanpustaka.index');
+    // })->name('binaanBahanPustaka');
+    // Route::get('/binaan/administrasi', function () {
+    //     return view('binaan.datainput.administrasi.index');
+    // })->name('binaanAdministrasi');
+    // Route::get('/binaan/pemberdayaan', function () {
+    //     return view('binaan.datainput.pemberdayaan.index');
+    // })->name('binaanPemberdayaan');
+    // Route::get('/binaan/tenaga', function () {
+    //     return view('binaan.datainput.tenagapustaka.index');
+    // })->name('binaanTenagapustaka');
+    // Route::get('/binaan/sarana', function () {
+    //     return view('binaan.datainput.sarana.index');
+    // })->name('binaanSarana');
     Route::get('/binaan/koleksi', function () {
         return view('binaan.datainput.koleksi.index');
     })->name('binaanKoleksi');

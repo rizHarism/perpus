@@ -18,19 +18,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Nur Rahmat Agustianto</td>
-                                <td>Pegawai Negeri Sipil</td>
-                                <td>Sarjana</td>
-                                <td>Laki-Laki</td>
-                                <td>
-                                    <i class="fa fa-pencil"></i>
-                                </td>
-                                <td>
-                                    <i class="fa fa-trash"></i>
-                                </td>
-                            </tr>
+                            @foreach ($tenaga as $tenaga)
+                                <tr>
+                                    <td>#</td>
+                                    <td>{{ $tenaga->nama }}</td>
+                                    <td>{{ $tenaga->status_pegawai }}</td>
+                                    <td>{{ $tenaga->status_pendidikan }}</td>
+                                    <td>{{ $tenaga->jenis_kelamin }}</td>
+                                    <td>{{ $tenaga->nama }}</td>
+                                    <td>{{ $tenaga->nama }}</td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                     <hr>

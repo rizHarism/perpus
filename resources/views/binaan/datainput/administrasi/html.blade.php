@@ -12,7 +12,20 @@
                                 Buku Induk Perpustakaan
                             </label>
                             <div class="col-sm-5">
-                                <input type="email" class="form-control form-control-sm" id="npp">
+                                <div class="form-check form-check-inline">
+                                    <input type="radio" class="form-check-input" name="radio-induk"
+                                        id="buku-induk-tertib" value="1"
+                                        {{ $administrasi->buku_induk == '1' ? 'checked' : '' }}
+                                        {{ $administrasi->status == '1' ? 'disabled' : '' }}>
+                                    <label class="form-check-label" for="buku-induk-tertib">Tertib</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input type="radio" class="form-check-input" name="radio-induk"
+                                        id="buku-induk-tidaktertib" value="0"
+                                        {{ $administrasi->buku_induk == '0' ? 'checked' : '' }}
+                                        {{ $administrasi->status == '1' ? 'disabled' : '' }}>
+                                    <label class="form-check-label" for="buku-induk-tidaktertib">Tidak Tertib</label>
+                                </div>
                             </div>
                             <div class="col-sm-4">
                                 <label for="image-input">
@@ -35,7 +48,21 @@
                                 Pengunjung
                             </label>
                             <div class="col-sm-5">
-                                <input type="email" class="form-control form-control-sm" id="sk-pendirian">
+                                <div class="form-check form-check-inline">
+                                    <input type="radio" class="form-check-input" name="radio-pengunjung"
+                                        id="buku-pengunjung-tertib" value="1"
+                                        {{ $administrasi->buku_pengunjung == '1' ? 'checked' : '' }}
+                                        {{ $administrasi->status == '1' ? 'disabled' : '' }}>
+                                    <label class="form-check-label" for="buku-pengunjung-tertib">Tertib</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input type="radio" class="form-check-input" name="radio-pengunjung"
+                                        id="buku-pengunjung-tidaktertib" value="0"
+                                        {{ $administrasi->buku_pengunjung == '0' ? 'checked' : '' }}
+                                        {{ $administrasi->status == '1' ? 'disabled' : '' }}>
+                                    <label class="form-check-label" for="buku-pengunjung-tidaktertib">Tidak
+                                        Tertib</label>
+                                </div>
                             </div>
                             <div class="col-sm-4">
                                 <label for="image-input">
@@ -57,7 +84,21 @@
                                 Buku
                             </label>
                             <div class="col-sm-5">
-                                <input type="email" class="form-control form-control-sm" id="visi-misi">
+                                <div class="form-check form-check-inline">
+                                    <input type="radio" class="form-check-input" name="radio-katalog"
+                                        id="buku-katalog-tersedia" value="1"
+                                        {{ $administrasi->katalog_kartu == '1' ? 'checked' : '' }}
+                                        {{ $administrasi->status == '1' ? 'disabled' : '' }}>
+                                    <label class="form-check-label" for="buku-katalog-tertib">Tersedia</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input type="radio" class="form-check-input" name="radio-katalog"
+                                        id="buku-katalog-tidaktersedia" value="0"
+                                        {{ $administrasi->katalog_kartu == '0' ? 'checked' : '' }}
+                                        {{ $administrasi->status == '1' ? 'disabled' : '' }}>
+                                    <label class="form-check-label" for="buku-katalog-tidaktertib">Tidak
+                                        Tersedia</label>
+                                </div>
                             </div>
                             <div class="col-sm-4">
                                 <label for="image-input">

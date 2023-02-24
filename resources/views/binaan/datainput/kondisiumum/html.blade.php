@@ -12,7 +12,8 @@
                                 Perpustakaan)
                             </label>
                             <div class="col-sm-9">
-                                <input type="email" class="form-control form-control-sm" id="npp">
+                                <input type="text" class="form-control form-control-sm" id="npp"
+                                    value="{{ $kondisi_umum->npp }}">
                             </div>
                         </div>
                         <hr>
@@ -21,7 +22,18 @@
                                 Perpustakaan
                             </label>
                             <div class="col-sm-9">
-                                <input type="email" class="form-control form-control-sm" id="sk-pendirian">
+                                <input type="text" class="form-control form-control-sm" id="sk-pendirian"
+                                    value="{{ $kondisi_umum->sk_pendirian }}">
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="form-group row">
+                            <label for="visi-misi" class="col-sm-3 col-form-label col-form-label-sm">Program Kerja
+                                Perpustakaan
+                            </label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control form-control-sm" id="visi-misi"
+                                    value="{{ $kondisi_umum->program_kerja }}">
                             </div>
                         </div>
                         <hr>
@@ -30,7 +42,8 @@
                                 Perpustakaan
                             </label>
                             <div class="col-sm-9">
-                                <input type="email" class="form-control form-control-sm" id="visi-misi">
+                                <input type="text" class="form-control form-control-sm" id="visi-misi"
+                                    value="{{ $kondisi_umum->visi_misi }}">
                             </div>
                         </div>
                         <hr>
@@ -46,7 +59,8 @@
                                                     id="inputGroup-sizing-sm">Laki-Laki</span>
                                             </div>
                                             <input type="text" class="form-control" aria-label="Sizing example input"
-                                                aria-describedby="inputGroup-sizing-sm">
+                                                aria-describedby="inputGroup-sizing-sm"
+                                                value="{{ $kondisi_umum->siswa_l }}">
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
@@ -56,7 +70,8 @@
                                                     id="inputGroup-sizing-sm">Perempuan</span>
                                             </div>
                                             <input type="text" class="form-control" aria-label="Sizing example input"
-                                                aria-describedby="inputGroup-sizing-sm">
+                                                aria-describedby="inputGroup-sizing-sm"
+                                                value="{{ $kondisi_umum->siswa_p }}">
                                         </div>
                                     </div>
                                 </div>
@@ -75,7 +90,8 @@
                                                     id="inputGroup-sizing-sm">Laki-Laki</span>
                                             </div>
                                             <input type="text" class="form-control" aria-label="Sizing example input"
-                                                aria-describedby="inputGroup-sizing-sm">
+                                                aria-describedby="inputGroup-sizing-sm"
+                                                value="{{ $kondisi_umum->staff_l }}">
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
@@ -85,7 +101,8 @@
                                                     id="inputGroup-sizing-sm">Perempuan</span>
                                             </div>
                                             <input type="text" class="form-control" aria-label="Sizing example input"
-                                                aria-describedby="inputGroup-sizing-sm">
+                                                aria-describedby="inputGroup-sizing-sm"
+                                                value="{{ $kondisi_umum->staff_p }}">
                                         </div>
                                     </div>
                                 </div>
@@ -97,7 +114,8 @@
                                 Belajar
                             </label>
                             <div class="col-sm-2">
-                                <input type="email" class="form-control form-control-sm" id="visi-misi">
+                                <input type="text" class="form-control form-control-sm" id="visi-misi"
+                                    value="{{ $kondisi_umum->rombongan_belajar }}">
                             </div>
                         </div>
                         <hr>

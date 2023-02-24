@@ -26,6 +26,7 @@ class BinaanKondisiUmumTable extends Migration
             $table->integer('siswa_p')->default('0');
             $table->integer('staff_l')->default('0');
             $table->integer('staff_p')->default('0');
+            $table->integer('rombongan_belajar')->default('0');
             $table->boolean('status');
             $table->timestamps();
         });

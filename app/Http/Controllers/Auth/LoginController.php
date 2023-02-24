@@ -45,70 +45,76 @@ class LoginController extends Controller
     public function inlisliteLogin(Request $request)
     {
         $this->validate($request, [
-            'email'   => 'required|email',
+            'username'   => 'required',
             'password' => 'required|min:6'
         ]);
 
-        if (Auth::guard('inlislite')->attempt(['email' => $request->email, 'password' => $request->password])) {
+        if (Auth::guard('inlislite')->attempt(['username' => $request->username, 'password' => $request->password])) {
 
             return redirect()->intended('/inlislite/collection/catalogue');
         }
-        return back()->withInput($request->only('email', 'remember'));
+        return back()->withInput($request->only('username', 'remember'));
     }
 
     public function binaanLogin(Request $request)
     {
+        // dd($request->email);
         $this->validate($request, [
-            'email'   => 'required|email',
+            'username'   => 'required',
             'password' => 'required|min:6'
         ]);
 
-        if (Auth::guard('binaan')->attempt(['email' => $request->email, 'password' => $request->password])) {
+        if (Auth::guard('binaan')->attempt(['username' => $request->username, 'password' => $request->password])) {
 
             return redirect()->intended('/binaan/profile');
         }
-        return back()->withInput($request->only('email', 'remember'));
+        return back()->withInput($request->only('username', 'remember'));
     }
 
     public function surveyLogin(Request $request)
     {
         $this->validate($request, [
-            'email'   => 'required|email',
+            'username'   => 'required',
             'password' => 'required|min:6'
         ]);
 
-        if (Auth::guard('survey')->attempt(['email' => $request->email, 'password' => $request->password])) {
+        if (Auth::guard('survey')->attempt(['username' => $request->username, 'password' => $request->password])) {
 
-            return redirect()->intended('/pustakawan/profile');
+            return redirect()->intended('/survey/profile');
         }
-        return back()->withInput($request->only('email', 'remember'));
+        return back()->withInput($request->only('username', 'remember'));
     }
 
     public function pustakawanLogin(Request $request)
     {
         $this->validate($request, [
-            'email'   => 'required|email',
+            'username'   => 'required',
             'password' => 'required|min:6'
         ]);
 
-        if (Auth::guard('pustakawan')->attempt(['email' => $request->email, 'password' => $request->password])) {
+        if (Auth::guard('pustakawan')->attempt(['username' => $request->username, 'password' => $request->password])) {
 
             return redirect()->intended('/pustakawan/profile');
         }
-        return back()->withInput($request->only('email', 'remember'));
+        return back()->withInput($request->only('username', 'remember'));
     }
 
     public function bidangLogin(Request $request)
     {
         $this->validate($request, [
-            'email'   => 'required|email',
+            'username'   => 'required',
             'password' => 'required|min:6'
         ]);
 
-        if (Auth::guard('bidang')->attempt(['email' => $request->email, 'password' => $request->password])) {
+        if (Auth::guard('bidang')->attempt(['username' => $request->username, 'password' => $request->password])) {
 
             return redirect()->intended('/bidang/profile');
         }
-        return back()->withInput($request->only('email', 'remember'));
+        return back()->withInput($request->only('username', 'remember'));
+    }
+
+    public function username()
+    {
+        return 'username';
     }
 }

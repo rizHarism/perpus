@@ -14,18 +14,24 @@ class BinaanUserSeeder extends Seeder
      */
     public function run()
     {
-        //
-        // BinaanUser::create([
-        //     'name' => 'admin',
-        //     'email' => 'admin@gmail.com',
-        //     'password' => bcrypt('admin111'),
-        // ],);
-        // BinaanUser::create([
-        //     'name' => 'user',
-        //     'email' => 'user@gmail.com',
-        //     'password' => bcrypt('user111'),
-        // ],);
+        BinaanUser::truncate();
 
-        BinaanUser::factory(3)->create();
+        $csvFile = fopen(base_path("database/data/binaan/user_binaan.csv"), "r");
+
+        $firstline = true;
+        while (($data = fgetcsv($csvFile, 2000, ",")) !== FALSE) {
+            if (!$firstline) {
+                BinaanUser::create([
+                    "name" => $data["1"],
+                    "username" => $data["2"],
+                    "password" => bcrypt($data["3"]),
+                    "perpustakaan_id" => $data["4"],
+                    "avatar" => $data["5"],
+                ]);
+            }
+            $firstline = false;
+        }
+
+        fclose($csvFile);
     }
 }

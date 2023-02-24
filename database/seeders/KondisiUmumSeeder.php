@@ -34,7 +34,8 @@ class KondisiUmumSeeder extends Seeder
                     "siswa_p" => $data["8"],
                     "staff_l" => $data["9"],
                     "staff_p" => $data["10"],
-                    "status" => $data["11"],
+                    "rombongan_belajar" => $data["11"],
+                    "status" => $data["12"],
                 ]);
             }
             $firstline = false;

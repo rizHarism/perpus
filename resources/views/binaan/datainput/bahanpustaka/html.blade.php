@@ -11,7 +11,8 @@
                             <label for="npp" class="col-sm-3 col-form-label col-form-label-sm">Buku Pedoman Katalog
                             </label>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control form-control-sm" id="npp">
+                                <input type="text" class="form-control form-control-sm" id="pedoman-katalog"
+                                    value="{{ $bahan->pedoman_katalog }}">
                             </div>
                             <div class="col-sm-4">
                                 <label for="image-input">
@@ -33,7 +34,8 @@
                                 Klasifikasi
                             </label>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control form-control-sm" id="sk-pendirian">
+                                <input type="text" class="form-control form-control-sm" id="pedoman-klasifikasi"
+                                    value="{{ $bahan->pedoman_klasifikasi }}">
                             </div>
                             <div class="col-sm-4">
                                 <label for="image-input">
@@ -55,7 +57,8 @@
                                 Perpustakaan
                             </label>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control form-control-sm" id="visi-misi">
+                                <input type="text" class="form-control form-control-sm" id="aplikasi-perpus"
+                                    value="{{ $bahan->aplikasi_perpus }}">
                             </div>
                             <div class="col-sm-4">
                                 <label for="image-input">

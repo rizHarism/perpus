@@ -199,8 +199,8 @@
                 </div>
                 <hr>
                 <div class="control mt-2">
-                    <label for="name">E-mail</label>
-                    <input type="text" id="email" name="email">
+                    <label for="name">Username</label>
+                    <input type="text" id="username" name="username">
                 </div>
                 <div class="control">
                     <label for="psw">Kata Sandi</label>
