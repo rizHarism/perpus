@@ -126,7 +126,7 @@
                     </a>
                     <ul class="nav nav-treeview ms-5">
                         <li class="nav-item ">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('binaanStatistikKoleksi') }}" class="nav-link">
                                 <i class="far fa-file nav-icon ml-3"></i>
                                 <p>Statistik Koleksi</p>
                             </a>
@@ -134,7 +134,7 @@
                     </ul>
                     <ul class="nav nav-treeview ms-5">
                         <li class="nav-item ">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('binaanStatistikLayanan') }}" class="nav-link">
                                 <i class="far fa-file nav-icon ml-3"></i>
                                 <p>Statistik Layanan</p>
                             </a>

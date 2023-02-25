@@ -21,8 +21,8 @@ class BinaanLayananTable extends Migration
             $table->string('sistem_layanan');
             $table->string('hari_awal');
             $table->string('hari_akhir');
-            $table->time('jam_buka');
-            $table->time('jam_tutup');
+            $table->string('jam_buka');
+            $table->string('jam_tutup');
             $table->integer('pengunjung_siswa_laki')->default('0');
             $table->integer('pengunjung_siswa_perempuan')->default('0');
             $table->integer('pengunjung_guru_laki')->default('0');

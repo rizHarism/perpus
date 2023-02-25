@@ -6,9 +6,11 @@ use App\Http\Controllers\Binaan\AdministrasiController;
 use App\Http\Controllers\Binaan\BahanPustakaController;
 use App\Http\Controllers\Binaan\KoleksiController;
 use App\Http\Controllers\Binaan\KondisiUmumController;
+use App\Http\Controllers\Binaan\LayananController;
 use App\Http\Controllers\Binaan\PemberdayaanController;
 use App\Http\Controllers\Binaan\ProfileController;
 use App\Http\Controllers\Binaan\SaranaController;
+use App\Http\Controllers\Binaan\StatistikController;
 use App\Http\Controllers\Binaan\TenagaController;
 use App\Http\Controllers\Koleksi\CollectionController;
 use App\Http\Controllers\Koleksi\CirculationController;
@@ -96,6 +98,10 @@ Route::group(['middleware' => 'auth:binaan', 'prefix' => 'binaan'], function () 
     Route::get('/binaan/tenaga', [TenagaController::class, 'show'])->name('binaanTenagapustaka');
     Route::get('/binaan/sarana', [SaranaController::class, 'show'])->name('binaanSarana');
     Route::get('/binaan/koleksi', [KoleksiController::class, 'show'])->name('binaanKoleksi');
+    Route::get('/binaan/layanan', [LayananController::class, 'show'])->name('binaanLayanan');
+
+    Route::get('/statistik/koleksi', [StatistikController::class, 'koleksi'])->name('binaanStatistikKoleksi');
+    Route::get('/statistik/layanan', [StatistikController::class, 'layanan'])->name('binaanStatistikLayanan');
     // Route::get('/binaan/kondisi-umum', function () {
     //     return view('binaan.datainput.kondisiumum.index');
     // })->name('binaanKondisiUmum');
@@ -117,9 +123,11 @@ Route::group(['middleware' => 'auth:binaan', 'prefix' => 'binaan'], function () 
     // Route::get('/binaan/koleksi', function () {
     //     return view('binaan.datainput.koleksi.index');
     // })->name('binaanKoleksi');
-    Route::get('/binaan/layanan', function () {
-        return view('binaan.datainput.layanan.index');
-    })->name('binaanLayanan');
+    // Route::get('/binaan/layanan', function () {
+    //     return view('binaan.datainput.layanan.index');
+    // })->name('binaanLayanan');
+
+
 });
 
 // Route::group(['middleware' => 'auth:survey', 'prefix' => 'survey'], function () {
