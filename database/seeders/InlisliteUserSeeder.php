@@ -17,14 +17,14 @@ class InlisliteUserSeeder extends Seeder
         //
         InlisliteUser::create([
             'name' => 'admin',
-            'email' => 'admin@gmail.com',
-            'password' => bcrypt('admin111'),
+            'username' => 'administrator',
+            'password' => bcrypt('pass123'),
             'avatar' => 'default-avatar.png',
         ],);
         InlisliteUser::create([
             'name' => 'user',
-            'email' => 'user@gmail.com',
-            'password' => bcrypt('user111'),
+            'username' => 'user',
+            'password' => bcrypt('pass123'),
             'avatar' => 'default-avatar.png',
         ],);
     }
