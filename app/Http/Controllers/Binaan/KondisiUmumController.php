@@ -8,6 +8,7 @@ use App\Models\Binaan\Perpustakaan;
 use App\Models\User\BinaanUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\Response;
 
 class KondisiUmumController extends Controller
 {
@@ -16,15 +17,23 @@ class KondisiUmumController extends Controller
     {
         $user_id = Auth::user()->perpustakaan_id;
         $kondisi_umum = KondisiUmum::where('perpustakaan_id', $user_id)->first();
-        // dd($kondisi_umum);
+        $perpustakaan = Perpustakaan::select('id', 'nama_sekolah')->orderby('nama_sekolah')->get();
 
         return view('binaan.datainput.kondisiumum.index', [
-            'kondisi_umum' => $kondisi_umum
+            'kondisi_umum' => $kondisi_umum,
+            'perpustakaan' => $perpustakaan
         ]);
     }
 
     public function filter($id)
     {
-        dd($id);
+        $kondisi_umum = KondisiUmum::where('perpustakaan_id', $id)->first();
+        // $response = [
+        //     'title' => 'Data Katalog Tahun Terbit ' . $year[0] . ' s/d ' . $year[1],
+        //     'koleksi' => count($collection),
+        //     'katalog' => count($catalogue)
+        // ];
+
+        return response()->json($kondisi_umum, Response::HTTP_OK);
     }
 }

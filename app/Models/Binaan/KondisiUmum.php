@@ -30,4 +30,9 @@ class KondisiUmum extends Model
     {
         return $this->belongsTo(BinaanUser::class, 'perpustakaan_id', 'id');
     }
+
+    public function perpustakaan()
+    {
+        return $this->belongsTo(Perpustakaan::class, 'perpustakaan_id', 'id');
+    }
 }
