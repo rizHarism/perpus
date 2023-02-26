@@ -53,6 +53,7 @@ Route::post('survey/login', [LoginController::class, 'surveyLogin'])->name('surv
 Route::post('pustakawan/login', [LoginController::class, 'pustakawanLogin'])->name('pustakawanLogin');
 Route::post('bidang/login', [LoginController::class, 'bidangLogin'])->name('bidangLogin');
 
+Route::post('inlislite/logout', [LoginController::class, 'inlisliteLogout'])->name('inlisliteLogout');
 Route::post('binaan/logout', [LoginController::class, 'binaanLogout'])->name('binaanLogout');
 
 Route::group(['middleware' => 'auth:inlislite', 'prefix' => 'inlislite'], function () {

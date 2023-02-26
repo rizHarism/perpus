@@ -38,7 +38,7 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
-        $this->middleware('guest:inlislite')->except('logout');
+        // $this->middleware('guest:inlislite')->except('logout');
         // $this->middleware('guest:binaan')->except('logout');
     }
 
@@ -56,9 +56,22 @@ class LoginController extends Controller
         return back()->withInput($request->only('username', 'remember'));
     }
 
+    public function inlisliteLogout(Request $request)
+    {
+        if (Auth::guard('inlislite')->check()) // this means that the inlislite was logged in.
+        {
+            Auth::guard('inlislite')->logout();
+            return redirect()->route('login');
+        }
+
+        $this->guard()->logout();
+        $request->session()->invalidate();
+
+        return $this->loggedOut($request) ?: redirect('/');
+    }
+
     public function binaanLogin(Request $request)
     {
-        // dd($request->email);
         $this->validate($request, [
             'username'   => 'required',
             'password' => 'required|min:6'
