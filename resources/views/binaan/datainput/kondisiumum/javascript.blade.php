@@ -20,8 +20,8 @@
 
     $('#filter-kondisi').on('submit', function(e) {
         e.preventDefault();
-        var tahun = $('#list-tahun').val();
-        // $('#kondisi-form').show('slow')
+        var id = $('#list-tahun').val();
+        $('#kondisi-form').show('slow')
         alert(tahun)
     });
 
