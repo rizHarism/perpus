@@ -39,7 +39,7 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
         $this->middleware('guest:inlislite')->except('logout');
-        $this->middleware('guest:binaan')->except('logout');
+        // $this->middleware('guest:binaan')->except('logout');
     }
 
     public function inlisliteLogin(Request $request)
@@ -69,6 +69,20 @@ class LoginController extends Controller
             return redirect()->intended('/binaan/profile');
         }
         return back()->withInput($request->only('username', 'remember'));
+    }
+
+    public function binaanLogout(Request $request)
+    {
+        if (Auth::guard('binaan')->check()) // this means that the binaan was logged in.
+        {
+            Auth::guard('binaan')->logout();
+            return redirect()->route('login');
+        }
+
+        $this->guard()->logout();
+        $request->session()->invalidate();
+
+        return $this->loggedOut($request) ?: redirect('/');
     }
 
     public function surveyLogin(Request $request)
