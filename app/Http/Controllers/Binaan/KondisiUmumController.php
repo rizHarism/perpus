@@ -16,9 +16,15 @@ class KondisiUmumController extends Controller
     {
         $user_id = Auth::user()->perpustakaan_id;
         $kondisi_umum = KondisiUmum::where('perpustakaan_id', $user_id)->first();
+        // dd($kondisi_umum);
 
         return view('binaan.datainput.kondisiumum.index', [
             'kondisi_umum' => $kondisi_umum
         ]);
+    }
+
+    public function filter($id)
+    {
+        dd($id);
     }
 }

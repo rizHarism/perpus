@@ -95,6 +95,7 @@ Route::group(['middleware' => 'auth:binaan', 'prefix' => 'binaan'], function () 
 
     Route::get('/profile', [ProfileController::class, 'show'])->name('binaanProfile');
     Route::get('/binaan/kondisi-umum', [KondisiUmumController::class, 'show'])->name('binaanKondisiUmum');
+    Route::get('/binaan/{id}/kondisi-umum', [KondisiUmumController::class, 'filter'])->name('filterKondisiUmum');
     Route::get('/binaan/bahan-pustaka', [BahanPustakaController::class, 'show'])->name('binaanBahanPustaka');
     Route::get('/binaan/administrasi', [AdministrasiController::class, 'show'])->name('binaanAdministrasi');
     Route::get('/binaan/pemberdayaan', [PemberdayaanController::class, 'show'])->name('binaanPemberdayaan');

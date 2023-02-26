@@ -24,17 +24,20 @@
                         <li class="list-group-item mx-auto d-block ">
                             <h5 class="fs-bold">{{ Auth::user()->name }}</h5>
                         </li>
-                        <li class="list-group-item mx-auto d-block ">Nama Institusi :
-                            {{ $user->perpustakaan['nama_sekolah'] }}
-                        </li>
-                        <li class="list-group-item mx-auto d-block ">Alamat Institusi :
-                            {{ $user->perpustakaan['alamat_sekolah'] }}</li>
-                        <li class="list-group-item mx-auto d-block ">Nama Perpustakaan :
-                            {{ $user->perpustakaan['nama_perpustakaan'] }}</li>
-                        <li class="list-group-item mx-auto d-block ">Kepala Perpustakaan :
-                            {{ $user->perpustakaan['nama_kepala'] }}</li>
-                        <li class="list-group-item mx-auto d-block ">No. Telepon :
-                            {{ $user->perpustakaan['no_hp_kepala'] }}</li>
+                        @if (Auth::user()->perpustakaan_id != '0')
+                            <li class="list-group-item mx-auto d-block ">Nama Institusi :
+                                {{ $user->perpustakaan['nama_sekolah'] }}
+                            </li>
+                            <li class="list-group-item mx-auto d-block ">Alamat Institusi :
+                                {{ $user->perpustakaan['alamat_sekolah'] }}</li>
+                            <li class="list-group-item mx-auto d-block ">Nama Perpustakaan :
+                                {{ $user->perpustakaan['nama_perpustakaan'] }}</li>
+                            <li class="list-group-item mx-auto d-block ">Kepala Perpustakaan :
+                                {{ $user->perpustakaan['nama_kepala'] }}</li>
+                            <li class="list-group-item mx-auto d-block ">No. Telepon :
+                                {{ $user->perpustakaan['no_hp_kepala'] }}</li>
+                        @endif
+
                     </ul>
                 </div>
                 {{-- @foreach ($user as $u)

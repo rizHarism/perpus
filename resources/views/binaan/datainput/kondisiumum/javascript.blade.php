@@ -13,4 +13,28 @@
     })
 </script>
 
-<script></script>
+<script>
+    let statusLogin = {{ json_encode($kondisi_umum) }};
+    $('#kondisi-form').hide('slow')
+    // $('#kondisi-form').show('slow')
+
+    $('#filter-kondisi').on('submit', function(e) {
+        e.preventDefault();
+        var tahun = $('#list-tahun').val();
+        // $('#kondisi-form').show('slow')
+        alert(tahun)
+    });
+
+    // $("#filter-datatables").on('submit', function(e) {
+    //     e.preventDefault();
+    //     var kelurahan = $('#list-kelurahan').val();
+    //     var kondisi = $('#list-kondisi').val();
+    //     var perkerasan = $('#list-perkerasan').val();
+    //     (kecamatan == 0 && kelurahan == 0 && kondisi == 0 && perkerasan == 0) ? url =
+    //         '/ruas/kelurahan/datatables':
+    //         url = '/ruas/' + kecamatan + '/' +
+    //         kelurahan + '/' + kondisi + '/' + perkerasan + '/filter';
+    //     table.destroy();
+    //     loadTable(url)
+    // })
+</script>
