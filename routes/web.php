@@ -89,52 +89,35 @@ Route::group(['middleware' => 'auth:inlislite', 'prefix' => 'inlislite'], functi
 });
 
 Route::group(['middleware' => 'auth:binaan', 'prefix' => 'binaan'], function () {
-    // Route::get('/profile', function () {
-    //     return view('binaan.index');
-    // })->name('binaanIndex');
 
     Route::get('/profile', [ProfileController::class, 'show'])->name('binaanProfile');
+
     Route::get('/binaan/kondisi-umum', [KondisiUmumController::class, 'show'])->name('binaanKondisiUmum');
     Route::get('/binaan/{id}/kondisi-umum', [KondisiUmumController::class, 'filter'])->name('filterKondisiUmum');
+
     Route::get('/binaan/bahan-pustaka', [BahanPustakaController::class, 'show'])->name('binaanBahanPustaka');
     Route::get('/binaan/{id}/bahan-pustaka', [BahanPustakaController::class, 'filter'])->name('filterBahanPustaka');
+
     Route::get('/binaan/administrasi', [AdministrasiController::class, 'show'])->name('binaanAdministrasi');
     Route::get('/binaan/{id}/administrasi', [AdministrasiController::class, 'filter'])->name('filterAdministrasi');
+
     Route::get('/binaan/pemberdayaan', [PemberdayaanController::class, 'show'])->name('binaanPemberdayaan');
     Route::get('/binaan/{id}/pemberdayaan', [PemberdayaanController::class, 'filter'])->name('filterPemberdayaan');
+
     Route::get('/binaan/tenaga', [TenagaController::class, 'show'])->name('binaanTenagapustaka');
+    Route::get('/binaan/{id}/tenaga', [TenagaController::class, 'filter'])->name('filterTenagapustaka');
+
     Route::get('/binaan/sarana', [SaranaController::class, 'show'])->name('binaanSarana');
+    Route::get('/binaan/{id}/sarana', [SaranaController::class, 'filter'])->name('filterSarana');
+
     Route::get('/binaan/koleksi', [KoleksiController::class, 'show'])->name('binaanKoleksi');
+    Route::get('/filter/{id}/koleksi', [KoleksiController::class, 'filter'])->name('filterKoleksi');
+
     Route::get('/binaan/layanan', [LayananController::class, 'show'])->name('binaanLayanan');
+    Route::get('/binaan/{id}/layanan', [LayananController::class, 'filter'])->name('filterLayanan');
 
     Route::get('/statistik/koleksi', [StatistikController::class, 'koleksi'])->name('binaanStatistikKoleksi');
     Route::get('/statistik/layanan', [StatistikController::class, 'layanan'])->name('binaanStatistikLayanan');
-    // Route::get('/binaan/kondisi-umum', function () {
-    //     return view('binaan.datainput.kondisiumum.index');
-    // })->name('binaanKondisiUmum');
-    // Route::get('/binaan/bahan-pustaka', function () {
-    //     return view('binaan.datainput.bahanpustaka.index');
-    // })->name('binaanBahanPustaka');
-    // Route::get('/binaan/administrasi', function () {
-    //     return view('binaan.datainput.administrasi.index');
-    // })->name('binaanAdministrasi');
-    // Route::get('/binaan/pemberdayaan', function () {
-    //     return view('binaan.datainput.pemberdayaan.index');
-    // })->name('binaanPemberdayaan');
-    // Route::get('/binaan/tenaga', function () {
-    //     return view('binaan.datainput.tenagapustaka.index');
-    // })->name('binaanTenagapustaka');
-    // Route::get('/binaan/sarana', function () {
-    //     return view('binaan.datainput.sarana.index');
-    // })->name('binaanSarana');
-    // Route::get('/binaan/koleksi', function () {
-    //     return view('binaan.datainput.koleksi.index');
-    // })->name('binaanKoleksi');
-    // Route::get('/binaan/layanan', function () {
-    //     return view('binaan.datainput.layanan.index');
-    // })->name('binaanLayanan');
-
-
 });
 
 // Route::group(['middleware' => 'auth:survey', 'prefix' => 'survey'], function () {

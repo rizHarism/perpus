@@ -2,11 +2,31 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-header">
-                <h5>Koleksi Perpustakaan</h5>
+                <h5 id="header-text">Koleksi Perpustakaan</h5>
             </div>
             <div class="card-body">
                 <div class="container">
-                    <form>
+                    @if (Auth::user()->perpustakaan_id == 0)
+                        <form id="filter" action="" method="">
+                            <div class="form-group row">
+                                <label class="inline mt-1" for="">Nama Sekolah :</label>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <div class="col-sm-3">
+                                    <select class="custom-select custom-select-sm mb-3" name=""
+                                        id="list-sekolah">
+                                        @foreach ($perpustakaan as $p)
+                                            <option value="{{ $p->id }}">{{ $p->nama_sekolah }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-sm-3">
+                                    <button class="btn btn-primary btn-sm" type="submit">Cari Data</button>
+                                </div>
+                            </div>
+                        </form>
+                        <hr>
+                    @endif
+                    <form id="form">
                         <div class="form-group row">
                             <label for="npp" class="col-sm-3 col-form-label col-form-label-sm">Buku Teks Pelajaran
                             </label>
@@ -19,7 +39,7 @@
                                             </div>
                                             <input type="text" class="form-control form-control-sm"
                                                 id="pelajaran-judul" width="50px" placeholder="0"
-                                                value="{{ $koleksi->buku_pelajaran_judul }}">
+                                                @isset($koleksi) value="{{ $koleksi->buku_pelajaran_judul }}" @endisset>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
@@ -30,7 +50,7 @@
                                             </div>
                                             <input type="text" class="form-control form-control-sm"
                                                 id="pelajaran-eksemplar" width="50px" placeholder="0"
-                                                value="{{ $koleksi->buku_pelajaran_eksemplar }}">
+                                                @isset($koleksi) value="{{ $koleksi->buku_pelajaran_eksemplar }}" @endisset>
                                         </div>
                                     </div>
                                 </div>
@@ -50,7 +70,7 @@
                                             </div>
                                             <input type="text" class="form-control form-control-sm"
                                                 id="panduan-judul" width="50px" placeholder="0"
-                                                value="{{ $koleksi->buku_panduan_judul }}">
+                                                @isset($koleksi) value="{{ $koleksi->buku_panduan_judul }}" @endisset>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
@@ -61,7 +81,7 @@
                                             </div>
                                             <input type="text" class="form-control form-control-sm"
                                                 id="panduan-eksemplar" width="50px" placeholder="0"
-                                                value="{{ $koleksi->buku_panduan_eksemplar }}">
+                                                @isset($koleksi) value="{{ $koleksi->buku_panduan_eksemplar }}" @endisset>
                                         </div>
                                     </div>
                                 </div>
@@ -79,7 +99,8 @@
                                                 <span class="input-group-text" id="inputGroup-sizing-sm">Judul</span>
                                             </div>
                                             <input type="text" class="form-control form-control-sm" id="fiksi-judul"
-                                                width="50px" placeholder="0" value="{{ $koleksi->buku_fiksi_judul }}">
+                                                width="50px" placeholder="0"
+                                                @isset($koleksi) value="{{ $koleksi->buku_fiksi_judul }}" @endisset>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
@@ -90,7 +111,7 @@
                                             </div>
                                             <input type="text" class="form-control form-control-sm"
                                                 id="fiksi-eksemplar" width="50px" placeholder="0"
-                                                value="{{ $koleksi->buku_fiksi_eksemplar }}">
+                                                @isset($koleksi) value="{{ $koleksi->buku_fiksi_eksemplar }}" @endisset>
                                         </div>
                                     </div>
                                 </div>
@@ -109,7 +130,7 @@
                                             </div>
                                             <input type="text" class="form-control form-control-sm"
                                                 id="non-fiksi-judul" width="50px" placeholder="0"
-                                                value="{{ $koleksi->buku_non_fiksi_judul }}">
+                                                @isset($koleksi) value="{{ $koleksi->buku_non_fiksi_judul }}" @endisset>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
@@ -120,7 +141,7 @@
                                             </div>
                                             <input type="text" class="form-control form-control-sm"
                                                 id="non-fiksi-eksemplar" width="50px" placeholder="0"
-                                                value="{{ $koleksi->non_fiksi_eksemplar }}">
+                                                @isset($koleksi) value="{{ $koleksi->buku_non_fiksi_eksemplar }}" @endisset>
                                         </div>
                                     </div>
                                 </div>
@@ -139,7 +160,7 @@
                                             </div>
                                             <input type="text" class="form-control form-control-sm"
                                                 id="referensi-judul" width="50px" placeholder="0"
-                                                value="{{ $koleksi->buku_referensi_judul }}">
+                                                @isset($koleksi) value="{{ $koleksi->buku_referensi_judul }}" @endisset>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
@@ -150,7 +171,7 @@
                                             </div>
                                             <input type="text" class="form-control form-control-sm"
                                                 id="referensi-eksemplar" width="50px" placeholder="0"
-                                                value="{{ $koleksi->buku_referensi_eksemplar }}">
+                                                @isset($koleksi) value="{{ $koleksi->buku_referensi_eksemplar }}" @endisset>
                                         </div>
                                     </div>
                                 </div>
@@ -169,7 +190,7 @@
                                             </div>
                                             <input type="text" class="form-control form-control-sm"
                                                 id="guru-judul" width="50px" placeholder="0"
-                                                value="{{ $koleksi->karya_guru_judul }}">
+                                                @isset($koleksi) value="{{ $koleksi->karya_guru_judul }}" @endisset>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
@@ -180,7 +201,7 @@
                                             </div>
                                             <input type="text" class="form-control form-control-sm"
                                                 id="guru-eksemplar" width="50px" placeholder="0"
-                                                value="{{ $koleksi->karya_guru_eksempla }}">
+                                                @isset($koleksi) value="{{ $koleksi->karya_guru_eksemplar }}" @endisset>
                                         </div>
                                     </div>
                                 </div>
@@ -199,7 +220,7 @@
                                             </div>
                                             <input type="text" class="form-control form-control-sm"
                                                 id="siswa-judul" width="50px" placeholder="0"
-                                                value="{{ $koleksi->karya_siswa_judul }}">
+                                                @isset($koleksi) value="{{ $koleksi->karya_siswa_judul }}" @endisset>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
@@ -210,7 +231,7 @@
                                             </div>
                                             <input type="text" class="form-control form-control-sm"
                                                 id="siswa-eksemplar" width="50px" placeholder="0"
-                                                value="{{ $koleksi->karya_siswa_eksemplar }}">
+                                                @isset($koleksi) value="{{ $koleksi->karya_siswa_eksemplar }}" @endisset>
                                         </div>
                                     </div>
                                 </div>
@@ -229,7 +250,7 @@
                                             </div>
                                             <input type="text" class="form-control form-control-sm"
                                                 id="koran-judul" width="50px" placeholder="0"
-                                                value="{{ $koleksi->koran_judul }}">
+                                                @isset($koleksi) value="{{ $koleksi->koran_judul }}" @endisset>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
@@ -240,7 +261,7 @@
                                             </div>
                                             <input type="text" class="form-control form-control-sm"
                                                 id="koran-eksemplar" width="50px" placeholder="0"
-                                                value="{{ $koleksi->koran_eksemplar }}">
+                                                @isset($koleksi) value="{{ $koleksi->koran_eksemplar }}" @endisset>
                                         </div>
                                     </div>
                                 </div>
@@ -259,7 +280,7 @@
                                             </div>
                                             <input type="text" class="form-control form-control-sm"
                                                 id="majalah-judul" width="50px" placeholder="0"
-                                                value="{{ $koleksi->majalah_judul }}">
+                                                @isset($koleksi) value="{{ $koleksi->majalah_judul }}" @endisset>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
@@ -270,7 +291,7 @@
                                             </div>
                                             <input type="text" class="form-control form-control-sm"
                                                 id="majalah-eksemplar" width="50px" placeholder="0"
-                                                value="{{ $koleksi->majalah_eksemplar }}">
+                                                @isset($koleksi) value="{{ $koleksi->majalah_eksemplar }}" @endisset>
                                         </div>
                                     </div>
                                 </div>
@@ -288,7 +309,8 @@
                                                 <span class="input-group-text" id="inputGroup-sizing-sm">Kaset</span>
                                             </div>
                                             <input type="text" class="form-control form-control-sm" id="kaset"
-                                                width="50px" placeholder="0" value="{{ $koleksi->kaset }}">
+                                                width="50px" placeholder="0"
+                                                @isset($koleksi) value="{{ $koleksi->kaset }}" @endisset>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
@@ -297,7 +319,8 @@
                                                 <span class="input-group-text" id="inputGroup-sizing-sm">CD</span>
                                             </div>
                                             <input type="text" class="form-control form-control-sm" id="cd"
-                                                width="50px" placeholder="0" value="{{ $koleksi->cd }}">
+                                                width="50px" placeholder="0"
+                                                @isset($koleksi) value="{{ $koleksi->cd }}" @endisset>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
@@ -306,7 +329,8 @@
                                                 <span class="input-group-text" id="inputGroup-sizing-sm">VCD</span>
                                             </div>
                                             <input type="text" class="form-control form-control-sm" id="vcd"
-                                                width="50px" placeholder="0" value="{{ $koleksi->vcd }}">
+                                                width="50px" placeholder="0"
+                                                @isset($koleksi) value="{{ $koleksi->vcd }}" @endisset>
                                         </div>
                                     </div>
                                 </div>
@@ -317,7 +341,8 @@
                                                 <span class="input-group-text" id="inputGroup-sizing-sm">DVD</span>
                                             </div>
                                             <input type="text" class="form-control form-control-sm" id="dvd"
-                                                width="50px" placeholder="0" value="{{ $koleksi->dvd }}">
+                                                width="50px" placeholder="0"
+                                                @isset($koleksi) value="{{ $koleksi->dvd }}" @endisset>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
@@ -328,7 +353,7 @@
                                             </div>
                                             <input type="text" class="form-control form-control-sm"
                                                 id="multimedia-lain" width="50px" placeholder="0"
-                                                value="{{ $koleksi->multimedia_lain }}">
+                                                @isset($koleksi) value="{{ $koleksi->multimedia_lain }}" @endisset>
                                         </div>
                                     </div>
                                 </div>
@@ -346,7 +371,8 @@
                                                 <span class="input-group-text" id="inputGroup-sizing-sm">Atlas</span>
                                             </div>
                                             <input type="text" class="form-control form-control-sm" id="atlas"
-                                                width="50px" placeholder="0" value="{{ $koleksi->atlas }}">
+                                                width="50px" placeholder="0"
+                                                @isset($koleksi) value="{{ $koleksi->atlas }}" @endisset>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
@@ -355,7 +381,8 @@
                                                 <span class="input-group-text" id="inputGroup-sizing-sm">Peta</span>
                                             </div>
                                             <input type="text" class="form-control form-control-sm" id="peta"
-                                                width="50px" placeholder="0" value="{{ $koleksi->peta }}">
+                                                width="50px" placeholder="0"
+                                                @isset($koleksi) value="{{ $koleksi->peta }}" @endisset>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
@@ -364,7 +391,8 @@
                                                 <span class="input-group-text" id="inputGroup-sizing-sm">Globe</span>
                                             </div>
                                             <input type="text" class="form-control form-control-sm" id="globe"
-                                                width="50px" placeholder="0" value="{{ $koleksi->globe }}">
+                                                width="50px" placeholder="0"
+                                                @isset($koleksi) value="{{ $koleksi->globe }}" @endisset>
                                         </div>
                                     </div>
                                 </div>
@@ -377,7 +405,7 @@
                                             </div>
                                             <input type="text" class="form-control form-control-sm"
                                                 id="karto-lain" width="50px" placeholder="0"
-                                                value="{{ $koleksi->karto_lain }}">
+                                                @isset($koleksi) value="{{ $koleksi->karto_lain }}" @endisset>
                                         </div>
                                     </div>
                                 </div>
@@ -398,7 +426,7 @@
                                             </div>
                                             <input type="text" class="form-control form-control-sm"
                                                 id="peraga-mtk" width="50px" placeholder="0"
-                                                value="{{ $koleksi->peraga_matematika }}">
+                                                @isset($koleksi) value="{{ $koleksi->peraga_matematika }}" @endisset>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
@@ -408,7 +436,7 @@
                                             </div>
                                             <input type="text" class="form-control form-control-sm"
                                                 id="peraga-ipa" width="50px" placeholder="0"
-                                                value="{{ $koleksi->peraga_ipa }}">
+                                                @isset($koleksi) value="{{ $koleksi->peraga_ipa }}" @endisset>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
@@ -419,7 +447,7 @@
                                             </div>
                                             <input type="text" class="form-control form-control-sm"
                                                 id="peraga-lain" width="50px" placeholder="0"
-                                                value="{{ $koleksi->peraga_lain }}">
+                                                @isset($koleksi) value="{{ $koleksi->peraga_lain }}" @endisset>
                                         </div>
                                     </div>
                                 </div>

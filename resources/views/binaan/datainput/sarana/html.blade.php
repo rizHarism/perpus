@@ -2,11 +2,31 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-header">
-                <h5>Sarana/Prasarana Perpustakaan</h5>
+                <h5 id="header-text">Sarana/Prasarana Perpustakaan</h5>
             </div>
             <div class="card-body">
                 <div class="container">
-                    <form>
+                    @if (Auth::user()->perpustakaan_id == 0)
+                        <form id="filter" action="" method="">
+                            <div class="form-group row">
+                                <label class="inline mt-1" for="">Nama Sekolah :</label>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <div class="col-sm-3">
+                                    <select class="custom-select custom-select-sm mb-3" name=""
+                                        id="list-sekolah">
+                                        @foreach ($perpustakaan as $p)
+                                            <option value="{{ $p->id }}">{{ $p->nama_sekolah }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-sm-3">
+                                    <button class="btn btn-primary btn-sm" type="submit">Cari Data</button>
+                                </div>
+                            </div>
+                        </form>
+                        <hr>
+                    @endif
+                    <form id="form">
                         <div class="form-group row">
                             <label for="npp" class="col-sm-3 col-form-label col-form-label-sm">Prasarana Ruangan
                             </label>
@@ -17,8 +37,9 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="inputGroup-sizing-sm">Luas</span>
                                             </div>
-                                            <input type="text" class="form-control form-control-sm" id="panjang"
-                                                width="50px" placeholder="Luas" value="{{ $sarana->luas_ruangan }}">
+                                            <input type="text" class="form-control form-control-sm" id="luas"
+                                                width="50px" placeholder="Luas"
+                                                @isset($sarana) value="{{ $sarana->luas_ruangan }}" @endisset>
                                         </div>
                                     </div>
                                     {{-- <div class="col-sm-3">
@@ -42,42 +63,48 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <input class="form-check-input" type="checkbox" value="1"
-                                                id="koleksi" {{ $sarana->area_koleksi == '1' ? 'checked' : '' }}>
+                                                id="koleksi"
+                                                @isset($sarana) {{ $sarana->area_koleksi == '1' ? 'checked' : '' }} @endisset>
                                             <label class="form-check-label" for="koleksi">
                                                 Area Koleksi
                                             </label>
                                         </div>
                                         <div class="col-sm-6">
                                             <input class="form-check-input" type="checkbox" value=""
-                                                id="baca" {{ $sarana->area_baca == '1' ? 'checked' : '' }}>
+                                                id="baca"
+                                                @isset($sarana) {{ $sarana->area_baca == '1' ? 'checked' : '' }} @endisset>
                                             <label class="form-check-label" for="baca">
                                                 Area Baca
                                             </label>
                                         </div>
                                         <div class="col-sm-6">
                                             <input class="form-check-input" type="checkbox" value=""
-                                                id="kerja" {{ $sarana->area_kerja == '1' ? 'checked' : '' }}>
+                                                id="kerja"
+                                                @isset($sarana) {{ $sarana->area_kerja == '1' ? 'checked' : '' }} @endisset>
                                             <label class="form-check-label" for="kerja">
                                                 Area Kerja/Layanan
                                             </label>
                                         </div>
                                         <div class="col-sm-6">
                                             <input class="form-check-input" type="checkbox" value=""
-                                                id="multimedia" {{ $sarana->area_multimedia == '1' ? 'checked' : '' }}>
+                                                id="multimedia"
+                                                @isset($sarana) {{ $sarana->area_multimedia == '1' ? 'checked' : '' }} @endisset>
                                             <label class="form-check-label" for="multimedia">
                                                 Area Multimedia
                                             </label>
                                         </div>
                                         <div class="col-sm-6">
                                             <input class="form-check-input" type="checkbox" value=""
-                                                id="kebersihan" {{ $sarana->kebersihan == '1' ? 'checked' : '' }}>
+                                                id="kebersihan"
+                                                @isset($sarana) {{ $sarana->kebersihan == '1' ? 'checked' : '' }} @endisset>
                                             <label class="form-check-label" for="kebersihan">
                                                 Kebersihan Ruangan
                                             </label>
                                         </div>
                                         <div class="col-sm-6">
                                             <input class="form-check-input" type="checkbox" value=""
-                                                id="kerapian" {{ $sarana->kerapian == '1' ? 'checked' : '' }}>
+                                                id="kerapian"
+                                                @isset($sarana) {{ $sarana->kerapian == '1' ? 'checked' : '' }} @endisset>
                                             <label class="form-check-label" for="kerapian">
                                                 Kerapian Ruangan
                                             </label>
@@ -99,16 +126,19 @@
                                                     id="inputGroup-sizing-sm">Projector</span>
                                             </div>
                                             <input type="text" class="form-control form-control-sm" id="projector"
-                                                width="50px" placeholder="Jumlah" value="{{ $sarana->projector }}">
+                                                width="50px" placeholder="Jumlah"
+                                                @isset($sarana) value="{{ $sarana->projector }}" @endisset>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="input-group input-group-sm">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text" id="inputGroup-sizing-sm">AC/Kipas</span>
+                                                <span class="input-group-text"
+                                                    id="inputGroup-sizing-sm">AC/Kipas</span>
                                             </div>
                                             <input type="text" class="form-control form-control-sm" id="ac-kipas"
-                                                width="50px" placeholder="Jumlah" value="{{ $sarana->ac_kipas }}">
+                                                width="50px" placeholder="Jumlah"
+                                                @isset($sarana) value="{{ $sarana->ac_kipas }}" @endisset>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
@@ -118,7 +148,8 @@
                                                     id="inputGroup-sizing-sm">Komputer</span>
                                             </div>
                                             <input type="text" class="form-control form-control-sm" id="komputer"
-                                                width="50px" placeholder="Jumlah" value="{{ $sarana->komputer }}">
+                                                width="50px" placeholder="Jumlah"
+                                                @isset($sarana) value="{{ $sarana->komputer }}" @endisset>
                                         </div>
                                     </div>
                                 </div>
@@ -130,7 +161,8 @@
                                                     id="inputGroup-sizing-sm">Internet</span>
                                             </div>
                                             <input type="text" class="form-control form-control-sm" id="internet"
-                                                width="50px" placeholder="Jumlah" value="{{ $sarana->internet }}">
+                                                width="50px" placeholder="Jumlah"
+                                                @isset($sarana) value="{{ $sarana->internet }}" @endisset>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
@@ -140,7 +172,8 @@
                                                     id="inputGroup-sizing-sm">Televisi</span>
                                             </div>
                                             <input type="text" class="form-control form-control-sm" id="televisi"
-                                                width="50px" placeholder="Jumlah" value="{{ $sarana->televisi }}">
+                                                width="50px" placeholder="Jumlah"
+                                                @isset($sarana) value="{{ $sarana->televisi }}" @endisset>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
@@ -149,7 +182,8 @@
                                                 <span class="input-group-text" id="inputGroup-sizing-sm">VCD</span>
                                             </div>
                                             <input type="text" class="form-control form-control-sm" id="vcd"
-                                                width="50px" placeholder="Jumlah" value="{{ $sarana->vcd }}">
+                                                width="50px" placeholder="Jumlah"
+                                                @isset($sarana) value="{{ $sarana->vcd }}" @endisset>
                                         </div>
                                     </div>
                                 </div>
@@ -168,7 +202,8 @@
                                                     Buku</span>
                                             </div>
                                             <input type="text" class="form-control form-control-sm" id="rak-buku"
-                                                width="50px" placeholder="Jumlah" value="{{ $sarana->rak_buku }}">
+                                                width="50px" placeholder="Jumlah"
+                                                @isset($sarana) value="{{ $sarana->rak_buku }}" @endisset>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
@@ -179,7 +214,7 @@
                                             </div>
                                             <input type="text" class="form-control form-control-sm" id="rak-koran"
                                                 width="50px" placeholder="Jumlah"
-                                                value="{{ $sarana->rak_koran }}">
+                                                @isset($sarana) value="{{ $sarana->rak_koran }}" @endisset>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
@@ -190,7 +225,7 @@
                                             </div>
                                             <input type="text" class="form-control form-control-sm"
                                                 id="rak-referensi" width="50px" placeholder="Jumlah"
-                                                value="{{ $sarana->rak_referensi }}">
+                                                @isset($sarana) value="{{ $sarana->rak_referensi }}" @endisset>
                                         </div>
                                     </div>
                                 </div>
@@ -203,7 +238,7 @@
                                             </div>
                                             <input type="text" class="form-control form-control-sm"
                                                 id="rak-majalah" width="50px" placeholder="Jumlah"
-                                                value="{{ $sarana->rak_majalah }}">
+                                                @isset($sarana) value="{{ $sarana->rak_majalah }}" @endisset>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
@@ -214,7 +249,7 @@
                                             </div>
                                             <input type="text" class="form-control form-control-sm" id="meja-baca"
                                                 width="50px" placeholder="Jumlah"
-                                                value="{{ $sarana->meja_baca }}">
+                                                @isset($sarana) value="{{ $sarana->meja_baca }}" @endisset>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
@@ -225,7 +260,7 @@
                                             </div>
                                             <input type="text" class="form-control form-control-sm"
                                                 id="meja-sirkulasi" width="50px" placeholder="Jumlah"
-                                                value="{{ $sarana->meja_sirkulasi }}">
+                                                @isset($sarana) value="{{ $sarana->meja_sirkulasi }}" @endisset>
                                         </div>
                                     </div>
                                 </div>
@@ -238,7 +273,7 @@
                                             </div>
                                             <input type="text" class="form-control form-control-sm"
                                                 id="meja-kerja" width="50px" placeholder="Jumlah"
-                                                value="{{ $sarana->meja_kerja }}">
+                                                @isset($sarana) value="{{ $sarana->meja_kerja }}" @endisset>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
@@ -249,7 +284,7 @@
                                             </div>
                                             <input type="text" class="form-control form-control-sm"
                                                 id="kursi-baca" width="50px" placeholder="Jumlah"
-                                                value="{{ $sarana->kursi_baca }}">
+                                                @isset($sarana) value="{{ $sarana->kursi_baca }}" @endisset>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
@@ -260,14 +295,15 @@
                                             </div>
                                             <input type="text" class="form-control form-control-sm"
                                                 id="kursi-kerja" width="50px" placeholder="Jumlah"
-                                                value="{{ $sarana->kursi_kerja }}">
+                                                @isset($sarana) value="{{ $sarana->kursi_kerja }}" @endisset>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <hr>
-                        <div class="form-group row">
+                        <div class="form-group
+                                                row">
                             <label for="visi-misi" class="col-sm-3 col-form-label col-form-label-sm">Sarana Lainnya
                             </label>
                             <div class="col-sm-9">
@@ -280,7 +316,7 @@
                                             </div>
                                             <input type="text" class="form-control form-control-sm"
                                                 id="almari-katalog" width="50px" placeholder="Jumlah"
-                                                value="{{ $sarana->almari_katalog }}">
+                                                @isset($sarana) value="{{ $sarana->almari_katalog }}" @endisset>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
@@ -289,7 +325,8 @@
                                                 <span class="input-group-text" id="inputGroup-sizing-sm">Loker</span>
                                             </div>
                                             <input type="text" class="form-control form-control-sm" id="loker"
-                                                width="50px" placeholder="Jumlah" value="{{ $sarana->loker }}">
+                                                width="50px" placeholder="Jumlah"
+                                                @isset($sarana) value="{{ $sarana->loker }}" @endisset>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
@@ -298,7 +335,8 @@
                                                 <span class="input-group-text" id="inputGroup-sizing-sm">Mading</span>
                                             </div>
                                             <input type="text" class="form-control form-control-sm" id="mading"
-                                                width="50px" placeholder="Jumlah" value="{{ $sarana->mading }}">
+                                                width="50px" placeholder="Jumlah"
+                                                @isset($sarana) value="{{ $sarana->mading }}" @endisset>
                                         </div>
                                     </div>
                                 </div>

@@ -15,7 +15,8 @@
                                 &nbsp;
                                 &nbsp;
                                 <div class="col-sm-3">
-                                    <select class="custom-select custom-select-sm mb-3" name="" id="list-sekolah">
+                                    <select class="custom-select custom-select-sm mb-3" name=""
+                                        id="list-sekolah">
                                         @foreach ($perpustakaan as $p)
                                             <option value="{{ $p->id }}">{{ $p->nama_sekolah }}</option>
                                         @endforeach

@@ -6,37 +6,63 @@
             </div>
             <div class="card-body">
                 <div class="container">
-                    <table class="table table-striped table-bordered">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Nama</th>
-                                <th scope="col">Status Pegawai</th>
-                                <th scope="col">Status Pendidikan</th>
-                                <th scope="col">Jenis Kelamin</th>
-                                <th scope="col" colspan="2">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($tenaga as $tenaga)
+                    @if (Auth::user()->perpustakaan_id == 0)
+                        <form id="filter-tenaga" action="" method="">
+                            <div class="form-group row">
+                                <label class="inline mt-1" for="">Nama Sekolah :</label>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <div class="col-sm-3">
+                                    <select class="custom-select custom-select-sm mb-3" name=""
+                                        id="list-sekolah">
+                                        @foreach ($perpustakaan as $p)
+                                            <option value="{{ $p->id }}">{{ $p->nama_sekolah }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-sm-3">
+                                    <button class="btn btn-primary btn-sm" type="submit">Cari Data</button>
+                                </div>
+                            </div>
+                        </form>
+                        <hr>
+                    @endif
+                    <div id="tenaga-box">
+                        <table class="table table-striped table-bordered">
+                            <thead>
                                 <tr>
-                                    <td>#</td>
-                                    <td>{{ $tenaga->nama }}</td>
-                                    <td>{{ $tenaga->status_pegawai }}</td>
-                                    <td>{{ $tenaga->status_pendidikan }}</td>
-                                    <td>{{ $tenaga->jenis_kelamin }}</td>
-                                    <td>{{ $tenaga->nama }}</td>
-                                    <td>{{ $tenaga->nama }}</td>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Nama</th>
+                                    <th scope="col">Status Pegawai</th>
+                                    <th scope="col">Status Pendidikan</th>
+                                    <th scope="col">Jenis Kelamin</th>
+                                    {{-- <th scope="col" colspan="2">Aksi</th> --}}
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                    <hr>
-                    <div class="form-group row">
-                        <div class="col-sm-2">
-                            <button class="btn btn-primary" data-toggle="modal" data-target="#add-pustakawan">+
-                                Pustakawan</button>
-                            <button type="submit" class="btn btn-primary">Kirim</button>
+                            </thead>
+                            <tbody id="data-tenaga">
+                                @forelse ($tenaga as $tenaga)
+                                    <tr>
+                                        <td>#</td>
+                                        <td>{{ $tenaga->nama }}</td>
+                                        <td>{{ $tenaga->status_pegawai }}</td>
+                                        <td>{{ $tenaga->status_pendidikan }}</td>
+                                        <td>{{ $tenaga->jenis_kelamin }}</td>
+                                        <td>{{ $tenaga->nama }}</td>
+                                        <td>{{ $tenaga->nama }}</td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="6" class="mx-auto">Belum Ada Data Pustakawan</td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                        <hr>
+                        <div class="form-group row">
+                            <div class="col-sm-2">
+                                <button class="btn btn-primary" data-toggle="modal" data-target="#add-pustakawan">+
+                                    Pustakawan</button>
+                                <button type="submit" class="btn btn-primary">Kirim</button>
+                            </div>
                         </div>
                     </div>
                 </div>
