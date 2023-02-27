@@ -2,21 +2,39 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-header">
-                <h5>Pemberdayaan Perpustakaan</h5>
+                <h5 id="header-text">Pemberdayaan Perpustakaan</h5>
             </div>
             <div class="card-body">
                 <div class="container">
-                    <form>
+                    @if (Auth::user()->perpustakaan_id == 0)
+                        <form id="filter-pemberdayaan" action="" method="">
+                            <div class="form-group row">
+                                <label class="inline mt-1" for="">Nama Sekolah :</label>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <div class="col-sm-3">
+                                    <select class="custom-select custom-select-sm mb-3" name="" id="list-sekolah">
+                                        @foreach ($perpustakaan as $p)
+                                            <option value="{{ $p->id }}">{{ $p->nama_sekolah }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-sm-3">
+                                    <button class="btn btn-primary btn-sm" type="submit">Cari Data</button>
+                                </div>
+                            </div>
+                        </form>
+                        <hr>
+                    @endif
+                    <form id="pemberdayaan-form">
                         <div class="form-group row">
-                            <label for="slogan" class="col-sm-3 col-form-label col-form-label-sm">Pengisian
+                            <label for="slogan" class="col-sm-3 col-form-label col-form-label-sm">Jumlah
                                 Slogan Perpustakaan
                             </label>
                             <div class="col-sm-5">
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <input type="text" class="form-control form-control-sm" id="slogan"
-                                            width="50px" value="{{ $pemberdayaan->slogan }}"
-                                            {{ $pemberdayaan->status == '1' ? 'disabled' : '' }}>
+                                            width="50px" @isset($pemberdayaan) value="{{ $pemberdayaan->slogan }}" @endisset>
                                     </div>
                                 </div>
                             </div>
@@ -45,7 +63,7 @@
                                         <div class="col-sm-6">
                                             <input class="form-check-input" type="checkbox" value="1"
                                                 id="leaflet"
-                                                {{ $pemberdayaan->program_leaflet == '1' ? 'checked' : '' }}>
+                                                @isset($pemberdayaan) {{ $pemberdayaan->program_leaflet == '1' ? 'checked' : '' }} @endisset>
                                             <label class="form-check-label" for="leaflet">
                                                 Leaflet
                                             </label>
@@ -53,7 +71,7 @@
                                         <div class="col-sm-6">
                                             <input class="form-check-input" type="checkbox" value="1"
                                                 id="penyuluhan"
-                                                {{ $pemberdayaan->program_penyuluhan == '1' ? 'checked' : '' }}>
+                                                @isset($pemberdayaan) {{ $pemberdayaan->program_penyuluhan == '1' ? 'checked' : '' }} @endisset>
                                             <label class="form-check-label" for="penyuluhan">
                                                 Penyuluhan
                                             </label>
@@ -61,7 +79,7 @@
                                         <div class="col-sm-6">
                                             <input class="form-check-input" type="checkbox" value="1"
                                                 id="banner"
-                                                {{ $pemberdayaan->program_banner == '1' ? 'checked' : '' }}>
+                                                @isset($pemberdayaan) {{ $pemberdayaan->program_banner == '1' ? 'checked' : '' }} @endisset>
                                             <label class="form-check-label" for="banner">
                                                 Banner
                                             </label>
@@ -69,7 +87,7 @@
                                         <div class="col-sm-6">
                                             <input class="form-check-input" type="checkbox" value="1"
                                                 id="pameran"
-                                                {{ $pemberdayaan->program_pameran == '1' ? 'checked' : '' }}>
+                                                @isset($pemberdayaan) {{ $pemberdayaan->program_pameran == '1' ? 'checked' : '' }} @endisset>
                                             <label class="form-check-label" for="pameran">
                                                 Pameran
                                             </label>
@@ -77,7 +95,7 @@
                                         <div class="col-sm-6">
                                             <input class="form-check-input" type="checkbox" value="1"
                                                 id="brosur"
-                                                {{ $pemberdayaan->program_brosur == '1' ? 'checked' : '' }}>
+                                                @isset($pemberdayaan) {{ $pemberdayaan->program_brosur == '1' ? 'checked' : '' }} @endisset>
                                             <label class="form-check-label" for="brosur">
                                                 Brosur
                                             </label>
@@ -85,7 +103,7 @@
                                         <div class="col-sm-6">
                                             <input class="form-check-input" type="checkbox" value="1"
                                                 id="lomba"
-                                                {{ $pemberdayaan->program_lomba == '1' ? 'checked' : '' }}>
+                                                @isset($pemberdayaan) {{ $pemberdayaan->program_lomba == '1' ? 'checked' : '' }} @endisset>
                                             <label class="form-check-label" for="lomba">
                                                 Lomba
                                             </label>
@@ -156,7 +174,7 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <input class="form-check-input" type="checkbox" value="1"
-                                                id="bos" {{ $pemberdayaan->sumber_bos == '1' ? 'checked' : '' }}>
+                                                id="bos" @isset($pemberdayaan) {{ $pemberdayaan->sumber_bos == '1' ? 'checked' : '' }} @endisset>
                                             <label class="form-check-label" for="bos">
                                                 BOS
                                             </label>
@@ -164,7 +182,7 @@
                                         <div class="col-sm-6">
                                             <input class="form-check-input" type="checkbox" value="1"
                                                 id="apbd"
-                                                {{ $pemberdayaan->sumber_apbd == '1' ? 'checked' : '' }}>
+                                                @isset($pemberdayaan) {{ $pemberdayaan->sumber_apbd == '1' ? 'checked' : '' }} @endisset>
                                             <label class="form-check-label" for="apbd">
                                                 APBD
                                             </label>
@@ -172,7 +190,7 @@
                                         <div class="col-sm-6">
                                             <input class="form-check-input" type="checkbox" value="1"
                                                 id="sumber-lain"
-                                                {{ $pemberdayaan->sumber_lainnya == '1' ? 'checked' : '' }}>
+                                                @isset($pemberdayaan) {{ $pemberdayaan->sumber_lain == '1' ? 'checked' : '' }} @endisset>
                                             <label class="form-check-label" for="sumber-lain">
                                                 Sumber Lain
                                             </label>
@@ -205,7 +223,7 @@
                                         <div class="col-sm-6">
                                             <input class="form-check-input" type="checkbox" value="1"
                                                 id="pelajaran"
-                                                {{ $pemberdayaan->alokasi_pelajaran == '1' ? 'checked' : '' }}>
+                                                @isset($pemberdayaan) {{ $pemberdayaan->alokasi_pelajaran == '1' ? 'checked' : '' }} @endisset>
                                             <label class="form-check-label" for="bos">
                                                 Buku Teks Pelajaran
                                             </label>
@@ -213,7 +231,7 @@
                                         <div class="col-sm-6">
                                             <input class="form-check-input" type="checkbox" value="1"
                                                 id="pengayaan"
-                                                {{ $pemberdayaan->alokasi_pengayaan == '1' ? 'checked' : '' }}>
+                                                @isset($pemberdayaan) {{ $pemberdayaan->alokasi_pengayaan == '1' ? 'checked' : '' }} @endisset>
                                             <label class="form-check-label" for="apbd">
                                                 Buku Pengayaan
                                             </label>
@@ -221,7 +239,7 @@
                                         <div class="col-sm-6">
                                             <input class="form-check-input" type="checkbox" value="1"
                                                 id="alokasi-lain"
-                                                {{ $pemberdayaan->alokasi_lainnya == '1' ? 'checked' : '' }}>
+                                                @isset($pemberdayaan) {{ $pemberdayaan->alokasi_lainnya == '1' ? 'checked' : '' }} @endisset>
                                             <label class="form-check-label" for="sumber-lain">
                                                 Alokasi Lain
                                             </label>
@@ -253,7 +271,7 @@
                                     <div class="col-sm-3">
                                         <input type="text" class="form-control form-control-sm"
                                             id="penambahan-buku" width="50px"
-                                            value="{{ $pemberdayaan->penambahan_buku }}">
+                                            @isset($pemberdayaan) value="{{ $pemberdayaan->penambahan_buku }}" @endisset>
                                     </div>
                                 </div>
                             </div>

@@ -2,17 +2,39 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-header">
-                <h5>Pengorganisasian Bahan Pustaka</h5>
+                <h5 id="header-text">Pengorganisasian Bahan Pustaka</h5>
             </div>
             <div class="card-body">
                 <div class="container">
-                    <form>
+                    @if ($bahan == null)
+                        <form id="filter-bahan-pustaka" action="" method="">
+                            <div class="form-group row">
+                                <label class="inline mt-1" for="">Nama Sekolah :</label>
+                                &nbsp;
+                                &nbsp;
+                                &nbsp;
+                                &nbsp;
+                                <div class="col-sm-3">
+                                    <select class="custom-select custom-select-sm mb-3" name="" id="list-sekolah">
+                                        @foreach ($perpustakaan as $p)
+                                            <option value="{{ $p->id }}">{{ $p->nama_sekolah }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-sm-3">
+                                    <button class="btn btn-primary btn-sm" type="submit">Cari Data</button>
+                                </div>
+                            </div>
+                        </form>
+                        <hr>
+                    @endif
+                    <form id="pustaka-form">
                         <div class="form-group row">
                             <label for="npp" class="col-sm-3 col-form-label col-form-label-sm">Buku Pedoman Katalog
                             </label>
                             <div class="col-sm-5">
                                 <input type="text" class="form-control form-control-sm" id="pedoman-katalog"
-                                    value="{{ $bahan->pedoman_katalog }}">
+                                @isset($bahan) value="{{ $bahan->pedoman_katalog }}" @endisset>
                             </div>
                             <div class="col-sm-4">
                                 <label for="image-input">
@@ -35,7 +57,7 @@
                             </label>
                             <div class="col-sm-5">
                                 <input type="text" class="form-control form-control-sm" id="pedoman-klasifikasi"
-                                    value="{{ $bahan->pedoman_klasifikasi }}">
+                                @isset($bahan) value="{{ $bahan->pedoman_klasifikasi }}" @endisset>
                             </div>
                             <div class="col-sm-4">
                                 <label for="image-input">
@@ -58,7 +80,7 @@
                             </label>
                             <div class="col-sm-5">
                                 <input type="text" class="form-control form-control-sm" id="aplikasi-perpus"
-                                    value="{{ $bahan->aplikasi_perpus }}">
+                                @isset($bahan) value="{{ $bahan->aplikasi_perpus }}" @endisset>
                             </div>
                             <div class="col-sm-4">
                                 <label for="image-input">

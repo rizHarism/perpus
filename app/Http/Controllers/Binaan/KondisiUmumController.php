@@ -28,11 +28,6 @@ class KondisiUmumController extends Controller
     public function filter($id)
     {
         $kondisi_umum = KondisiUmum::where('perpustakaan_id', $id)->first();
-        // $response = [
-        //     'title' => 'Data Katalog Tahun Terbit ' . $year[0] . ' s/d ' . $year[1],
-        //     'koleksi' => count($collection),
-        //     'katalog' => count($catalogue)
-        // ];
 
         return response()->json($kondisi_umum, Response::HTTP_OK);
     }
