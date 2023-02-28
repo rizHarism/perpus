@@ -8,6 +8,8 @@ use App\Models\Binaan\Perpustakaan;
 use App\Models\User\BinaanUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Mockery\Undefined;
 use Symfony\Component\HttpFoundation\Response;
 
 class KondisiUmumController extends Controller
@@ -25,10 +27,22 @@ class KondisiUmumController extends Controller
         ]);
     }
 
-    public function filter($id)
+    public function filter($id, $tahun)
     {
-        $kondisi_umum = KondisiUmum::where('perpustakaan_id', $id)->first();
-
+        if ($id == 'undefined') {
+            $id = Auth::user()->perpustakaan_id;
+        }
+        $kondisi_umum = KondisiUmum::where('perpustakaan_id', $id)->where('tahun', $tahun)->first();
         return response()->json($kondisi_umum, Response::HTTP_OK);
+    }
+
+    public function edit($id)
+    {
+        $kondisi = KondisiUmum::where('perpustakaan_id', $id)->first();
+        return response()->json($kondisi, Response::HTTP_OK);
+    }
+
+    public function update(Request $request)
+    {
     }
 }
