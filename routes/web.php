@@ -94,11 +94,15 @@ Route::group(['middleware' => 'auth:binaan', 'prefix' => 'binaan'], function () 
 
     Route::get('/binaan/kondisi-umum', [KondisiUmumController::class, 'show'])->name('binaanKondisiUmum');
     Route::get('/binaan/{id}/{tahun}/kondisi-umum', [KondisiUmumController::class, 'filter'])->name('filterKondisiUmum');
-    Route::get('/edit/{id}/kondisi-umum', [KondisiUmumController::class, 'edit'])->name('editKondisiUmum');
+    Route::get('/edit/{id}/{tahun}/kondisi-umum', [KondisiUmumController::class, 'edit'])->name('editKondisiUmum');
     Route::put('/update/{id}/kondisi-umum', [KondisiUmumController::class, 'update'])->name('updateKondisiUmum');
+    Route::get('/create/kondisi-umum', [KondisiUmumController::class, 'create'])->name('createKondisiUmum');
+    Route::post('/store/kondisi-umum', [KondisiUmumController::class, 'store'])->name('storeKondisiUmum');
 
     Route::get('/binaan/bahan-pustaka', [BahanPustakaController::class, 'show'])->name('binaanBahanPustaka');
-    Route::get('/binaan/{id}/bahan-pustaka', [BahanPustakaController::class, 'filter'])->name('filterBahanPustaka');
+    Route::get('/binaan/{id}/{tahun}/bahan-pustaka', [BahanPustakaController::class, 'filter'])->name('filterBahanPustaka');
+    Route::get('/edit/{id}/{tahun}/bahan-pustaka', [BahanPustakaController::class, 'edit'])->name('editBahanPustaka');
+    Route::put('/update/{id}/bahan-pustaka', [BahanPustakaController::class, 'update'])->name('updateBahanPustaka');
 
     Route::get('/binaan/administrasi', [AdministrasiController::class, 'show'])->name('binaanAdministrasi');
     Route::get('/binaan/{id}/administrasi', [AdministrasiController::class, 'filter'])->name('filterAdministrasi');
