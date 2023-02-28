@@ -108,7 +108,7 @@
                         .nama_sekolah +
                         "</option>"
                 })
-                $("#sekolah").append(listItems);
+                $("#sekolah").html(listItems);
             }
         });
     }
@@ -181,8 +181,8 @@
                     icon: 'success',
                 }).then(function() {
                     $('#modal-form').modal('hide');
-                    let id = $('#list-sekolah').val();
-                    let tahun = $('#tahun').val();
+                    let id = perpus_id;
+                    let tahun = tahun;
                     var url = "{{ route('filterKondisiUmum', [':id', ':tahun']) }}";
                     url = url.replace(':id', id)
                     url = url.replace(':tahun', tahun)

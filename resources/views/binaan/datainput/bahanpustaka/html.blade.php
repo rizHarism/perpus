@@ -79,6 +79,25 @@
             </div>
             <div class="modal-body">
                 <form id="form" method="" action="">
+                    <div class="form-group row" id="skul-form">
+                        <label for="npp" class="col-sm-3 col-form-label col-form-label-sm">Nama Sekolah
+                        </label>
+                        <div class="col-sm-9">
+                            <select class="custom-select custom-select mb-3" name="year" id="sekolah">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row" id="tahun-form">
+                        <label for="npp" class="col-sm-3 col-form-label col-form-label-sm">Tahun Kegiatan
+                        </label>
+                        <div class="col-sm-9">
+                            <select class="custom-select custom-select mb-3" name="year" id="year">
+                                @for ($i = date('Y'); $i > 2010; $i--)
+                                    "<option value="{{ $i }}">{{ $i }}</option>";
+                                @endfor
+                            </select>
+                        </div>
+                    </div>
                     <div class="form-group row">
                         <label for="npp" class="col-sm-3 col-form-label col-form-label-sm">Buku Pedoman Katalog
                         </label>

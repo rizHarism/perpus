@@ -83,6 +83,42 @@
         });
     })
 
+    // memanggil data list perpustakaan
+    function getPerpustakaan() {
+        $.ajax({
+            type: "GET",
+            url: "{{ route('createKondisiUmum') }}",
+            dataType: "json",
+            success: function(data) {
+                // var kecamatan = kec.data,
+                listItems = ""
+                $.each(data, (i, property) => {
+                    listItems += "<option value='" + property.id + "'>" + property
+                        .nama_sekolah +
+                        "</option>"
+                })
+                $("#sekolah").html(listItems);
+            }
+        });
+    }
+
+    $('#tambah').on('click', function(e) {
+        e.preventDefault()
+        var urlStore = "{{ route('storeBahanPustaka') }}";
+        $('#form').attr('action', urlStore);
+        $('#form').attr('method', 'POST');
+        getPerpustakaan();
+        $('#tahun-form').show();
+        console.log({{ Auth::user()->perpustakaan_id }})
+        if ({{ json_encode(Auth::user()->perpustakaan_id) }} > 0) {
+            $('#skul-form').hide();
+        } else {
+            $('#skul-form').show();
+        }
+        $('#form input').val('');
+        $('#modal-form').modal('show');
+        $('.modal-title').text("Tambah Data Kondisi Umum ")
+    })
 
     $('#simpan').on('click', (e) => {
         e.preventDefault();
@@ -123,8 +159,8 @@
                     icon: 'success',
                 }).then(function() {
                     $('#modal-form').modal('hide');
-                    let id = $('#list-sekolah').val();
-                    let tahun = $('#tahun').val();
+                    let id = $('#sekolah').val();
+                    let tahun = $('#year').val();
                     var url = "{{ route('filterBahanPustaka', [':id', ':tahun']) }}";
                     url = url.replace(':id', id)
                     url = url.replace(':tahun', tahun)

@@ -8,6 +8,7 @@ use App\Models\Binaan\Perpustakaan;
 use App\Models\User\BinaanUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 use Symfony\Component\HttpFoundation\Response;
 
 class BahanPustakaController extends Controller
@@ -53,5 +54,36 @@ class BahanPustakaController extends Controller
         } else {
             return response("Data Kecamatan Gagal diubah!", Response::HTTP_INTERNAL_SERVER_ERROR);
         }
+    }
+
+    public function create()
+    {
+        $perpustakaan = Perpustakaan::select('id', 'nama_sekolah')->get();
+        return response()->json($perpustakaan, Response::HTTP_OK);
+    }
+
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'tahun' => Rule::unique('binaan_bahan_pustaka')->where(function ($query) use ($request) {
+                return $query->where('perpustakaan_id', $request->perpus_id);
+            })
+        ]);
+        // dd($request);
+
+        $bahan = BahanPustaka::create([
+            'tahun' => $request->tahun,
+            'perpustakaan_id' => $request->perpus_id,
+            'pedoman_katalog' => $request->katalog,
+            'pedoman_klasifikasi' => $request->klasifikasi,
+            'aplikasi_perpus' => $request->aplikasi,
+            'status' => 1,
+        ]);
+
+        if ($bahan) {
+            return response("Data Kondisi Umum Berhasil ditambahkan!");
+        } else {
+            return response("Data gagal ditambahkan!");
+        };
     }
 }
