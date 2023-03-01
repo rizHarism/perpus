@@ -25,10 +25,41 @@ class TenagaController extends Controller
         ]);
     }
 
-    public function filter($id)
+    public function filter($id, $tahun)
     {
-        $tenaga = Tenaga::where('perpustakaan_id', $id)->get();
 
+        if ($id == 'undefined') {
+            $id = Auth::user()->perpustakaan_id;
+        }
+        $tenaga = Tenaga::where('perpustakaan_id', $id)->where('tahun', $tahun)->get();
         return response()->json($tenaga, Response::HTTP_OK);
+    }
+
+    public function edit($id)
+    {
+        $tenaga = Tenaga::where('id', $id)->first();
+        return response()->json($tenaga, Response::HTTP_OK);
+    }
+
+    public function update(Request $request, $id)
+    {
+        // dd($request);
+        $tenaga = Tenaga::findOrFail($id);
+        $tenaga->nama = $request->nama;
+        $tenaga->status_pegawai = $request->pegawai;
+        $tenaga->status_pendidikan = $request->pendidikan;
+        $tenaga->jenis_kelamin = $request->kelamin;
+
+        if ($tenaga->save()) {
+            return response("Data Berhasil diubah!");
+        } else {
+            return response("Data Kecamatan Gagal diubah!", Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public function create()
+    {
+        $perpustakaan = Perpustakaan::select('id', 'nama_sekolah')->get();
+        return response()->json($perpustakaan, Response::HTTP_OK);
     }
 }

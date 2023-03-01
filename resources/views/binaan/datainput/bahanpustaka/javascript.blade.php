@@ -27,6 +27,7 @@
                 if (data.hasOwnProperty('id')) {
                     $('#header-text').text('Pengorganisasian Bahan Pustaka')
                     $('#id-data').val(data.perpustakaan_id)
+                    $('#tahun-data').val(data.tahun)
                     $('#pedoman-katalog').html(data.pedoman_katalog)
                     $('#pedoman-klasifikasi').html(data.pedoman_klasifikasi)
                     $('#aplikasi').html(data.aplikasi_perpus)
@@ -57,7 +58,7 @@
 
     $('#edit').on('click', function(e) {
         id = $('#id-data').val();
-        let tahun = $('#tahun').val();
+        let tahun = $('#tahun-data').val();
         var url = "{{ route('editBahanPustaka', [':id', ':tahun']) }}";
         url = url.replace(':id', id)
         url = url.replace(':tahun', tahun)

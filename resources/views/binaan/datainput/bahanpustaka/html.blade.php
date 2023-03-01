@@ -41,6 +41,7 @@
                     </form>
                     <div id="table">
                         <input type="hidden" id="id-data" value="">
+                        <input type="hidden" id="tahun-data" value="">
                         <table class="table" id="table-kondisi" style="width:100%">
                             <tr>
                                 <th style="width: 20%">Buku Pedoman Katalog</th>
@@ -102,7 +103,8 @@
                         <label for="npp" class="col-sm-3 col-form-label col-form-label-sm">Buku Pedoman Katalog
                         </label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control form-control-sm" id="katalog-form" value="">
+                            <input type="text" class="form-control form-control-sm" id="katalog-form"
+                                value="">
                         </div>
                     </div>
                     <hr>

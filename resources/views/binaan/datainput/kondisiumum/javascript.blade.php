@@ -17,15 +17,16 @@
     let statusLogin = {{ Auth::user()->perpustakaan_id }}
     $('#table').hide()
 
-    function getData(id, tahun, url) {
+    function getData(id, tahun, url, sekolah) {
         $.ajax({
             type: "GET",
             url: url,
             dataType: "json",
             success: function(data) {
                 if (data.hasOwnProperty('id')) {
-                    $('#header-text').text('Kondisi Umum Perpustakaan Binaan')
+                    $('#header-text').text('Kondisi Umum Perpustakaan ' + sekolah + ' tahun ' + data.tahun)
                     $('#id-data').val(data.perpustakaan_id)
+                    $('#tahun-data').val(data.tahun)
                     $('#npp').html(data.npp)
                     $('#sk-pendirian').html(data.sk_pendirian)
                     $('#sk-pendirian').html(data.sk_pendirian)
@@ -62,7 +63,7 @@
 
     $('#edit').on('click', function(e) {
         id = $('#id-data').val();
-        let tahun = $('#tahun').val();
+        let tahun = $('#tahun-data').val();
         var url = "{{ route('editKondisiUmum', [':id', ':tahun']) }}";
         url = url.replace(':id', id)
         url = url.replace(':tahun', tahun)
@@ -76,7 +77,8 @@
                 $('#modal-form').modal('show');
                 $('#tahun-form').hide();
                 $('#skul-form').hide();
-                $('.modal-title').text("Edit Kondisi Umum Tahun " + data.tahun)
+                $('.modal-title').text("Edit Kondisi Umum Tahun " + $(
+                    '#list-sekolah option:selected').text() + ' Tahun ' + data.tahun)
                 $('#npp-form').val(data.npp)
                 $('#sk-form').val(data.sk_pendirian)
                 $('#program-form').val(data.program_kerja)
@@ -85,7 +87,7 @@
                 $('#siswa-perempuan').val(data.siswa_p)
                 $('#staff-laki').val(data.staff_l)
                 $('#staff-perempuan').val(data.staff_p)
-                $('#rombel-form').val(data.rombongan_belajar)
+                $('#rombel-form').val(data.rombongan_belajar + ' Rombongan')
 
 
                 $('#form').attr('action', urlUpdate);

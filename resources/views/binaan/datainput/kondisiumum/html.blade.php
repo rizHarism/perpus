@@ -42,6 +42,7 @@
                     <hr>
                     <div id="table">
                         <input type="hidden" id="id-data" value="">
+                        <input type="hidden" id="tahun-data" value="">
                         <table class="table" id="table-kondisi" style="width:100%">
                             <tr>
                                 <th style="width: 20%">NPP</th>
