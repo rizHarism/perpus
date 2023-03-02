@@ -71,7 +71,7 @@
                         }]
                     };
                     chart.data = newData;
-                    chart.update
+                    chart.update()
                 }
             });
         });
