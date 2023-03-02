@@ -135,6 +135,13 @@
                             </div>
                         </div>
                     </div>
+                    <hr>
+                    <div class="card mx-auto" style="width: 70vh;">
+                        <p class=" mt-2 text-center">Chart</p>
+                        <div class="card-body">
+                            <canvas id="ddc-chart"></canvas>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

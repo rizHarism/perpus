@@ -1,14 +1,10 @@
 <section class="content">
-    @php
-        $data_chart = [$catalogue, $collection];
-    @endphp
     <div class="container-fluid">
         <div class="card">
             <div class="card-header h6" id="card-header">{{ $message }}</div>
             <div class="card-body">
                 <div class="container">
                     <form id="filter-katalog">
-
                         <div class="form-group">
                             <label for="exampleInputEmail1">Tahun Terbit</label>
                             <div class="row">
@@ -66,11 +62,16 @@
                                 </div>
                             </div>
                         </div>
-                        <canvas id="koleksi-chart" width="100" height="50"></canvas>
+                    </div>
+                    <hr>
+                    <div class="card mx-auto" style="width: 70vh;">
+                        <p class=" mt-2 text-center">Chart</p>
+                        <div class="card-body">
+                            <canvas id="katalog-chart"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
 </section>

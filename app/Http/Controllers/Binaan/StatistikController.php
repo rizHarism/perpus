@@ -16,8 +16,9 @@ class StatistikController extends Controller
     {
         $user_id = Auth::user()->perpustakaan_id;
         $koleksi = Koleksi::where('perpustakaan_id', $user_id)->first();
-        // $koleksi_tahun_lalu = Koleksi::where('perpustakaan_id', $user_id)->where('tahun', date("Y") - 2)->first();
-        // dd($koleksi_tahun_lalu);
+        // $all_koleksi = Koleksi::selectRaw('SUM(buku_pelajaran_judul) as buku_pelajaran_judul, SUM(buku_pelajaran_eksemplar) as buku_pelajaran_eksemplar')->first();
+        $all_koleksi = Koleksi::sum('buku_pelajaran_judul', 'buku_pelajaran_eks');
+        dd($all_koleksi);
         return view('binaan.statistik.koleksi.index', [
             // 'koleksi_judul' => $koleksi_judul
             'pelajaran_judul' => $koleksi->buku_pelajaran_judul,

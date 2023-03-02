@@ -198,13 +198,17 @@
                 <div class="back-button mt-0" style="cursor: pointer"><i class="fa fa-chevron-circle-left"> </i> Kembali
                 </div>
                 <hr>
-                <div class="control mt-2">
-                    <label for="name">Username</label>
-                    <input type="text" id="username" name="username">
+                <div class=" h5" id="login-title"> Data Koleksi Pemustaka</div>
+                <hr>
+                <div class="control">
+                    {{-- <label for="name">Username</label> --}}
+                    <input type="text" id="username" name="username" placeholder="Nama Pengguna">
                 </div>
                 <div class="control">
-                    <label for="psw">Kata Sandi</label>
-                    <input type="password" id="psw" name="password">
+                    {{-- <label for="psw">Kata Sandi</label> --}}
+                    <input type="password" id="psw" name="password" placeholder="Kata Sandi">
+                    <i class="fa fa-eye" id="eye"
+                        style="position: absolute;top: 55%;right: 12%;cursor: pointer;color: rgb(47, 43, 43);"></i>
                 </div>
                 <br>
                 <div class="control">
@@ -218,28 +222,40 @@
 
 <script>
     $(document).ready(function() {
+
+        $('#eye').on('mousedown', () => {
+            $('#psw').attr('type', 'text');
+            $('#eye').attr('class', 'fa fa-eye-slash');
+        });
+        $('#eye').on('mouseup', () => {
+            $('#psw').attr('type', 'password')
+            $('#eye').attr('class', 'fa fa-eye');
+        })
         $(".btn-custom").click(function() {
             let val = $(this).data('id');
             let urlCheck = null;
             let csrf_token = '{{ csrf_token() }}'
 
-            console.log(val);
-
             if (val == 'koleksi') {
-                $('#login-form').attr('action', "{{ route('inlisliteLogin') }}");
                 urlCheck = "{{ route('inlisliteAuth') }}";
+                $('#login-form').attr('action', "{{ route('inlisliteLogin') }}");
+                $('#login-title').text('DATA KOLEKSI & PEMUSTAKA');
             } else if (val == 'binaan') {
-                $('#login-form').attr('action', "{{ route('binaanLogin') }}");
                 urlCheck = "{{ route('binaanAuth') }}";
+                $('#login-form').attr('action', "{{ route('binaanLogin') }}");
+                $('#login-title').text('PERPUSTAKAAN BINAAN');
             } else if (val == 'survey') {
-                $('#login-form').attr('action', "{{ route('surveyLogin') }}");
                 urlCheck = "{{ route('surveyAuth') }}";
+                $('#login-form').attr('action', "{{ route('surveyLogin') }}");
+                $('#login-title').text('SURVEY KEPUSTAKAWANAN');
             } else if (val == 'pustakawan') {
-                $('#login-form').attr('action', "{{ route('pustakawanLogin') }}");
                 urlCheck = "{{ route('pustakawanAuth') }}";
+                $('#login-form').attr('action', "{{ route('pustakawanLogin') }}");
+                $('#login-title').text('KINERJA PUSTAKAWAN');
             } else if (val == 'bidang') {
-                $('#login-form').attr('action', "{{ route('bidangLogin') }}");
                 urlCheck = "{{ route('bidangAuth') }}";
+                $('#login-form').attr('action', "{{ route('bidangLogin') }}");
+                $('#login-title').text('KINERJA BIDANG');
             }
             $.ajax({
                 type: "POST",

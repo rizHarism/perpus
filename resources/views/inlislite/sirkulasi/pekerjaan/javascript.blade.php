@@ -35,35 +35,125 @@
                 dataType: "json",
                 success: function(data) {
                     console.log(data);
+                    let pekerjaanData = [];
+                    let labelData = [];
+                    $('#pekerjaan-' + data.id).html('0');
                     $.each(data.result, (i, data) => {
                         console.log(data)
-                        $('#pekerjaan-' + data.id).html('');
                         $('#pekerjaan-' + data.id).html(data.total);
+                        pekerjaanData.push(data.total);
+                        labelData.push(data.Pekerjaan);
                     })
-                    // $('#card-header').html('');
-                    // $('#card-header').html(data.message);
-                    // $('#klas0').html('');
-                    // $('#klas1').html('');
-                    // $('#klas2').html('');
-                    // $('#klas3').html('');
-                    // $('#klas4').html('');
-                    // $('#klas5').html('');
-                    // $('#klas6').html('');
-                    // $('#klas7').html('');
-                    // $('#klas8').html('');
-                    // $('#klas9').html('');
-                    // $('#klas0').html(data.klas0);
-                    // $('#klas1').html(data.klas1);
-                    // $('#klas2').html(data.klas2);
-                    // $('#klas3').html(data.klas3);
-                    // $('#klas4').html(data.klas4);
-                    // $('#klas5').html(data.klas5);
-                    // $('#klas6').html(data.klas6);
-                    // $('#klas7').html(data.klas7);
-                    // $('#klas8').html(data.klas8);
-                    // $('#klas9').html(data.klas9);
+
+                    // setup blog
+                    const newData = {
+                        labels: labelData,
+                        datasets: [{
+                            label: '# Jumlah',
+                            data: pekerjaanData,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)',
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)',
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)',
+                            ],
+                            borderWidth: 1
+                        }]
+                    };
+                    chart.data = newData;
+                    chart.update()
                 }
             });
-        })
+        });
+
+        let arrayData = {!! json_encode($result) !!};
+        let pekerjaanData = [];
+        let labelData = [];
+        $.each(arrayData, function(i, data) {
+            // do your stuf
+            pekerjaanData.push(data.total);
+            labelData.push(data.Pekerjaan);
+        });
+        // setup blog
+        const data = {
+            labels: labelData,
+            datasets: [{
+                label: '# Jumlah',
+                data: pekerjaanData,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        // setup config
+        const config = {
+            type: 'bar',
+            data: data,
+            options: {
+                responsive: true,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        };
+
+        // render block
+        const chart = new Chart(
+            $('#pekerjaan-chart'),
+            config
+        );
     })
 </script>

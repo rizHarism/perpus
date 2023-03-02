@@ -17,7 +17,6 @@ class CirculationController extends Controller
     //
     public function CirculationCatalogue()
     {
-
         $location_library = LocationLibrary::orderBy('ID', 'asc')->get();
         $catalogLoan = DB::connection('inlislite')->table('collectionloanitems')
             ->select('collectionloanitems.ID', 'catalogs.ID')
@@ -42,7 +41,6 @@ class CirculationController extends Controller
     {
         $_req = explode(',', $req);
         if ($_req[0] == 0) {
-            // dd('koselamse');
             $title = 'Data Sirkulasi Katalog Tahun Terbit ' . $_req[1] . ' s/d ' . $_req[2] . ' Keseluruhan';
             $catalogLoan = DB::connection('inlislite')->table('collectionloanitems')
                 ->select('collectionloanitems.ID', 'catalogs.ID')
@@ -170,7 +168,7 @@ class CirculationController extends Controller
         // })->get());
 
         $_req = explode(',', $req);
-        if ($_req[0] == 0) {
+        if ($_req[0] == 'Semua Lokasi') {
             $klas0 = count(CollectionLoanItem::with('collection', 'collection.catalog', 'collection.location_library')->where('LoanStatus', 'Loan')->whereHas('collection.catalog', function ($q) use ($_req) {
                 $q->where('DeweyNo', '>=', '000')->where('DeweyNo', '<=', '099')
                     ->where('PublishYear', '<=', $_req[2])->where('PublishYear', '>=', $_req[1]);

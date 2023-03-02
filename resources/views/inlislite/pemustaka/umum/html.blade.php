@@ -78,6 +78,13 @@
                         </div>
                         <canvas id="koleksi-chart" width="100" height="50"></canvas>
                     </div>
+                    <hr>
+                    <div class="card mx-auto" style="width: 70vh;">
+                        <p class=" mt-2 text-center">Chart</p>
+                        <div class="card-body">
+                            <canvas id="pemustaka-chart"></canvas>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

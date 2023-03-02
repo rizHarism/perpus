@@ -57,9 +57,16 @@ class MemberController extends Controller
             $member_blitar = count(Member::select('ID')->where('cityNow', 'Like', '%blitar%')->where('cityNow', 'Not Like', '%kabupaten%')->whereHas('loanItem', function ($q) {
                 $q->where('LoanDate', '>=', DB::raw('DATE_SUB(now(), INTERVAL 6 MONTH)'));
             })->get());
-            $member_non_blitar = count(Member::select('ID')->where('cityNow', 'Like', '%kabupaten%')->orWhere('cityNow', 'Not Like', '%blitar%')->whereHas('loanItem', function ($q) {
-                $q->where('LoanDate', '>=', DB::raw('DATE_SUB(now(), INTERVAL 6 MONTH)'));
-            })->get());
+            $member_non_blitar = count(Member::select('ID')
+                ->where('cityNow', 'Like', '%kabupaten%')
+                ->whereHas('loanItem', function ($q) {
+                    $q->where('LoanDate', '>=', DB::raw('DATE_SUB(now(), INTERVAL 6 MONTH)'));
+                })
+                ->orWhere('cityNow', 'Not Like', '%blitar%')
+                ->whereHas('loanItem', function ($q) {
+                    $q->where('LoanDate', '>=', DB::raw('DATE_SUB(now(), INTERVAL 6 MONTH)'));
+                })
+                ->get());
         } elseif ($status == "nonaktif") {
             $all_member = count(Member::select('ID')->get());
             $all_male = count(Member::select('ID')->where('Sex_id', '1')->get());
@@ -78,10 +85,16 @@ class MemberController extends Controller
             $blitar_aktif = count(Member::select('ID')->where('cityNow', 'Like', '%blitar%')->where('cityNow', 'Not Like', '%kabupaten%')->whereHas('loanItem', function ($q) {
                 $q->where('LoanDate', '>=', DB::raw('DATE_SUB(now(), INTERVAL 6 MONTH)'));
             })->get());
-            $non_blitar_aktif = count(Member::select('ID')->where('cityNow', 'Like', '%kabupaten%')->orWhere('cityNow', 'Not Like', '%blitar%')->whereHas('loanItem', function ($q) {
-                $q->where('LoanDate', '>=', DB::raw('DATE_SUB(now(), INTERVAL 6 MONTH)'));
-            })->get());
-
+            $non_blitar_aktif = count(Member::select('ID')
+                ->where('cityNow', 'Like', '%kabupaten%')
+                ->whereHas('loanItem', function ($q) {
+                    $q->where('LoanDate', '>=', DB::raw('DATE_SUB(now(), INTERVAL 6 MONTH)'));
+                })
+                ->orWhere('cityNow', 'Not Like', '%blitar%')
+                ->whereHas('loanItem', function ($q) {
+                    $q->where('LoanDate', '>=', DB::raw('DATE_SUB(now(), INTERVAL 6 MONTH)'));
+                })
+                ->get());
             $message = 'Data Umum Pemustaka Non Aktif';
             $total_member = $all_member - $member_aktif;
             $member_male = $all_male - $male_aktif;
