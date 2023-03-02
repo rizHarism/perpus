@@ -60,7 +60,7 @@
                         <hr>
                         <div class="form-group row">
                             <div class="col-sm-2">
-                                <button class="btn btn-primary" id="tambah-tenaga">+
+                                <button class="btn btn-primary" id="tambah-tenaga" data-id="" data-year="">+
                                     Pustakawan</button>
                                 <button type="submit" class="btn btn-primary">Kirim</button>
                             </div>

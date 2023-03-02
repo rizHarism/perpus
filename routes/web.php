@@ -120,6 +120,8 @@ Route::group(['middleware' => 'auth:binaan', 'prefix' => 'binaan'], function () 
     Route::get('/create/pemberdayaan', [PemberdayaanController::class, 'create'])->name('createPemberdayaan');
     Route::post('/store/pemberdayaan', [PemberdayaanController::class, 'store'])->name('storePemberdayaan');
 
+
+    // data tenaga not yet
     Route::get('/binaan/tenaga', [TenagaController::class, 'show'])->name('binaanTenagapustaka');
     Route::get('/filter/{id}/{tahun}/tenaga', [TenagaController::class, 'filter'])->name('filterTenagapustaka');
     Route::get('/edit/{id}/tenaga', [TenagaController::class, 'edit'])->name('editTenagapustaka');
@@ -128,7 +130,7 @@ Route::group(['middleware' => 'auth:binaan', 'prefix' => 'binaan'], function () 
     Route::post('/store/tenaga', [TenagaController::class, 'store'])->name('storeTenagapustaka');
 
     Route::get('/binaan/sarana', [SaranaController::class, 'show'])->name('binaanSarana');
-    Route::get('/filter/{id}/sarana', [SaranaController::class, 'filter'])->name('filterSarana');
+    Route::get('/filter/{id}/{tahun}/sarana', [SaranaController::class, 'filter'])->name('filterSarana');
     Route::get('/edit/{id}/{tahun}/sarana', [SaranaController::class, 'edit'])->name('editSarana');
     Route::put('/update/{id}/sarana', [SaranaController::class, 'update'])->name('updateSarana');
     Route::get('/create/sarana', [SaranaController::class, 'create'])->name('createSarana');
