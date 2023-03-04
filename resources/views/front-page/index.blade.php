@@ -133,7 +133,8 @@
     <section>
         <div class="title-container">
             <div class="row">
-                <div class="col"></div>
+                <div class="col">
+                </div>
             </div>
             <img class="logo" src="{{ asset('assets/image/logo/logo-kota-blitar.png') }}" alt="" width="80"
                 height="100">

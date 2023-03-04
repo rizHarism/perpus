@@ -37,7 +37,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        // $this->middleware('guest')->except('logout');
         // $this->middleware('guest:inlislite')->except('logout');
         // $this->middleware('guest:binaan')->except('logout');
     }
@@ -50,10 +50,10 @@ class LoginController extends Controller
         ]);
 
         if (Auth::guard('inlislite')->attempt(['username' => $request->username, 'password' => $request->password])) {
-
             return redirect()->intended('/inlislite/collection/catalogue');
         }
         return back()->withInput($request->only('username', 'remember'));
+        // return back()->withErrors(['msg' => 'error', 'act' => 'inlislite']);
     }
 
     public function inlisliteLogout(Request $request)
