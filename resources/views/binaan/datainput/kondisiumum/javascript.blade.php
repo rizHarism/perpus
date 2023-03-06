@@ -87,7 +87,7 @@
                 $('#siswa-perempuan').val(data.siswa_p)
                 $('#staff-laki').val(data.staff_l)
                 $('#staff-perempuan').val(data.staff_p)
-                $('#rombel-form').val(data.rombongan_belajar + ' Rombongan')
+                $('#rombel-form').val(data.rombongan_belajar)
 
 
                 $('#form').attr('action', urlUpdate);

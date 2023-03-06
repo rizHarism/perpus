@@ -154,44 +154,17 @@ Route::group(['middleware' => 'auth:binaan', 'prefix' => 'binaan'], function () 
     Route::get('/statistik/layanan', [StatistikController::class, 'layanan'])->name('binaanStatistikLayanan');
 });
 
-// Route::group(['middleware' => 'auth:survey', 'prefix' => 'survey'], function () {
-//     // Route::get('/profile', function () {
-//     //     return view('binaan.index');
-//     // })->name('binaanIndex');
 
-//     Route::get('/profile', [ProfileController::class, 'show'])->name('binaanProfile');
-//     Route::get('/binaan/kondisi-umum', function () {
-//         return view('binaan.datainput.kondisiumum.index');
-//     })->name('binaanKondisiUmum');
-//     Route::get('/binaan/bahan-pustaka', function () {
-//         return view('binaan.datainput.bahanpustaka.index');
-//     })->name('binaanBahanPustaka');
-//     Route::get('/binaan/administrasi', function () {
-//         return view('binaan.datainput.administrasi.index');
-//     })->name('binaanAdministrasi');
-//     Route::get('/binaan/pemberdayaan', function () {
-//         return view('binaan.datainput.pemberdayaan.index');
-//     })->name('binaanPemberdayaan');
-//     Route::get('/binaan/tenaga', function () {
-//         return view('binaan.datainput.tenagapustaka.index');
-//     })->name('binaanTenagapustaka');
-//     Route::get('/binaan/sarana', function () {
-//         return view('binaan.datainput.sarana.index');
-//     })->name('binaanSarana');
-//     Route::get('/binaan/koleksi', function () {
-//         return view('binaan.datainput.koleksi.index');
-//     })->name('binaanKoleksi');
-//     Route::get('/binaan/layanan', function () {
-//         return view('binaan.datainput.layanan.index');
-//     })->name('binaanLayanan');
-// });
-// Route::get('/collection/dashboard', [CollectionController::class, 'dashboard'])->name('collectionDashboard');
-// Route::get('/collection/koleksi/datatables', [CollectionController::class, 'datatablesKoleksi'])->name('collectionKoleksi');
-// Route::get('/collection/sirkulasi/datatables', [CollectionController::class, 'datatablesSirkulasi'])->name('collectionSirkulasi');
+// route middleware survey
+Route::group(['middleware' => 'auth:survey', 'prefix' => 'survey'], function () {
+});
 
+// route middleware kredit pustakawan
+Route::group(['middleware' => 'auth:pustakawan', 'prefix' => 'pustakawan'], function () {
+});
 
-// Route::get('/user', [UserController::class, 'index']);
-
-// Auth::routes();
+// route middleware bidang
+Route::group(['middleware' => 'auth:bidang', 'prefix' => 'bidang'], function () {
+});
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home2');

@@ -58,7 +58,7 @@ class LoginController extends Controller
         return response()->json([
             'success' => false,
             'message' => "Login Gagal"
-        ], 401);
+        ]);
     }
 
     public function inlisliteLogout(Request $request)
@@ -91,7 +91,7 @@ class LoginController extends Controller
         return response()->json([
             'success' => false,
             'message' => 'Login Gagal'
-        ], 401);
+        ]);
     }
 
     public function binaanLogout(Request $request)
@@ -116,10 +116,15 @@ class LoginController extends Controller
         ]);
 
         if (Auth::guard('survey')->attempt(['username' => $request->username, 'password' => $request->password])) {
-
-            return redirect()->intended('/survey/profile');
+            return response()->json([
+                'success' => true,
+                'redirect' => '/survey/profile'
+            ], 200);
         }
-        return back()->withInput($request->only('username', 'remember'));
+        return response()->json([
+            'success' => false,
+            'message' => "Login Gagal"
+        ]);
     }
 
     public function pustakawanLogin(Request $request)
@@ -130,10 +135,15 @@ class LoginController extends Controller
         ]);
 
         if (Auth::guard('pustakawan')->attempt(['username' => $request->username, 'password' => $request->password])) {
-
-            return redirect()->intended('/pustakawan/profile');
+            return response()->json([
+                'success' => true,
+                'redirect' => '/pustakawan/profile'
+            ], 200);
         }
-        return back()->withInput($request->only('username', 'remember'));
+        return response()->json([
+            'success' => false,
+            'message' => "Login Gagal"
+        ]);
     }
 
     public function bidangLogin(Request $request)
@@ -144,10 +154,15 @@ class LoginController extends Controller
         ]);
 
         if (Auth::guard('bidang')->attempt(['username' => $request->username, 'password' => $request->password])) {
-
-            return redirect()->intended('/bidang/profile');
+            return response()->json([
+                'success' => true,
+                'redirect' => '/bidang/profile'
+            ], 200);
         }
-        return back()->withInput($request->only('username', 'remember'));
+        return response()->json([
+            'success' => false,
+            'message' => "Login Gagal"
+        ]);
     }
 
     public function username()

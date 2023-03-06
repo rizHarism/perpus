@@ -172,21 +172,21 @@
                             <div class="row">
                                 <div class="col-sm-3">
                                     <div class="input-group input-group-sm">
+                                        <input type="text" class="form-control" aria-label="Sizing example input"
+                                            aria-describedby="inputGroup-sizing-sm" id="siswa-laki" value="">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroup-sizing-sm">Laki-Laki</span>
                                         </div>
-                                        <input type="text" class="form-control" aria-label="Sizing example input"
-                                            aria-describedby="inputGroup-sizing-sm" id="siswa-laki" value="">
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="input-group input-group-sm">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="inputGroup-sizing-sm">Perempuan</span>
-                                        </div>
                                         <input type="text" class="form-control" aria-label="Sizing example input"
                                             aria-describedby="inputGroup-sizing-sm" id="siswa-perempuan"
                                             value="">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="inputGroup-sizing-sm">Perempuan</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -201,21 +201,21 @@
                             <div class="row">
                                 <div class="col-sm-3">
                                     <div class="input-group input-group-sm ">
+                                        <input type="text" class="form-control" aria-label="Sizing example input"
+                                            aria-describedby="inputGroup-sizing-sm" id="staff-laki" value="">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroup-sizing-sm">Laki-Laki</span>
                                         </div>
-                                        <input type="text" class="form-control" aria-label="Sizing example input"
-                                            aria-describedby="inputGroup-sizing-sm" id="staff-laki" value="">
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="input-group input-group-sm">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="inputGroup-sizing-sm">Perempuan</span>
-                                        </div>
                                         <input type="text" class="form-control" aria-label="Sizing example input"
                                             aria-describedby="inputGroup-sizing-sm" id="staff-perempuan"
                                             value="">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="inputGroup-sizing-sm">Perempuan</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -227,20 +227,21 @@
                             Rombongan
                             Belajar
                         </label>
-                        <div class="col-sm-2">
-                            <input type="text" class="form-control form-control-sm" id="rombel-form"
-                                value="">
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" class="form-control form-control-sm" id="rombel-form"
+                                            value="" />
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="inputGroup-sizing-sm">Rombongan</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <hr>
-                    {{-- <div class="form-group row">
-                        <div class="col-sm-1">
-                            <button class="btn btn-secondary" id="kembali">Kembali</button>
-                        </div>
-                        <div class="col-sm-1">
-                            <button type="submit" class="btn btn-primary" id="simpan">Simpan </button>
-                        </div>
-                    </div> --}}
                 </form>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
