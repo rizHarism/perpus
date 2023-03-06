@@ -50,10 +50,15 @@ class LoginController extends Controller
         ]);
 
         if (Auth::guard('inlislite')->attempt(['username' => $request->username, 'password' => $request->password])) {
-            return redirect()->intended('/inlislite/collection/catalogue');
+            return response()->json([
+                'success' => true,
+                'redirect' => route('collectionCatalogue')
+            ], 200);
         }
-        return back()->withInput($request->only('username', 'remember'));
-        // return back()->withErrors(['msg' => 'error', 'act' => 'inlislite']);
+        return response()->json([
+            'success' => false,
+            'message' => "Login Gagal"
+        ], 401);
     }
 
     public function inlisliteLogout(Request $request)
@@ -78,10 +83,15 @@ class LoginController extends Controller
         ]);
 
         if (Auth::guard('binaan')->attempt(['username' => $request->username, 'password' => $request->password])) {
-
-            return redirect()->intended('/binaan/profile');
+            return response()->json([
+                'success' => true,
+                'redirect' => route('binaanProfile')
+            ], 200);
         }
-        return back()->withInput($request->only('username', 'remember'));
+        return response()->json([
+            'success' => false,
+            'message' => 'Login Gagal'
+        ], 401);
     }
 
     public function binaanLogout(Request $request)

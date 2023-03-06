@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    {{-- <meta name="csrf-token" content="{{ csrf_token() }}" /> --}}
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     @include('layouts.assets.stylesheet')
     <title>Document</title>
     <style>
@@ -144,8 +144,8 @@
         <div class="button-container" id="button-group">
             <div class="row border rounded shadow-lg p-2 btn-custom" data-id="koleksi" style="cursor: pointer">
                 <div class="col-sm-2 ">
-                    <img class="shadow-lg button-img" src="{{ asset('assets/icon/front-page/sirkulasi.png') }}"
-                        alt="" height="50" width="50">
+                    <img class="shadow-lg button-img" src="{{ asset('assets/icon/front-page/sirkulasi.png') }}" alt=""
+                        height="50" width="50">
                 </div>
                 <div class="col-sm-10  d-flex my-auto">
                     <span class="h5">DATA KOLEKSI & PEMUSTAKA</span>
@@ -154,8 +154,8 @@
             <hr>
             <div class="row border rounded shadow-lg p-2 btn-custom" data-id="binaan" style="cursor: pointer">
                 <div class="col-sm-2 ">
-                    <img class="shadow-lg button-img" src="{{ asset('assets/icon/front-page/library.png') }}"
-                        alt="" height="50" width="50">
+                    <img class="shadow-lg button-img" src="{{ asset('assets/icon/front-page/library.png') }}" alt=""
+                        height="50" width="50">
                 </div>
                 <div class="col-sm-10  d-flex my-auto">
                     <span class="h5">PERPUSTAKAAN BINAAN</span>
@@ -164,8 +164,8 @@
             <hr>
             <div class="row border rounded shadow-lg p-2 btn-custom" data-id="survey" style="cursor: pointer">
                 <div class="col-sm-2 ">
-                    <img class="shadow-lg button-img" src="{{ asset('assets/icon/front-page/survey.png') }}"
-                        alt="" height="50" width="50">
+                    <img class="shadow-lg button-img" src="{{ asset('assets/icon/front-page/survey.png') }}" alt=""
+                        height="50" width="50">
                 </div>
                 <div class="col-sm-10  d-flex my-auto">
                     <span class="h5">SURVEY KEPUSTAKAWANAN</span>
@@ -174,8 +174,8 @@
             <hr>
             <div class="row border rounded shadow-lg p-2 btn-custom" data-id="pustakawan" style="cursor: pointer">
                 <div class="col-sm-2 ">
-                    <img class="shadow-lg button-img" src="{{ asset('assets/icon/front-page/training.png') }}"
-                        alt="" height="50" width="50">
+                    <img class="shadow-lg button-img" src="{{ asset('assets/icon/front-page/training.png') }}" alt=""
+                        height="50" width="50">
                 </div>
                 <div class="col-sm-10  d-flex my-auto">
                     <span class="h5">KINERJA PUSTAKAWAN</span>
@@ -184,8 +184,8 @@
             <br>
             <div class="row border rounded shadow-lg p-2 btn-custom" data-id="bidang" style="cursor: pointer">
                 <div class="col-sm-2 ">
-                    <img class="shadow-lg button-img" src="{{ asset('assets/icon/front-page/desk.png') }}"
-                        alt="" height="50" width="50">
+                    <img class="shadow-lg button-img" src="{{ asset('assets/icon/front-page/desk.png') }}" alt=""
+                        height="50" width="50">
                 </div>
                 <div class="col-sm-10  d-flex my-auto">
                     <span class="h5">KINERJA BIDANG</span>
@@ -213,7 +213,7 @@
                 </div>
                 <br>
                 <div class="control">
-                    <input type="submit" class="btn" value="Masuk">
+                    <input class="btn" value="Masuk" id="btn-login">
                 </div>
             </form>
         </div>
@@ -277,6 +277,40 @@
             });
 
         });
+
+        $('#btn-login').on('click', (e)=>{
+            e.preventDefault();
+            let username = $('#username').val();
+            let password = $('#psw').val();
+            let token = $("meta[name='csrf-token']").attr("content");
+            let act = $('#login-form').attr('action');
+
+            $.ajax({
+                type: "POST",
+                headers:{
+                    'X-CSRF-TOKEN': token,
+                },
+                url: act,
+                dataType: 'json',
+                cache:false,
+                data: {
+                    'username' : username,
+                    'password' : password
+                },
+                success:function(data){
+                    console.log(data)
+                    if (data.success){
+                        window.location.href = data.redirect;
+                    }else{
+                        Swal.fire({
+                            // error,
+                            title: 'Login Gagal!',
+                            text: 'silahkan coba lagi!'
+                        });
+                    }
+                }
+            })
+        })
 
         $(".back-button").click(function() {
             $("#form-login").fadeOut();
