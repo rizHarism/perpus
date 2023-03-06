@@ -16,8 +16,8 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         $this->call([
             InlisliteUserSeeder::class,
-            // BinaanUserSeeder::class,
-            // BinaanSeeder::class
+            BinaanUserSeeder::class,
+            PermissionSeeder::class,
             DataPerpustakaan::class,
             KondisiUmumSeeder::class,
             BahanPustaka::class,

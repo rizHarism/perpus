@@ -17,12 +17,9 @@ class CreateBinaanUserTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('username')->unique();
-            // $table->string('email')->unique();
-            // $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->foreignId('perpustakaan_id');
+            $table->foreignId('perpustakaan_id')->nullable();
             $table->string('avatar')->default('default-avatar.png');
-            // $table->rememberToken();
             $table->timestamps();
         });
     }

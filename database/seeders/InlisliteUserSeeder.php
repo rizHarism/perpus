@@ -16,8 +16,8 @@ class InlisliteUserSeeder extends Seeder
     {
         //
         InlisliteUser::create([
-            'name' => 'admin',
-            'username' => 'administrator',
+            'name' => 'Administrator',
+            'username' => 'admin',
             'password' => bcrypt('pass123'),
             'avatar' => 'default-avatar.png',
         ],);

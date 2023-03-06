@@ -14,8 +14,8 @@ use App\Http\Controllers\Binaan\StatistikController;
 use App\Http\Controllers\Binaan\TenagaController;
 use App\Http\Controllers\Koleksi\CollectionController;
 use App\Http\Controllers\Koleksi\CirculationController;
+use App\Http\Controllers\Koleksi\InlisliteUserController;
 use App\Http\Controllers\Koleksi\MemberController;
-use App\Models\Binaan\KondisiUmum;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -84,8 +84,13 @@ Route::group(['middleware' => 'auth:inlislite', 'prefix' => 'inlislite'], functi
     Route::get('/member/pekerjaan', [MemberController::class, 'memberPekerjaan'])->name('memberPekerjaan');
     Route::get('/member/pekerjaan/{status}/filter', [MemberController::class, 'memberPekerjaanFilter'])->name('memberPekerjaanFilter');
 
-    //route statistik
-    Route::get('/member/pekerjaan/{status}/filter', [MemberController::class, 'memberPekerjaanFilter'])->name('memberPekerjaanFilter');
+    //route Administrator
+    Route::get('/administrator/user', [InlisliteUserController::class, 'index'])->name('inlisliteUser');
+    Route::get('/administrator/user/datatable', [InlisliteUserController::class, 'datatable'])->name('inlisliteUserDatatable');
+    Route::get('/administrator/{id}/user/edit', [InlisliteUserController::class, 'edit'])->name('inlisliteUserEdit');
+    Route::put('/administrator/{id}/user/update', [InlisliteUserController::class, 'update'])->name('inlisliteUserUpdate');
+    Route::get('/administrator/user/create', [InlisliteUserController::class, 'create'])->name('inlisliteUserCreate');
+    Route::post('/administrator/user/create', [InlisliteUserController::class, 'store'])->name('inlisliteUserStore');
 });
 
 Route::group(['middleware' => 'auth:binaan', 'prefix' => 'binaan'], function () {
