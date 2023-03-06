@@ -39,12 +39,12 @@
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 
-                <li class="nav-header">Integrasi Inlislite</li>
+                <li class="nav-header">Tupoksi Pustakawan</li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-copy"></i>
                         <p>
-                            Data Koleksi
+                            Data Pustakawan
                             <i class="fas fa-angle-left right"></i>
                             {{-- <span class="badge badge-info right">6</span> --}}
                         </p>
@@ -53,85 +53,13 @@
                         <li class="nav-item ">
                             <a href="{{ route('collectionCatalogue') }}" class="nav-link">
                                 <i class="far fa-file nav-icon ml-3"></i>
-                                <p>Katalog</p>
+                                <p>Input Kredit</p>
                             </a>
                         </li>
                         <li class="nav-item ">
                             <a href="{{ route('collectionKlas') }}" class="nav-link">
                                 <i class="far fa-file nav-icon ml-3"></i>
-                                <p>Klas DDC</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('collectionSource') }}" class="nav-link">
-                                <i class="far fa-file nav-icon ml-3"></i>
-                                <p>Sumber</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('collectionLocation') }}" class="nav-link">
-                                <i class="far fa-file nav-icon ml-3"></i>
-                                <p>Lokasi</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-copy"></i>
-                        <p>
-                            Data Sirkulasi
-                            <i class="fas fa-angle-left right"></i>
-                            {{-- <span class="badge badge-info right">6</span> --}}
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview ms-5">
-                        <li class="nav-item ">
-                            <a href="{{ route('circulationCatalogue') }}" class="nav-link">
-                                <i class="far fa-file nav-icon ml-3"></i>
-                                <p>Katalog</p>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a href="{{ route('circulationKlas') }}" class="nav-link">
-                                <i class="far fa-file nav-icon ml-3"></i>
-                                <p>Klas DDC</p>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a href="{{ route('circulationMember') }}" class="nav-link">
-                                <i class="far fa-file nav-icon ml-3"></i>
-                                <p>Peminjam</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-copy"></i>
-                        <p>
-                            Data Pemustaka
-                            <i class="fas fa-angle-left right"></i>
-                            {{-- <span class="badge badge-info right">6</span> --}}
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview ms-5">
-                        <li class="nav-item ">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-file nav-icon ml-3"></i>
-                                <p>Katalog</p>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-file nav-icon ml-3"></i>
-                                <p>Klas DDC</p>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-file nav-icon ml-3"></i>
-                                <p>Peminjam</p>
+                                <p>Input Capaian</p>
                             </a>
                         </li>
                     </ul>

@@ -42,11 +42,6 @@
 {{-- script for edit profile in navbar --}}
 
 <script>
-    // $('#self-edit').on('submit', (e) => {
-    //     e.preventDefault()
-    //     console.log('self - edit')
-    // })
-    // ubah tampilan foto
     $("#self-image").change(function() {
         var ext = $('#self-image').val().split('.').pop().toLowerCase();
         if ($.inArray(ext, ['png', 'jpg', 'jpeg']) == -1) {

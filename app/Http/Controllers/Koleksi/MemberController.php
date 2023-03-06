@@ -57,9 +57,16 @@ class MemberController extends Controller
             $member_blitar = count(Member::select('ID')->where('cityNow', 'Like', '%blitar%')->where('cityNow', 'Not Like', '%kabupaten%')->whereHas('loanItem', function ($q) {
                 $q->where('LoanDate', '>=', DB::raw('DATE_SUB(now(), INTERVAL 6 MONTH)'));
             })->get());
-            $member_non_blitar = count(Member::select('ID')->where('cityNow', 'Like', '%kabupaten%')->orWhere('cityNow', 'Not Like', '%blitar%')->whereHas('loanItem', function ($q) {
-                $q->where('LoanDate', '>=', DB::raw('DATE_SUB(now(), INTERVAL 6 MONTH)'));
-            })->get());
+            $member_non_blitar = count(Member::select('ID')
+                ->where('cityNow', 'Like', '%kabupaten%')
+                ->whereHas('loanItem', function ($q) {
+                    $q->where('LoanDate', '>=', DB::raw('DATE_SUB(now(), INTERVAL 6 MONTH)'));
+                })
+                ->orWhere('cityNow', 'Not Like', '%blitar%')
+                ->whereHas('loanItem', function ($q) {
+                    $q->where('LoanDate', '>=', DB::raw('DATE_SUB(now(), INTERVAL 6 MONTH)'));
+                })
+                ->get());
         } elseif ($status == "nonaktif") {
             $all_member = count(Member::select('ID')->get());
             $all_male = count(Member::select('ID')->where('Sex_id', '1')->get());
@@ -78,10 +85,16 @@ class MemberController extends Controller
             $blitar_aktif = count(Member::select('ID')->where('cityNow', 'Like', '%blitar%')->where('cityNow', 'Not Like', '%kabupaten%')->whereHas('loanItem', function ($q) {
                 $q->where('LoanDate', '>=', DB::raw('DATE_SUB(now(), INTERVAL 6 MONTH)'));
             })->get());
-            $non_blitar_aktif = count(Member::select('ID')->where('cityNow', 'Like', '%kabupaten%')->orWhere('cityNow', 'Not Like', '%blitar%')->whereHas('loanItem', function ($q) {
-                $q->where('LoanDate', '>=', DB::raw('DATE_SUB(now(), INTERVAL 6 MONTH)'));
-            })->get());
-
+            $non_blitar_aktif = count(Member::select('ID')
+                ->where('cityNow', 'Like', '%kabupaten%')
+                ->whereHas('loanItem', function ($q) {
+                    $q->where('LoanDate', '>=', DB::raw('DATE_SUB(now(), INTERVAL 6 MONTH)'));
+                })
+                ->orWhere('cityNow', 'Not Like', '%blitar%')
+                ->whereHas('loanItem', function ($q) {
+                    $q->where('LoanDate', '>=', DB::raw('DATE_SUB(now(), INTERVAL 6 MONTH)'));
+                })
+                ->get());
             $message = 'Data Umum Pemustaka Non Aktif';
             $total_member = $all_member - $member_aktif;
             $member_male = $all_male - $male_aktif;
@@ -217,7 +230,7 @@ class MemberController extends Controller
 
     public function memberPekerjaan()
     {
-        $result = DB::table('members')->select('master_pekerjaan.id', 'master_pekerjaan.Pekerjaan', DB::raw('count(master_pekerjaan.Pekerjaan) as total'))
+        $result = DB::connection('inlislite')->table('members')->select('master_pekerjaan.id', 'master_pekerjaan.Pekerjaan', DB::raw('count(master_pekerjaan.Pekerjaan) as total'))
             ->join('master_pekerjaan', 'master_pekerjaan.id', '=', 'members.Job_id')
             ->groupBy('master_pekerjaan.Pekerjaan')->orderby('master_pekerjaan.id')->get();
         $response = [
@@ -233,25 +246,25 @@ class MemberController extends Controller
 
         if ($status == "0") {
             $message = 'Data Status Pekerjaan Pemustaka';
-            $result = DB::table('members')->select('master_pekerjaan.id', 'master_pekerjaan.Pekerjaan', DB::raw('count(master_pekerjaan.Pekerjaan) as total'))
+            $result = DB::connection('inlislite')->table('members')->select('master_pekerjaan.id', 'master_pekerjaan.Pekerjaan', DB::raw('count(master_pekerjaan.Pekerjaan) as total'))
                 ->join('master_pekerjaan', 'master_pekerjaan.id', '=', 'members.Job_id')
                 ->groupBy('master_pekerjaan.Pekerjaan')->orderby('master_pekerjaan.id')->get();
         } elseif ($status == "aktif") {
             $message = 'Data Status Pekerjaan Pemustaka Aktif';
-            $member = DB::table('members')->select('members.Job_id')->whereExists(function ($query) {
+            $member = DB::connection('inlislite')->table('members')->select('members.Job_id')->whereExists(function ($query) {
                 $query->select(DB::raw('ID'))->from('collectionloanitems')->where('LoanDate', '>=', DB::raw('DATE_SUB(now(), INTERVAL 6 MONTH)'))->whereColumn('collectionloanitems.member_id', 'members.id');
             });
-            $result = DB::table('master_pekerjaan')
+            $result = DB::connection('inlislite')->table('master_pekerjaan')
                 ->select('master_pekerjaan.id', 'master_pekerjaan.Pekerjaan', DB::raw('count(members.Job_id) as total'))
                 ->leftjoinSub($member, 'members', function ($join) {
                     $join->on('master_pekerjaan.id', '=', 'members.Job_id');
                 })->groupBy('master_pekerjaan.Pekerjaan')->orderby('master_pekerjaan.id')->get();
         } elseif ($status == "nonaktif") {
             $message = 'Data Status Pekerjaan Pemustaka Non Aktif';
-            $member = DB::table('members')->whereNotExists(function ($query) {
+            $member = DB::connection('inlislite')->table('members')->whereNotExists(function ($query) {
                 $query->select(DB::raw('ID'))->from('collectionloanitems')->where('LoanDate', '>=', DB::raw('DATE_SUB(now(), INTERVAL 6 MONTH)'))->whereColumn('collectionloanitems.member_id', 'members.id');
             });
-            $result = DB::table('master_pekerjaan')
+            $result = DB::connection('inlislite')->table('master_pekerjaan')
                 ->select('master_pekerjaan.id', 'master_pekerjaan.Pekerjaan', DB::raw('count(members.Job_id) as total'))
                 ->leftjoinSub($member, 'members', function ($join) {
                     $join->on('master_pekerjaan.id', '=', 'members.Job_id');

@@ -1,58 +1,3 @@
-{{-- <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    @include('layouts.assets.stylesheet')
-    <title>Aplikasi SIM Perpustakaan Kota Blitar</title>
-    <style>
-        /* body {
-            background-image: url("{{ asset('assets/image/background/soekarno.jpg') }}");
-            background-repeat: no-repeat;
-            background-size: contain;
-            background-position: center;
-            width: 100%;
-            height: auto;
-        } */
-
-        body {
-            background: url("{{ asset('assets/image/background/soekarno.jpg') }}") no-repeat center center fixed;
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
-        }
-
-        #button-page {
-            width: 100px;
-            height: 100px;
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            margin: auto;
-        }
-    </style>
-</head>
-
-<body>
-    <div id="button-page">
-        <a href="{{ route('loginInlislite') }}" class="btn btn-secondary" onclick="location.href=">Inlislite</a>
-        <hr>
-        <button class="btn btn-secondary">Binaan</button>
-        <hr>
-        <button class="btn btn-secondary">Capaian</button>
-        <hr>
-        <button class="btn btn-secondary">Survey</button>
-        <hr>
-        <button class="btn btn-secondary">Tupoksi</button>
-    </div>
-</body>
-
-</html> --}}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -60,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     @include('layouts.assets.stylesheet')
     <title>Document</title>
     <style>
@@ -187,10 +133,11 @@
     <section>
         <div class="title-container">
             <div class="row">
-                <div class="col"></div>
+                <div class="col">
+                </div>
             </div>
-            <img class="logo" src="{{ asset('assets/image/logo/logo-kota-blitar.png') }}" alt="" width="80"
-                height="100">
+            <img class="logo" src="{{ asset('assets/image/logo/logo-kota-blitar.png') }}" alt=""
+                width="80" height="100">
             <h2>SIM PERPUSTAKAAN</h2>
             <h2>PEMERINTAH KOTA BLITAR</h2>
         </div>
@@ -247,21 +194,26 @@
         </div>
 
         <div class="form-container mt-3" id="form-login" style="display: none">
-            <form id="login-form" method="GET">
+            <form id="login-form" method="POST">
+                @csrf
                 <div class="back-button mt-0" style="cursor: pointer"><i class="fa fa-chevron-circle-left"> </i> Kembali
                 </div>
                 <hr>
-                <div class="control mt-2">
-                    <label for="name">Nama Pengguna</label>
-                    <input type="text" id="name">
+                <div class=" h5" id="login-title"> Data Koleksi Pemustaka</div>
+                <hr>
+                <div class="control">
+                    {{-- <label for="name">Username</label> --}}
+                    <input type="text" id="username" name="username" placeholder="Nama Pengguna">
                 </div>
                 <div class="control">
-                    <label for="psw">Kata Sandi</label>
-                    <input type="password" id="psw">
+                    {{-- <label for="psw">Kata Sandi</label> --}}
+                    <input type="password" id="psw" name="password" placeholder="Kata Sandi">
+                    <i class="fa fa-eye" id="eye"
+                        style="position: absolute;top: 55%;right: 12%;cursor: pointer;color: rgb(47, 43, 43);"></i>
                 </div>
                 <br>
                 <div class="control">
-                    <input type="submit" class="btn" value="Masuk">
+                    <input class="btn" value="Masuk" id="btn-login">
                 </div>
             </form>
         </div>
@@ -271,17 +223,96 @@
 
 <script>
     $(document).ready(function() {
+
+        $('#eye').on('mousedown', () => {
+            $('#psw').attr('type', 'text');
+            $('#eye').attr('class', 'fa fa-eye-slash');
+        });
+        $('#eye').on('mouseup', () => {
+            $('#psw').attr('type', 'password')
+            $('#eye').attr('class', 'fa fa-eye');
+        })
         $(".btn-custom").click(function() {
             let val = $(this).data('id');
+            let urlCheck = null;
+            let csrf_token = '{{ csrf_token() }}'
 
             if (val == 'koleksi') {
-                $('#login-form').attr('action', "{{ route('circulationCatalogue') }}");
+                urlCheck = "{{ route('inlisliteAuth') }}";
+                $('#login-form').attr('action', "{{ route('inlisliteLogin') }}");
+                $('#login-title').text('DATA KOLEKSI & PEMUSTAKA');
             } else if (val == 'binaan') {
-                $('#login-form').attr('action', "{{ route('binaanIndex') }}");
+                urlCheck = "{{ route('binaanAuth') }}";
+                $('#login-form').attr('action', "{{ route('binaanLogin') }}");
+                $('#login-title').text('PERPUSTAKAAN BINAAN');
+            } else if (val == 'survey') {
+                urlCheck = "{{ route('surveyAuth') }}";
+                $('#login-form').attr('action', "{{ route('surveyLogin') }}");
+                $('#login-title').text('SURVEY KEPUSTAKAWANAN');
+            } else if (val == 'pustakawan') {
+                urlCheck = "{{ route('pustakawanAuth') }}";
+                $('#login-form').attr('action', "{{ route('pustakawanLogin') }}");
+                $('#login-title').text('KINERJA PUSTAKAWAN');
+            } else if (val == 'bidang') {
+                urlCheck = "{{ route('bidangAuth') }}";
+                $('#login-form').attr('action', "{{ route('bidangLogin') }}");
+                $('#login-title').text('KINERJA BIDANG');
             }
-            $("#button-group").fadeOut();
-            $("#form-login").delay(500).fadeIn('slow');
+            $.ajax({
+                type: "POST",
+                headers: {
+                    'X-CSRF-TOKEN': csrf_token,
+                },
+                url: urlCheck,
+                dataType: "json",
+                success: function(data) {
+                    console.log(data.auth)
+                    if (data.auth) {
+                        window.location.href = data.route;
+                    } else {
+                        $("#button-group").fadeOut();
+                        $('#username').val('');
+                        $('#psw').val('');
+                        $("#form-login").delay(500).fadeIn('slow');
+                    }
+                }
+            });
+
         });
+
+        $('#btn-login').on('click', (e) => {
+            e.preventDefault();
+            let username = $('#username').val();
+            let password = $('#psw').val();
+            let token = $("meta[name='csrf-token']").attr("content");
+            let act = $('#login-form').attr('action');
+
+            $.ajax({
+                type: "POST",
+                headers: {
+                    'X-CSRF-TOKEN': token,
+                },
+                url: act,
+                dataType: 'json',
+                cache: false,
+                data: {
+                    'username': username,
+                    'password': password
+                },
+                success: function(data) {
+                    console.log(data)
+                    if (data.success) {
+                        window.location.href = data.redirect;
+                    } else {
+                        Swal.fire({
+                            // error,
+                            title: data.message,
+                            text: 'silahkan coba lagi!'
+                        });
+                    }
+                }
+            })
+        })
 
         $(".back-button").click(function() {
             $("#form-login").fadeOut();

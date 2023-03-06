@@ -6,82 +6,6 @@
                 <div class="container">
                     <form id="filter-peminjam">
                         <div class="form-group">
-                            {{-- <div class="row">
-                                <div class="col-sm-2">
-                                    <label for="exampleInputEmail1">Lokasi</label>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <select class="custom-select custom-select-sm mb-3" id="lokasi">
-                                                <option value="0">Semua Lokasi</option>
-                                                @foreach ($location_library as $loc)
-                                                    <option value="{{ $loc->ID }}">{{ $loc->Name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-2">
-                                    <label for="exampleInputEmail1">Usia</label>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <select class="custom-select custom-select-sm mb-3" id="usia">
-                                                <option value="0">Semua Usia</option>
-                                                <option value="anak">1-6 Tahun</option>
-                                                <option value="sd">7-12 Tahun</option>
-                                                <option value="smp">13-15 Tahun</option>
-                                                <option value="sma">16-18 Tahun</option>
-                                                <option value="remaja">19-23 Tahun</option>
-                                                <option value="dewasa">24-60 Tahun</option>
-                                                <option value="lansia">60 Tahun Keatas</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-2">
-                                    <label for="exampleInputEmail1">Pekerjaan</label>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <select class="custom-select custom-select-sm mb-3" id="status">
-                                                <option value="0">Semua Pekerjaan</option>
-                                                @foreach ($job_status as $job)
-                                                    <option value="{{ $job->id }}">{{ $job->Pekerjaan }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <label for="exampleInputEmail1">Range Tahun</label>
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <select class="custom-select custom-select-sm mb-3" id="year-1">
-                                                @php
-                                                    for ($y = 1800; $y <= date('Y'); $y++) {
-                                                        echo '<option value="' . $y . '"';
-                                                        echo '>' . $y . '</option>';
-                                                    }
-                                                @endphp
-                                            </select>
-                                        </div>
-                                        <div class="col-4">
-                                            <select class="custom-select custom-select-sm mb-3" id="year-2">
-                                                @php
-                                                    for ($y = 1900; $y <= date('Y'); $y++) {
-                                                        echo '<option value="' . $y . '"';
-                                                        if ($y == date('Y')) {
-                                                            echo ' selected="selected"';
-                                                        }
-                                                        echo '>' . $y . '</option>';
-                                                    }
-                                                @endphp </select>
-                                        </div>
-                                        <div class="col-2">
-                                            <button type="submit" id="peminjam-filter"
-                                                class="btn btn-sm btn-primary">Tampilkan</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> --}}
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-sm-3">
@@ -181,6 +105,13 @@
                                     <i class="fas fa-users"></i>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="card mx-auto" style="width: 70vh;">
+                        <p class=" mt-2 text-center">Chart</p>
+                        <div class="card-body">
+                            <canvas id="pemustaka-chart"></canvas>
                         </div>
                     </div>
                 </div>

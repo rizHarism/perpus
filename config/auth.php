@@ -40,6 +40,28 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        'inlislite' => [
+            'driver' => 'session',
+            'provider' => 'inlislite',
+        ],
+
+        'binaan' => [
+            'driver' => 'session',
+            'provider' => 'binaan',
+        ],
+        'survey' => [
+            'driver' => 'session',
+            'provider' => 'survey',
+        ],
+        'pustakawan' => [
+            'driver' => 'session',
+            'provider' => 'pustakawan',
+        ],
+        'bidang' => [
+            'driver' => 'session',
+            'provider' => 'bidang',
+        ]
     ],
 
     /*
@@ -65,11 +87,32 @@ return [
             'model' => App\Models\User::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'inlislite' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User\InlisliteUser::class,
+        ],
+
+        'binaan' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User\BinaanUser::class,
+        ],
+
+        'survey' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User\SurveyUser::class,
+        ],
+
+        'pustakawan' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User\PustakawanUser::class,
+        ],
+
+        'bidang' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User\BidangUser::class,
+        ],
     ],
+
 
     /*
     |--------------------------------------------------------------------------

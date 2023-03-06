@@ -44,7 +44,7 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-copy"></i>
                         <p>
-                            Data Input
+                            Data Binaan
                             <i class="fas fa-angle-left right"></i>
                             {{-- <span class="badge badge-info right">6</span> --}}
                         </p>
@@ -126,7 +126,7 @@
                     </a>
                     <ul class="nav nav-treeview ms-5">
                         <li class="nav-item ">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('binaanStatistikKoleksi') }}" class="nav-link">
                                 <i class="far fa-file nav-icon ml-3"></i>
                                 <p>Statistik Koleksi</p>
                             </a>
@@ -134,7 +134,7 @@
                     </ul>
                     <ul class="nav nav-treeview ms-5">
                         <li class="nav-item ">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('binaanStatistikLayanan') }}" class="nav-link">
                                 <i class="far fa-file nav-icon ml-3"></i>
                                 <p>Statistik Layanan</p>
                             </a>
@@ -162,16 +162,28 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview ms-5">
-                        <li class="nav-item ">
+                        {{-- <li class="nav-item ">
                             <a href="#" class="nav-link">
                                 <i class="fas fa-user-tag nav-icon ml-3"></i>
                                 <p>Hak Akses</p>
+                            </a>
+                        </li> --}}
+                        <li class="nav-item ">
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-users nav-icon ml-3"></i>
+                                <p>Data Perpustakaan</p>
                             </a>
                         </li>
                         <li class="nav-item ">
                             <a href="#" class="nav-link">
                                 <i class="fas fa-users nav-icon ml-3"></i>
-                                <p>Data User</p>
+                                <p>User Binaan</p>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-users nav-icon ml-3"></i>
+                                <p>User Admin</p>
                             </a>
                         </li>
                     </ul>

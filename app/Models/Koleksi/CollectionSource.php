@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class CollectionSource extends Model
 {
     use HasFactory;
-
+    protected $connection = 'inlislite';
     protected $table = 'collectionsources';
     protected $primaryKey = 'ID';
 

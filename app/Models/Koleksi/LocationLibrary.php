@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class LocationLibrary extends Model
 {
     use HasFactory;
-
+    protected $connection = 'inlislite';
     protected $table = 'location_library';
     protected $primaryKey = 'ID';
 

@@ -44,7 +44,7 @@
                             <div class="col-sm-6">
                                 <div class="small-box {{ $icons[$loop->index] }}">
                                     <div class="inner">
-                                        <h3 id="{{ $_result->Code }}">{{ $_result->total }}</h3>
+                                        <h3 class='sumber-total' id="{{ $_result->Code }}">{{ $_result->total }}</h3>
                                         <p>{{ $_result->Name }}</p>
                                     </div>
                                     <div class="icon">
@@ -56,6 +56,13 @@
                                 array_push($icons, $icons[$loop->index]);
                             @endphp
                         @endforeach
+                    </div>
+                    <hr>
+                    <div class="card mx-auto" style="width: 70vh;">
+                        <p class=" mt-2 text-center">Chart</p>
+                        <div class="card-body">
+                            <canvas id="sumber-chart"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>

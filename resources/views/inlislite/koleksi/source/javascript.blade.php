@@ -31,13 +31,105 @@
                 success: function(data) {
                     $('#card-header').html('');
                     $('#card-header').html(data.title);
+                    console.log(data)
+                    $('.sumber-total').html('0');
+
+                    let sumberData = [];
+                    let labelData = [];
+
                     $.each(data.result, (i, data) => {
-                        console.log(data)
-                        $('#' + data.Code).html('');
                         $('#' + data.Code).html(data.total);
+                        sumberData.push(data.total);
+                        labelData.push(data.Name);
                     })
+
+                    const newData = {
+                        labels: labelData,
+                        datasets: [{
+                            label: '# Jumlah',
+                            data: sumberData,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    };
+                    sumberChart.data = newData
+                    sumberChart.update()
                 }
             });
-        })
+        });
+
+
+        //setting data chart Sumber koleksi
+
+        let arrayData = {!! json_encode($result) !!};
+        let sumberData = [];
+        let labelData = [];
+        $.each(arrayData, function(i, data) {
+            // do your stuf
+            sumberData.push(data.total);
+            labelData.push(data.Name);
+        });
+        // setup blog
+        const catalogData = {
+            labels: labelData,
+            datasets: [{
+                label: '# Jumlah',
+                data: sumberData,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        // setup config
+        const catalogConfig = {
+            type: 'bar',
+            data: catalogData,
+            options: {
+                responsive: true,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        };
+
+        // render block
+        const sumberChart = new Chart(
+            $('#sumber-chart'),
+            catalogConfig
+        );
     })
 </script>

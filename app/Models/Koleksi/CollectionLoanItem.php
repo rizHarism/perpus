@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class CollectionLoanItem extends Model
 {
     use HasFactory;
-
+    protected $connection = 'inlislite';
     protected $table = 'collectionloanitems';
     protected $primaryKey = 'ID';
 

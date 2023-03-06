@@ -58,31 +58,37 @@
                             </div>
                         </div>
                     </form>
-
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="small-box bg-info">
-                                <div class="inner">
-                                    <h3 id="katalog">{{ $katalog }}</h3>
-                                    <p>Katalog Terpinjam</p>
+                    <div class="data" id="data">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="small-box bg-info">
+                                    <div class="inner">
+                                        <h3 id="katalog">{{ $katalog }}</h3>
+                                        <p>Katalog Terpinjam</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fas fa-book"></i>
+                                    </div>
                                 </div>
-                                <div class="icon">
-                                    <i class="fas fa-book"></i>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="small-box bg-success">
+                                    <div class="inner">
+                                        <h3 id="koleksi">{{ $koleksi }}</h3>
+                                        <p>Koleksi Terpinjam</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fas fa-book"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card mx-auto" style="width: 70vh;">
+                                <p class=" mt-2 text-center">Chart</p>
+                                <div class="card-body">
+                                    <canvas id="katalog-chart"></canvas>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6">
-                            <div class="small-box bg-success">
-                                <div class="inner">
-                                    <h3 id="koleksi">{{ $koleksi }}</h3>
-                                    <p>Koleksi Terpinjam</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fas fa-book"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <canvas id="koleksi-chart" width="100" height="50"></canvas>
                     </div>
                 </div>
             </div>
