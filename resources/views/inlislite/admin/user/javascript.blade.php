@@ -240,5 +240,83 @@
             return false;
 
         });
+
+        $(document).on("click", ".delete-data", function() {
+            var id = $(this).data('id');
+            var nama = $(this).data('nama');
+            Swal.fire({
+                title: 'Hapus Data ' +
+                    nama,
+                text: ' Apakah Anda yakin ?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Hapus',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    let urlDelete = "{{ route('inlisliteUserDelete', ':id') }}";
+                    urlDelete = urlDelete.replace(':id', id);
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        },
+                        type: "DELETE",
+                        url: urlDelete,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success: (data) => {
+                            Swal.fire(
+                                'Berhasil',
+                                data
+                                .message,
+                                'success',
+                            );
+                            table.ajax.reload();
+                        },
+                        error: (xhr, ajaxOptions,
+                            thrownError) => {
+                            console.log(xhr.responseJSON
+                                .message);
+                            if (xhr.responseJSON
+                                .hasOwnProperty(
+                                    'errors')) {
+                                for (item in xhr
+                                    .responseJSON
+                                    .errors) {
+                                    if (xhr
+                                        .responseJSON
+                                        .errors[
+                                            item]
+                                        .length) {
+                                        for (var i =
+                                                0; i <
+                                            xhr
+                                            .responseJSON
+                                            .errors[
+                                                item
+                                            ]
+                                            .length; i++
+                                        ) {
+                                            alert(xhr
+                                                .responseJSON
+                                                .errors[
+                                                    item
+                                                ]
+                                                [
+                                                    i
+                                                ]
+                                            );
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+            })
+        })
     })
 </script>

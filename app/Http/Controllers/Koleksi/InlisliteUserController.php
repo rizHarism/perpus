@@ -140,4 +140,22 @@ class InlisliteUserController extends Controller
 
         return response('Data user ' . $user->name . ' berhasil dibuat');
     }
+
+    public function destroy($id)
+    {
+        $user = InlisliteUser::findOrFail($id);
+        try {
+            DB::beginTransaction();
+
+            $user->syncPermissions([]);
+            $user->delete();
+
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response($e->getMessage(), 501);
+        }
+
+        return response("User berhasil dihapus");
+    }
 }

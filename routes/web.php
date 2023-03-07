@@ -97,6 +97,7 @@ Route::group(['middleware' => 'auth:inlislite', 'prefix' => 'inlislite'], functi
     Route::put('/administrator/{id}/user/update', [InlisliteUserController::class, 'update'])->name('inlisliteUserUpdate')->can('menu.administrator');
     Route::get('/administrator/user/create', [InlisliteUserController::class, 'create'])->name('inlisliteUserCreate')->can('menu.administrator');
     Route::post('/administrator/user/create', [InlisliteUserController::class, 'store'])->name('inlisliteUserStore')->can('menu.administrator');
+    Route::delete('/administrator/user/{id}/destroy', [InlisliteUserController::class, 'destroy'])->name('inlisliteUserDelete')->can('menu.administrator');
 });
 
 Route::group(['middleware' => 'auth:binaan', 'prefix' => 'binaan'], function () {
