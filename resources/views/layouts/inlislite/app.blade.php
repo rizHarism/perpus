@@ -15,7 +15,7 @@
 
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="{{ asset('assets/image/logo/kdr-logo.png') }}" alt="AdminLTELogo"
+            <img class="animation__wobble" src="{{ asset('assets/image/logo/logo-kota-blitar.png') }}" alt="AdminLTELogo"
                 height="175" width="124">
         </div>
 

@@ -58,32 +58,32 @@ Route::post('inlislite/logout', [LoginController::class, 'inlisliteLogout'])->na
 Route::post('binaan/logout', [LoginController::class, 'binaanLogout'])->name('binaanLogout');
 
 Route::group(['middleware' => 'auth:inlislite', 'prefix' => 'inlislite'], function () {
-    Route::get('/collection/catalogue', [CollectionController::class, 'collectionCatalogue'])->name('collectionCatalogue');
-    Route::get('/collection/catalogue/{years}/filter', [CollectionController::class, 'collectionCatalogueFilter'])->name('collectionCatalogueFilter');
-    Route::get('/collection/klas', [CollectionController::class, 'collectionKlas'])->name('collectionKlas');
-    Route::get('/collection/klas/{years}/filter', [CollectionController::class, 'collectionKlasFilter'])->name('collectionKlasFilter');
-    Route::get('/collection/source', [CollectionController::class, 'collectionSource'])->name('collectionSource');
-    Route::get('/collection/source/{years}/filter', [CollectionController::class, 'collectionSourceFilter'])->name('collectionSourceFilter');
-    Route::get('/collection/location', [CollectionController::class, 'collectionLocation'])->name('collectionLocation');
-    Route::get('/collection/location/{years}/filter', [CollectionController::class, 'collectionLocationFilter'])->name('collectionLocationFilter');
+    Route::get('/collection/catalogue', [CollectionController::class, 'collectionCatalogue'])->name('collectionCatalogue')->can('menu.koleksi');
+    Route::get('/collection/catalogue/{years}/filter', [CollectionController::class, 'collectionCatalogueFilter'])->name('collectionCatalogueFilter')->can('menu.koleksi');
+    Route::get('/collection/klas', [CollectionController::class, 'collectionKlas'])->name('collectionKlas')->can('menu.koleksi');
+    Route::get('/collection/klas/{years}/filter', [CollectionController::class, 'collectionKlasFilter'])->name('collectionKlasFilter')->can('menu.koleksi');
+    Route::get('/collection/source', [CollectionController::class, 'collectionSource'])->name('collectionSource')->can('menu.koleksi');
+    Route::get('/collection/source/{years}/filter', [CollectionController::class, 'collectionSourceFilter'])->name('collectionSourceFilter')->can('menu.koleksi');
+    Route::get('/collection/location', [CollectionController::class, 'collectionLocation'])->name('collectionLocation')->can('menu.koleksi');
+    Route::get('/collection/location/{years}/filter', [CollectionController::class, 'collectionLocationFilter'])->name('collectionLocationFilter')->can('menu.koleksi');
 
-    Route::get('/circulation/catalogue', [CirculationController::class, 'circulationCatalogue'])->name('circulationCatalogue');
-    Route::get('/circulation/catalogue/{req}/filter', [CirculationController::class, 'circulationCatalogueFilter'])->name('circulationCatalogueFilter');
-    Route::get('/circulation/klas', [CirculationController::class, 'circulationKlas'])->name('circulationKlas');
-    Route::get('/circulation/klas/{req}/filter', [CirculationController::class, 'circulationKlasFilter'])->name('circulationKlasFilter');
-    Route::get('/circulation/member', [CirculationController::class, 'circulationMember'])->name('circulationMember');
-    Route::get('/circulation/member/{req}/filter', [CirculationController::class, 'circulationMemberFilter'])->name('circulationMemberFilter');
-    Route::get('/circulation/usia', [CirculationController::class, 'circulationUsia'])->name('circulationUsia');
-    Route::get('/circulation/usia/{req}/filter', [CirculationController::class, 'circulationUsiaFilter'])->name('circulationUsiaFilter');
-    Route::get('/circulation/pekerjaan', [CirculationController::class, 'circulationPekerjaan'])->name('circulationPekerjaan');
-    Route::get('/circulation/pekerjaan/{req}/filter', [CirculationController::class, 'circulationPekerjaanFilter'])->name('circulationPekerjaanFilter');
+    Route::get('/circulation/catalogue', [CirculationController::class, 'circulationCatalogue'])->name('circulationCatalogue')->can('menu.sirkulasi');
+    Route::get('/circulation/catalogue/{req}/filter', [CirculationController::class, 'circulationCatalogueFilter'])->name('circulationCatalogueFilter')->can('menu.sirkulasi');
+    Route::get('/circulation/klas', [CirculationController::class, 'circulationKlas'])->name('circulationKlas')->can('menu.sirkulasi');
+    Route::get('/circulation/klas/{req}/filter', [CirculationController::class, 'circulationKlasFilter'])->name('circulationKlasFilter')->can('menu.sirkulasi');
+    Route::get('/circulation/member', [CirculationController::class, 'circulationMember'])->name('circulationMember')->can('menu.sirkulasi');
+    Route::get('/circulation/member/{req}/filter', [CirculationController::class, 'circulationMemberFilter'])->name('circulationMemberFilter')->can('menu.sirkulasi');
+    Route::get('/circulation/usia', [CirculationController::class, 'circulationUsia'])->name('circulationUsia')->can('menu.sirkulasi');
+    Route::get('/circulation/usia/{req}/filter', [CirculationController::class, 'circulationUsiaFilter'])->name('circulationUsiaFilter')->can('menu.sirkulasi');
+    Route::get('/circulation/pekerjaan', [CirculationController::class, 'circulationPekerjaan'])->name('circulationPekerjaan')->can('menu.sirkulasi');
+    Route::get('/circulation/pekerjaan/{req}/filter', [CirculationController::class, 'circulationPekerjaanFilter'])->name('circulationPekerjaanFilter')->can('menu.sirkulasi');
 
-    Route::get('/member/data-umum', [MemberController::class, 'memberUmum'])->name('memberUmum');
-    Route::get('/member/data-umum/{status}/filter', [MemberController::class, 'memberUmumFilter'])->name('memberUmumFilter');
-    Route::get('/member/usia', [MemberController::class, 'memberUsia'])->name('memberUsia');
-    Route::get('/member/usia/{status}/filter', [MemberController::class, 'memberUsiaFilter'])->name('memberUsiaFilter');
-    Route::get('/member/pekerjaan', [MemberController::class, 'memberPekerjaan'])->name('memberPekerjaan');
-    Route::get('/member/pekerjaan/{status}/filter', [MemberController::class, 'memberPekerjaanFilter'])->name('memberPekerjaanFilter');
+    Route::get('/member/data-umum', [MemberController::class, 'memberUmum'])->name('memberUmum')->can('menu.pemustaka');
+    Route::get('/member/data-umum/{status}/filter', [MemberController::class, 'memberUmumFilter'])->name('memberUmumFilter')->can('menu.pemustaka');
+    Route::get('/member/usia', [MemberController::class, 'memberUsia'])->name('memberUsia')->can('menu.pemustaka');
+    Route::get('/member/usia/{status}/filter', [MemberController::class, 'memberUsiaFilter'])->name('memberUsiaFilter')->can('menu.pemustaka');
+    Route::get('/member/pekerjaan', [MemberController::class, 'memberPekerjaan'])->name('memberPekerjaan')->can('menu.pemustaka');
+    Route::get('/member/pekerjaan/{status}/filter', [MemberController::class, 'memberPekerjaanFilter'])->name('memberPekerjaanFilter')->can('menu.pemustaka');
 
     // route user profile
     Route::get('/user/profile', [InlisliteProfileController::class, 'index'])->name('inlisliteProfile');
@@ -91,12 +91,12 @@ Route::group(['middleware' => 'auth:inlislite', 'prefix' => 'inlislite'], functi
     Route::put('/user/update/password', [InlisliteProfileController::class, 'updatePassword'])->name('inlisliteUpdatePassword');
 
     //route Administrator
-    Route::get('/administrator/user', [InlisliteUserController::class, 'index'])->name('inlisliteUser');
-    Route::get('/administrator/user/datatable', [InlisliteUserController::class, 'datatable'])->name('inlisliteUserDatatable');
-    Route::get('/administrator/{id}/user/edit', [InlisliteUserController::class, 'edit'])->name('inlisliteUserEdit');
-    Route::put('/administrator/{id}/user/update', [InlisliteUserController::class, 'update'])->name('inlisliteUserUpdate');
-    Route::get('/administrator/user/create', [InlisliteUserController::class, 'create'])->name('inlisliteUserCreate');
-    Route::post('/administrator/user/create', [InlisliteUserController::class, 'store'])->name('inlisliteUserStore');
+    Route::get('/administrator/user', [InlisliteUserController::class, 'index'])->name('inlisliteUser')->can('menu.administrator');
+    Route::get('/administrator/user/datatable', [InlisliteUserController::class, 'datatable'])->name('inlisliteUserDatatable')->can('menu.administrator');
+    Route::get('/administrator/{id}/user/edit', [InlisliteUserController::class, 'edit'])->name('inlisliteUserEdit')->can('menu.administrator');
+    Route::put('/administrator/{id}/user/update', [InlisliteUserController::class, 'update'])->name('inlisliteUserUpdate')->can('menu.administrator');
+    Route::get('/administrator/user/create', [InlisliteUserController::class, 'create'])->name('inlisliteUserCreate')->can('menu.administrator');
+    Route::post('/administrator/user/create', [InlisliteUserController::class, 'store'])->name('inlisliteUserStore')->can('menu.administrator');
 });
 
 Route::group(['middleware' => 'auth:binaan', 'prefix' => 'binaan'], function () {

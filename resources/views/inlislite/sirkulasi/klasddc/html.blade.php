@@ -21,7 +21,7 @@
                                     </div>
                                 </div>
                                 <div class="col-9">
-                                    <label for="exampleInputEmail1">Range Tahun</label>
+                                    <label for="exampleInputEmail1">Tahun Terbit</label>
                                     <div class="row">
                                         <div class="col-2">
                                             <select class="custom-select custom-select-sm mb-3" id="year-1">

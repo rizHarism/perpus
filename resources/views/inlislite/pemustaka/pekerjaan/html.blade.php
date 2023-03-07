@@ -7,7 +7,7 @@
                     <form id="filter-pekerjaan">
                         <div class="row">
                             <div class="col-sm-3">
-                                <label for="exampleInputEmail1">Status Pustakawan</label>
+                                <label for="exampleInputEmail1">Status Pemustaka</label>
                                 <div class="row">
                                     <div class="col-10">
                                         <select class="custom-select custom-select-sm mb-3" id="status">

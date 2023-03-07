@@ -7,7 +7,7 @@
                 <div class="container">
                     <form id="filter-lokasi">
                         <div class="form-group">
-                            <label for="exampleInputEmail1"></label>
+                            <label for="exampleInputEmail1">Tahun Terbit</label>
                             <div class="row">
                                 <div class="col-2">
                                     <select class="custom-select custom-select-sm mb-3" id="year-1">
