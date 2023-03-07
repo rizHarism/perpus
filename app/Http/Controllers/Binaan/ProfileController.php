@@ -15,7 +15,7 @@ class ProfileController extends Controller
         $user_id = Auth::user()->id;
         $data_user = BinaanUser::with('perpustakaan')->findOrFail($user_id);
 
-        return view('binaan.index', [
+        return view('binaan.profile.index', [
             'user' => $data_user
         ]);
     }

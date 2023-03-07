@@ -45,7 +45,7 @@ class PermissionSeeder extends Seeder
         if (!$admin) {
             $admin = InlisliteUser::firstOrCreate([
                 'name' => 'Administrator',
-                'username' => 'admin',
+                'username' => 'administrator',
                 'password' => bcrypt('pass123'),
                 'avatar' => 'default-avatar.png',
             ]);

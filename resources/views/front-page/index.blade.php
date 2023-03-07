@@ -208,7 +208,7 @@
                 <div class="control">
                     {{-- <label for="psw">Kata Sandi</label> --}}
                     <input type="password" id="psw" name="password" placeholder="Kata Sandi">
-                    <i class="fa fa-eye" id="eye"
+                    <i class="fa fa-eye-slash" id="eye"
                         style="position: absolute;top: 55%;right: 12%;cursor: pointer;color: rgb(47, 43, 43);"></i>
                 </div>
                 <br>
@@ -226,11 +226,11 @@
 
         $('#eye').on('mousedown', () => {
             $('#psw').attr('type', 'text');
-            $('#eye').attr('class', 'fa fa-eye-slash');
+            $('#eye').attr('class', 'fa fa-eye');
         });
         $('#eye').on('mouseup', () => {
             $('#psw').attr('type', 'password')
-            $('#eye').attr('class', 'fa fa-eye');
+            $('#eye').attr('class', 'fa fa-eye-slash');
         })
         $(".btn-custom").click(function() {
             let val = $(this).data('id');
