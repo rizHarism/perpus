@@ -15,6 +15,7 @@ use App\Http\Controllers\Binaan\TenagaController;
 use App\Http\Controllers\Koleksi\CollectionController;
 use App\Http\Controllers\Koleksi\CirculationController;
 use App\Http\Controllers\Koleksi\InlisliteUserController;
+use App\Http\Controllers\Koleksi\InlisliteProfileController;
 use App\Http\Controllers\Koleksi\MemberController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -83,6 +84,11 @@ Route::group(['middleware' => 'auth:inlislite', 'prefix' => 'inlislite'], functi
     Route::get('/member/usia/{status}/filter', [MemberController::class, 'memberUsiaFilter'])->name('memberUsiaFilter');
     Route::get('/member/pekerjaan', [MemberController::class, 'memberPekerjaan'])->name('memberPekerjaan');
     Route::get('/member/pekerjaan/{status}/filter', [MemberController::class, 'memberPekerjaanFilter'])->name('memberPekerjaanFilter');
+
+    // route user profile
+    Route::get('/user/profile', [InlisliteProfileController::class, 'index'])->name('inlisliteProfile');
+    Route::put('/user/update/profile', [InlisliteProfileController::class, 'updateProfile'])->name('inlisliteUpdateProfile');
+    Route::put('/user/update/password', [InlisliteProfileController::class, 'updatePassword'])->name('inlisliteUpdatePassword');
 
     //route Administrator
     Route::get('/administrator/user', [InlisliteUserController::class, 'index'])->name('inlisliteUser');

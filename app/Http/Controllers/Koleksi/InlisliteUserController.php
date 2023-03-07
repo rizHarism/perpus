@@ -84,7 +84,6 @@ class InlisliteUserController extends Controller
         }
 
         return response('User ' . $user->name . ' berhasil di update');
-        dd($request);
     }
 
     public function create()
@@ -119,6 +118,7 @@ class InlisliteUserController extends Controller
             'name' => 'required|unique:inlislite_user,name',
             'username' => 'required|unique:inlislite_user,username',
             'permission' => 'required',
+            'password' => 'required|min:6'
         ]);
 
         try {

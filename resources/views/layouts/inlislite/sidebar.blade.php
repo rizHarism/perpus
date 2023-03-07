@@ -170,12 +170,12 @@
                             </p>
                         </a>
                         <ul class="nav nav-treeview ms-5">
-                            <li class="nav-item ">
+                            {{-- <li class="nav-item ">
                                 <a href="#" class="nav-link">
                                     <i class="fas fa-user-tag nav-icon ml-3"></i>
                                     <p>Hak Akses</p>
                                 </a>
-                            </li>
+                            </li> --}}
                             <li class="nav-item ">
                                 <a href="{{ route('inlisliteUser') }}" class="nav-link">
                                     <i class="fas fa-users nav-icon ml-3"></i>

@@ -1,4 +1,4 @@
-@extends('layouts.binaan.app')
+@extends('layouts.inlislite.app')
 @section('title', 'Welcome')
 @section('breadcrumb', 'Dashboard')
 @section('content')

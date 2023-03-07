@@ -70,14 +70,14 @@
                     <div class="form-group row">
                         <label for="password" class="col-sm-3 col-form-label" id="password">Password</label>
                         <div class="col-sm-9">
-                            <input type="password" class="form-control" name="password" id="password-1" value=""
-                                placeholder="Isikan Password" required>
+                            <input type="password" class="form-control" minlength="8" name="password" id="password-1"
+                                value="" placeholder="Isikan Password" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="password-2" class="col-sm-3 col-form-label">Verifikasi Password</label>
                         <div class="col-sm-9">
-                            <input type="password" class="form-control" name="password2" id="password-2"
+                            <input type="password" class="form-control" minlength="8" name="password2" id="password-2"
                                 placeholder="Ulangi Password" value="">
                         </div>
                     </div>
