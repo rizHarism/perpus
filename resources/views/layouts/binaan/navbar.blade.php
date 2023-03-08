@@ -5,10 +5,14 @@
         <li class="nav-item">
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/"><i class="fa fa-home"></i><span class="d-none d-md-inline"> Halaman
+                    Depan</span></a>
+        </li>
     </ul>
     {{-- call avatart src --}}
     @php
-        $avatar = Auth::user()->avatar;
+    $avatar = Auth::user()->avatar;
     @endphp
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
@@ -17,7 +21,7 @@
 
             {{-- User menu toggler --}}
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                <img src="{{ asset("assets/image/avatar/$avatar") }}"
+                <img src="{{ asset('assets/image/avatar/'.$avatar) }}"
                     class="user-image img-circle img-thumbnail elevation-2" alt="ADMIN">
                 <span class="d-none d-md-inline">
                     {{ Auth::user()->username }}
@@ -30,7 +34,7 @@
                 {{-- User menu header --}}
 
                 <li class="user-header h-auto">
-                    <img src="{{ asset("assets/image/avatar/$avatar") }}" class="img-circle img-thumbnail elevation-2"
+                    <img src="{{ asset('assets/image/avatar/'.$avatar) }}" class="img-circle img-thumbnail elevation-2"
                         alt="ADMIN">
 
                     <p class=" mt-0"> {{ Auth::user()->username }} <small>{{ Auth::user()->name }}</small>
@@ -59,7 +63,7 @@
                     </a>
                     <form id="logout-form" action="{{ route('binaanLogout') }}" method="POST" style="display: none;">
                         {{-- @if (config('adminlte.logout_method'))
-                            {{ method_field(config('adminlte.logout_method')) }}
+                        {{ method_field(config('adminlte.logout_method')) }}
                         @endif --}}
                         {{ csrf_field() }}
                     </form>
@@ -104,17 +108,15 @@
                     <div class="form-group row">
                         <label for="self-name" class="col-sm-4 col-form-label">NAMA LENGKAP</label>
                         <div class="col-sm-8">
-                            <input type="hidden" class="form-control" name="id-user" id="id-user" value=""
-                                required>
-                            <input type="text" class="form-control" name="self-name" id="self-name" value=""
-                                required>
+                            <input type="hidden" class="form-control" name="id-user" id="id-user" value="" required>
+                            <input type="text" class="form-control" name="self-name" id="self-name" value="" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="self-username" class="col-sm-4 col-form-label">NAMA PENGGUNA</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" name="self-username" id="self-username"
-                                value="" required>
+                            <input type="text" class="form-control" name="self-username" id="self-username" value=""
+                                required>
                         </div>
                     </div>
                     <div class="form-group row">
