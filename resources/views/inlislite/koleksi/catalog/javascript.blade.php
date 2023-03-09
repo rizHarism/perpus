@@ -101,16 +101,17 @@
                     },
                     datalabels: {
                         formatter: (value, ctx) => {
-                            let i = 0;
-                            // console.log(ctx)
+                            let i = ctx.dataset.data.length - 1;
+                            console.log(ctx.dataset.data.length - 1)
                             let percentage = ""
                             let dataArr = [katalog, koleksi]
                             dataArr.map(data => {
-                                percentage = (ctx.dataset.data[i] * 100 / data).toFixed(2);
+                                percentage = (ctx.dataset.data[i] * 100 / data)
+                                    .toFixed(2);
                                 // return percentage;
-                                console.log(percentage)
+                                // console.log(percentage)
                             });
-                            i++
+                            i + ctx.dataset.data.length - 1
                             return percentage;
                         },
                         anchor: 'start',
