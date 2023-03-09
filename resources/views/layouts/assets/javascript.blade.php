@@ -10,7 +10,8 @@
 <!-- Bootstrap 4 -->
 <script src="{{ asset('assets/admin-page/admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- ChartJS -->
-<script src="{{ asset('assets/admin-page/admin-lte/plugins/chart.js/Chart.min.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
 <!-- Sparkline -->
 {{-- <script src="{{ asset('assets/admin-page/admin-lte/plugins/sparklines/sparkline.js') }}"></script> --}}
 <!-- JQVMap -->

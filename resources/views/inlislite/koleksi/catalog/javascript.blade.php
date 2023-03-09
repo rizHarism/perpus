@@ -17,30 +17,39 @@
     $(document).ready(function() {
 
         //setting data chart katalog dan koleksi
-
-        let katalog = $('#katalog').text();
-        let koleksi = $('#koleksi').text();
+        Chart.register(ChartDataLabels);
+        let katalog = {{ json_encode($catalogue) }};
+        let koleksi = {{ json_encode($collection) }};
         // setup blog
         const catalogData = {
-            labels: ['Katalog', 'Koleksi'],
+            labels: ['Judul', 'Eksemplar'],
             datasets: [{
                 label: '# Jumlah',
                 data: [katalog, koleksi],
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
+                    'rgba(34, 105, 130, 0.8)',
+                    'rgba(34, 105, 130, 0.5)',
                 ],
                 borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
+                    'rgba(34, 105, 130, 1)',
+                    'rgba(34, 105, 130, 1)',
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        const catalogDataFilter = {
+            labels: ['Judul', 'Eksemplar'],
+            datasets: [{
+                label: '# Jumlah',
+                data: [katalog, koleksi],
+                backgroundColor: [
+                    'rgba(214, 160, 37, 0.8)',
+                    'rgba(214, 160, 37, 0.5)',
+                ],
+                borderColor: [
+                    'rgba(214, 160, 37, 1)',
+                    'rgba(214, 160, 37, 1)',
                 ],
                 borderWidth: 1
             }]
@@ -51,21 +60,93 @@
             type: 'bar',
             data: catalogData,
             options: {
-                responsive: true,
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    datalabels: {
+                        anchor: 'start',
+                        align: 'end',
+                        labels: {
+                            value: {
+                                color: 'black',
+                                font: {
+                                    size: '14',
+                                    weight: 'bold'
+                                }
+                            }
                         }
-                    }]
-                }
+                    },
+                    title: {
+                        display: true,
+                        text: 'Perbandingan Jumlah Judul dan Eksemplar',
+                        padding: {
+                            bottom: 30
+                        }
+                    }
+                },
             }
         };
+        var total = {
+            0: katalog,
+            1: koleksi
+        };
+        const catalogConfigFilter = {
+            type: 'bar',
+            data: catalogDataFilter,
+            options: {
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    datalabels: {
+                        formatter: (value, ctx) => {
+                            let i = 0;
+                            // console.log(ctx)
+                            let percentage = ""
+                            let dataArr = [katalog, koleksi]
+                            dataArr.map(data => {
+                                percentage = (ctx.dataset.data[i] * 100 / data).toFixed(2);
+                                // return percentage;
+                                console.log(percentage)
+                            });
+                            i++
+                            return percentage;
+                        },
+                        anchor: 'start',
+                        align: 'end',
+                        labels: {
+                            value: {
+                                color: 'black',
+                                font: {
+                                    size: '14',
+                                    weight: 'bold'
+                                }
+                            }
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: 'Perbandingan Jumlah Judul dan Eksemplar (Filter)',
+                        padding: {
+                            bottom: 30
+                        }
+                    }
+                },
+            }
+        };
+
+
 
         // render block
         const katalogChart = new Chart(
             $('#katalog-chart'),
             catalogConfig
+        );
+
+        const katalogChartFilter = new Chart(
+            $('#katalog-chart-filter'),
+            catalogConfigFilter
         );
 
         // Filter catalog berdasarkan range tahun terbit
@@ -82,7 +163,7 @@
                 url: url,
                 dataType: "json",
                 success: function(data) {
-                    console.log(data)
+                    // console.log(data)
                     $('#katalog').html('')
                     $('#koleksi').html('')
                     $('#card-header').html('')
@@ -91,31 +172,22 @@
                     $('#koleksi').html(data.koleksi)
 
                     const newCatalogData = {
-                        labels: ['Katalog', 'Koleksi'],
+                        labels: ['Judul', 'Eksemplar'],
                         datasets: [{
                             label: '# Jumlah',
                             data: [data.katalog, data.koleksi],
                             backgroundColor: [
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(255, 206, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
-                                'rgba(255, 159, 64, 0.2)'
+                                'rgba(214, 160, 37, 0.8)',
+                                'rgba(214, 160, 37, 0.5)',
                             ],
                             borderColor: [
-                                'rgba(255, 99, 132, 1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(255, 159, 64, 1)'
+                                'rgba(214, 160, 37, 1)',
                             ],
                             borderWidth: 1
                         }]
                     };
-                    katalogChart.data = newCatalogData
-                    katalogChart.update()
+                    katalogChartFilter.data = newCatalogData
+                    katalogChartFilter.update()
                 }
             });
         })

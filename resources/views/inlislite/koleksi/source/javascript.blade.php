@@ -117,7 +117,7 @@
             options: {
                 responsive: true,
                 scales: {
-                    yAxes: [{
+                    y: [{
                         ticks: {
                             beginAtZero: true
                         }

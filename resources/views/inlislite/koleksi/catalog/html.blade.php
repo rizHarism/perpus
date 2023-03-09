@@ -39,7 +39,7 @@
                         </div>
                     </form>
 
-                    <div class="row">
+                    {{-- <div class="row">
                         <div class="col-sm-6">
                             <div class="small-box bg-info">
                                 <div class="inner">
@@ -62,12 +62,24 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <hr>
-                    <div class="card mx-auto" style="width: 70vh;">
-                        <p class=" mt-2 text-center">Chart</p>
-                        <div class="card-body">
-                            <canvas id="katalog-chart"></canvas>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="card mx-auto">
+                                {{-- <p class=" mt-2 text-center">Chart</p> --}}
+                                <div class="card-body">
+                                    <canvas id="katalog-chart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="card mx-auto">
+                                {{-- <p class=" mt-2 text-center">Chart</p> --}}
+                                <div class="card-body">
+                                    <canvas id="katalog-chart-filter"></canvas>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
