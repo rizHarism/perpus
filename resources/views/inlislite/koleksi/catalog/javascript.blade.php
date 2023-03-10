@@ -87,10 +87,7 @@
                 },
             }
         };
-        var total = {
-            0: katalog,
-            1: koleksi
-        };
+
         const catalogConfigFilter = {
             type: 'bar',
             data: catalogDataFilter,
@@ -102,26 +99,20 @@
                     datalabels: {
                         formatter: (value, ctx) => {
                             let i = ctx.dataset.data.length - 1;
-                            console.log(ctx.dataset.data.length - 1)
-                            let percentage = ""
                             let dataArr = [katalog, koleksi]
-                            dataArr.map(data => {
-                                percentage = (ctx.dataset.data[i] * 100 / data)
-                                    .toFixed(2);
-                                // return percentage;
-                                // console.log(percentage)
-                            });
-                            i + ctx.dataset.data.length - 1
-                            return percentage;
+                            let percentage = (value * 100 / dataArr[ctx.dataIndex]).toFixed(2)
+                            return value + '\n' + percentage + '%';
                         },
                         anchor: 'start',
                         align: 'end',
+                        textAlign: 'center',
                         labels: {
                             value: {
                                 color: 'black',
                                 font: {
                                     size: '14',
-                                    weight: 'bold'
+                                    weight: 'bold',
+                                    lineHeight: '2'
                                 }
                             }
                         }
