@@ -30,7 +30,25 @@
                 url: url,
                 dataType: "json",
                 success: function(d) {
+                    let totalJudulFilter = 0;
+                    let totalEksFilter = 0;
+                    $.each(d.judul, function(key, value) {
+                        totalJudulFilter += value
+                    });
+                    $.each(d.eks, function(key, value) {
+                        totalEksFilter += value
+                    });
 
+                    let pJudulFilter = [];
+                    let pEksemplarFilter = [];
+                    $.each(d.judul, function(key, value) {
+                        pJudulFilter.push(((value / totalJudulFilter) * 100)
+                            .toFixed(1));
+                    });
+                    $.each(d.eks, function(key, value) {
+                        pEksemplarFilter.push(((value / totalEksFilter) * 100)
+                            .toFixed(1));
+                    });
                     const pJudulDataFilter = {
                         labels: ['Karya Umum', 'Filsafat & Psikologi', 'Agama',
                             'Ilmu Sosial', 'Bahasa', 'Sains',
@@ -38,63 +56,41 @@
                             'Kesusastraan', 'Sejarah & Geografi'
                         ],
                         datasets: [{
-                            label: 'Total',
-                            data: [
-                                j.judul_0,
-                                j.judul_1,
-                                j.judul_2,
-                                j.judul_3,
-                                j.judul_4,
-                                j.judul_5,
-                                j.judul_6,
-                                j.judul_7,
-                                j.judul_8,
-                                j.judul_9,
-                            ],
+                            label: 'Data Seluruhnya',
+                            data: pJudul,
                             backgroundColor: [
-                                'rgba(130, 130, 130, 0.4)',
-                                'rgba(112, 169, 188, 0.4)',
-                                'rgba(88, 51, 84, 0.4)',
-                                'rgba(174, 199, 79, 0.4)',
-                                'rgba(240, 143, 56, 0.4)',
-                                'rgba(30, 137, 111, 0.4)',
-                                'rgba(40, 50, 73, 0.4)',
-                                'rgba(254, 202, 83, 0.4)',
-                                'rgba(179, 69, 104, 0.4)',
-                                'rgba(101, 63, 26, 0.4)',
+                                'rgba(130, 130, 130, 0.9)',
+                                'rgba(112, 169, 188, 0.9)',
+                                'rgba(88, 51, 84, 0.9)',
+                                'rgba(174, 199, 79, 0.9)',
+                                'rgba(240, 143, 56, 0.9)',
+                                'rgba(30, 137, 111, 0.9)',
+                                'rgba(40, 50, 73, 0.9)',
+                                'rgba(254, 202, 83, 0.9)',
+                                'rgba(179, 69, 104, 0.9)',
+                                'rgba(101, 63, 26, 0.9)',
                             ],
                             borderColor: [
-                                '#000000'
+                                '#FFFFFF'
                             ],
                             borderWidth: 1
                         }, {
-                            label: 'Filter',
-                            data: [
-                                d.judul.judul_0,
-                                d.judul.judul_1,
-                                d.judul.judul_2,
-                                d.judul.judul_3,
-                                d.judul.judul_4,
-                                d.judul.judul_5,
-                                d.judul.judul_6,
-                                d.judul.judul_7,
-                                d.judul.judul_8,
-                                d.judul.judul_9,
-                            ],
+                            label: 'Data Filter',
+                            data: pJudulFilter,
                             backgroundColor: [
-                                'rgba(130, 130, 130, 0.4)',
-                                'rgba(112, 169, 188, 0.4)',
-                                'rgba(88, 51, 84, 0.4)',
-                                'rgba(174, 199, 79, 0.4)',
-                                'rgba(240, 143, 56, 0.4)',
-                                'rgba(30, 137, 111, 0.4)',
-                                'rgba(40, 50, 73, 0.4)',
-                                'rgba(254, 202, 83, 0.4)',
-                                'rgba(179, 69, 104, 0.4)',
-                                'rgba(101, 63, 26, 0.4)',
+                                'rgba(130, 130, 130, 0.9)',
+                                'rgba(112, 169, 188, 0.9)',
+                                'rgba(88, 51, 84, 0.9)',
+                                'rgba(174, 199, 79, 0.9)',
+                                'rgba(240, 143, 56, 0.9)',
+                                'rgba(30, 137, 111, 0.9)',
+                                'rgba(40, 50, 73, 0.9)',
+                                'rgba(254, 202, 83, 0.9)',
+                                'rgba(179, 69, 104, 0.9)',
+                                'rgba(101, 63, 26, 0.9)',
                             ],
                             borderColor: [
-                                '#000000'
+                                '#FFFFFF'
                             ],
                             borderWidth: 1
                         }]
@@ -110,63 +106,41 @@
                             'Kesusastraan', 'Sejarah & Geografi'
                         ],
                         datasets: [{
-                            label: 'Total',
-                            data: [
-                                eksemp.eks_0,
-                                eksemp.eks_1,
-                                eksemp.eks_2,
-                                eksemp.eks_3,
-                                eksemp.eks_4,
-                                eksemp.eks_5,
-                                eksemp.eks_6,
-                                eksemp.eks_7,
-                                eksemp.eks_8,
-                                eksemp.eks_9,
-                            ],
+                            label: 'Data Seluruhnya',
+                            data: pEksemplar,
                             backgroundColor: [
-                                'rgba(130, 130, 130, 0.4)',
-                                'rgba(112, 169, 188, 0.4)',
-                                'rgba(88, 51, 84, 0.4)',
-                                'rgba(174, 199, 79, 0.4)',
-                                'rgba(240, 143, 56, 0.4)',
-                                'rgba(30, 137, 111, 0.4)',
-                                'rgba(40, 50, 73, 0.4)',
-                                'rgba(254, 202, 83, 0.4)',
-                                'rgba(179, 69, 104, 0.4)',
-                                'rgba(101, 63, 26, 0.4)',
+                                'rgba(130, 130, 130, 0.9)',
+                                'rgba(112, 169, 188, 0.9)',
+                                'rgba(88, 51, 84, 0.9)',
+                                'rgba(174, 199, 79, 0.9)',
+                                'rgba(240, 143, 56, 0.9)',
+                                'rgba(30, 137, 111, 0.9)',
+                                'rgba(40, 50, 73, 0.9)',
+                                'rgba(254, 202, 83, 0.9)',
+                                'rgba(179, 69, 104, 0.9)',
+                                'rgba(101, 63, 26, 0.9)',
                             ],
                             borderColor: [
-                                '#000000'
+                                '#FFFFFF'
                             ],
                             borderWidth: 1
                         }, {
-                            label: 'Filter',
-                            data: [
-                                d.eks.eks_0,
-                                d.eks.eks_1,
-                                d.eks.eks_2,
-                                d.eks.eks_3,
-                                d.eks.eks_4,
-                                d.eks.eks_5,
-                                d.eks.eks_6,
-                                d.eks.eks_7,
-                                d.eks.eks_8,
-                                d.eks.eks_9,
-                            ],
+                            label: 'Data Filter',
+                            data: pEksemplarFilter,
                             backgroundColor: [
-                                'rgba(130, 130, 130, 0.4)',
-                                'rgba(112, 169, 188, 0.4)',
-                                'rgba(88, 51, 84, 0.4)',
-                                'rgba(174, 199, 79, 0.4)',
-                                'rgba(240, 143, 56, 0.4)',
-                                'rgba(30, 137, 111, 0.4)',
-                                'rgba(40, 50, 73, 0.4)',
-                                'rgba(254, 202, 83, 0.4)',
-                                'rgba(179, 69, 104, 0.4)',
-                                'rgba(101, 63, 26, 0.4)',
+                                'rgba(130, 130, 130, 0.9)',
+                                'rgba(112, 169, 188, 0.9)',
+                                'rgba(88, 51, 84, 0.9)',
+                                'rgba(174, 199, 79, 0.9)',
+                                'rgba(240, 143, 56, 0.9)',
+                                'rgba(30, 137, 111, 0.9)',
+                                'rgba(40, 50, 73, 0.9)',
+                                'rgba(254, 202, 83, 0.9)',
+                                'rgba(179, 69, 104, 0.9)',
+                                'rgba(101, 63, 26, 0.9)',
                             ],
                             borderColor: [
-                                '#000000'
+                                '#FFFFFF'
                             ],
                             borderWidth: 1
                         }]
@@ -183,6 +157,14 @@
         // setup blog
         let j = {!! json_encode($judul) !!}
         let eksemp = {!! json_encode($eks) !!}
+        let judul = [];
+        let eksemplar = []
+        $.each(j, function(i, v) {
+            judul.push(v);
+        })
+        $.each(eksemp, function(i, v) {
+            eksemplar.push(v);
+        })
         const judulData = {
             labels: ['Karya Umum', 'Filsafat & Psikologi', 'Agama', 'Ilmu Sosial', 'Bahasa', 'Sains',
                 'Ilmu Terapan & Teknologi', 'Seni & Olahraga',
@@ -190,32 +172,21 @@
             ],
             datasets: [{
                 label: 'Jumlah',
-                data: [
-                    j.judul_0,
-                    j.judul_1,
-                    j.judul_2,
-                    j.judul_3,
-                    j.judul_4,
-                    j.judul_5,
-                    j.judul_6,
-                    j.judul_7,
-                    j.judul_8,
-                    j.judul_9,
-                ],
+                data: judul,
                 backgroundColor: [
-                    'rgba(130, 130, 130, 0.4)',
-                    'rgba(112, 169, 188, 0.4)',
-                    'rgba(88, 51, 84, 0.4)',
-                    'rgba(174, 199, 79, 0.4)',
-                    'rgba(240, 143, 56, 0.4)',
-                    'rgba(30, 137, 111, 0.4)',
-                    'rgba(40, 50, 73, 0.4)',
-                    'rgba(254, 202, 83, 0.4)',
-                    'rgba(179, 69, 104, 0.4)',
-                    'rgba(101, 63, 26, 0.4)',
+                    'rgba(130, 130, 130, 0.9)',
+                    'rgba(112, 169, 188, 0.9)',
+                    'rgba(88, 51, 84, 0.9)',
+                    'rgba(174, 199, 79, 0.9)',
+                    'rgba(240, 143, 56, 0.9)',
+                    'rgba(30, 137, 111, 0.9)',
+                    'rgba(40, 50, 73, 0.9)',
+                    'rgba(254, 202, 83, 0.9)',
+                    'rgba(179, 69, 104, 0.9)',
+                    'rgba(101, 63, 26, 0.9)',
                 ],
                 borderColor: [
-                    '#000000'
+                    '#FFFFFF'
                 ],
                 borderWidth: 1
             }]
@@ -228,32 +199,21 @@
             ],
             datasets: [{
                 label: 'Jumlah',
-                data: [
-                    eksemp.eks_0,
-                    eksemp.eks_1,
-                    eksemp.eks_2,
-                    eksemp.eks_3,
-                    eksemp.eks_4,
-                    eksemp.eks_5,
-                    eksemp.eks_6,
-                    eksemp.eks_7,
-                    eksemp.eks_8,
-                    eksemp.eks_9,
-                ],
+                data: eksemplar,
                 backgroundColor: [
-                    'rgba(130, 130, 130, 0.4)',
-                    'rgba(112, 169, 188, 0.4)',
-                    'rgba(88, 51, 84, 0.4)',
-                    'rgba(174, 199, 79, 0.4)',
-                    'rgba(240, 143, 56, 0.4)',
-                    'rgba(30, 137, 111, 0.4)',
-                    'rgba(40, 50, 73, 0.4)',
-                    'rgba(254, 202, 83, 0.4)',
-                    'rgba(179, 69, 104, 0.4)',
-                    'rgba(101, 63, 26, 0.4)',
+                    'rgba(130, 130, 130, 0.9)',
+                    'rgba(112, 169, 188, 0.9)',
+                    'rgba(88, 51, 84, 0.9)',
+                    'rgba(174, 199, 79, 0.9)',
+                    'rgba(240, 143, 56, 0.9)',
+                    'rgba(30, 137, 111, 0.9)',
+                    'rgba(40, 50, 73, 0.9)',
+                    'rgba(254, 202, 83, 0.9)',
+                    'rgba(179, 69, 104, 0.9)',
+                    'rgba(101, 63, 26, 0.9)',
                 ],
                 borderColor: [
-                    '#000000'
+                    '#FFFFFF'
                 ],
                 borderWidth: 1
             }]
@@ -350,6 +310,22 @@
             }
         };
 
+        // total judul dan eks yang memiliki klas ddc
+        let total_judul = 0
+        let total_eks = 0
+        $.each(j, function(key, value) {
+            total_judul += value
+        });
+        $.each(eksemp, function(key, value) {
+            total_eks += value
+        });
+
+        let pJudul = [];
+        $.each(j, function(key, value) {
+            pJudul.push(((value / total_judul) * 100).toFixed(1));
+        });
+
+        console.log()
         // bar chart perbandingan total judul dan filter judul
         const pJudulData = {
             labels: ['Karya Umum', 'Filsafat & Psikologi', 'Agama', 'Ilmu Sosial', 'Bahasa', 'Sains',
@@ -358,63 +334,41 @@
             ],
             // labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
             datasets: [{
-                label: 'Total',
-                data: [
-                    j.judul_0,
-                    j.judul_1,
-                    j.judul_2,
-                    j.judul_3,
-                    j.judul_4,
-                    j.judul_5,
-                    j.judul_6,
-                    j.judul_7,
-                    j.judul_8,
-                    j.judul_9,
-                ],
+                label: 'Data Seluruhnya',
+                data: pJudul,
                 backgroundColor: [
-                    'rgba(130, 130, 130, 0.4)',
-                    'rgba(112, 169, 188, 0.4)',
-                    'rgba(88, 51, 84, 0.4)',
-                    'rgba(174, 199, 79, 0.4)',
-                    'rgba(240, 143, 56, 0.4)',
-                    'rgba(30, 137, 111, 0.4)',
-                    'rgba(40, 50, 73, 0.4)',
-                    'rgba(254, 202, 83, 0.4)',
-                    'rgba(179, 69, 104, 0.4)',
-                    'rgba(101, 63, 26, 0.4)',
+                    'rgba(130, 130, 130, 0.9)',
+                    'rgba(112, 169, 188, 0.9)',
+                    'rgba(88, 51, 84, 0.9)',
+                    'rgba(174, 199, 79, 0.9)',
+                    'rgba(240, 143, 56, 0.9)',
+                    'rgba(30, 137, 111, 0.9)',
+                    'rgba(40, 50, 73, 0.9)',
+                    'rgba(254, 202, 83, 0.9)',
+                    'rgba(179, 69, 104, 0.9)',
+                    'rgba(101, 63, 26, 0.9)',
                 ],
                 borderColor: [
-                    '#000000'
+                    '#FFFFFF'
                 ],
                 borderWidth: 1
             }, {
-                label: 'Filter',
-                data: [
-                    j.judul_0,
-                    j.judul_1,
-                    j.judul_2,
-                    j.judul_3,
-                    j.judul_4,
-                    j.judul_5,
-                    j.judul_6,
-                    j.judul_7,
-                    j.judul_8,
-                    j.judul_9,
-                ],
+                label: 'Data Filter',
+                data: pJudul,
                 backgroundColor: [
-                    'rgba(130, 130, 130, 0.4)',
-                    'rgba(112, 169, 188, 0.4)',
-                    'rgba(88, 51, 84, 0.4)',
-                    'rgba(174, 199, 79, 0.4)',
-                    'rgba(240, 143, 56, 0.4)',
-                    'rgba(30, 137, 111, 0.4)',
-                    'rgba(40, 50, 73, 0.4)',
-                    'rgba(254, 202, 83, 0.4)',
-                    'rgba(179, 69, 104, 0.4)',
-                    'rgba(101, 63, 26, 0.4)',
+                    'rgba(130, 130, 130, 0.9)',
+                    'rgba(112, 169, 188, 0.9)',
+                    'rgba(88, 51, 84, 0.9)',
+                    'rgba(174, 199, 79, 0.9)',
+                    'rgba(240, 143, 56, 0.9)',
+                    'rgba(30, 137, 111, 0.9)',
+                    'rgba(40, 50, 73, 0.9)',
+                    'rgba(254, 202, 83, 0.9)',
+                    'rgba(179, 69, 104, 0.9)',
+                    'rgba(101, 63, 26, 0.9)',
                 ],
                 borderColor: [
-                    '#000000'
+                    '#FFFFFF'
                 ],
                 borderWidth: 1
             }]
@@ -431,14 +385,7 @@
                     },
                     datalabels: {
                         formatter: (value, ctx) => {
-                            let sum = 0;
-                            let dataArr = ctx.chart.data.datasets[0].data;
-                            dataArr.map(data => {
-                                sum += data;
-                            });
-                            let percentage = (value * 100 / sum).toFixed(2) + "%";
-                            return value + '\n' + percentage;
-                            return value;
+                            return value + '%';
                         },
                         anchor: 'center',
                         align: 'end',
@@ -456,7 +403,7 @@
                     },
                     title: {
                         display: true,
-                        text: 'Data Klasifikasi Berdasarkan Jumlah Judul',
+                        text: 'Perbandingan Persentase Klasifikasi - Total Koleksi dengan Tahun Pencarian (Judul)',
                         padding: {
                             bottom: 30
                         }
@@ -465,70 +412,53 @@
             }
         };
 
-        // // bar chart perbandingan total judul dan filter judul
+        // // bar chart perbandingan total eksemplar dan filter eksemplar
+        let pEksemplar = [];
+        $.each(eksemp, function(key, value) {
+            pEksemplar.push(((value / total_eks) * 100).toFixed(1));
+        });
+
         const pEksData = {
             labels: ['Karya Umum', 'Filsafat & Psikologi', 'Agama', 'Ilmu Sosial', 'Bahasa', 'Sains',
                 'Ilmu Terapan & Teknologi', 'Seni & Olahraga',
                 'Kesusastraan', 'Sejarah & Geografi'
             ],
             datasets: [{
-                label: 'Total',
-                data: [
-                    eksemp.eks_0,
-                    eksemp.eks_1,
-                    eksemp.eks_2,
-                    eksemp.eks_3,
-                    eksemp.eks_4,
-                    eksemp.eks_5,
-                    eksemp.eks_6,
-                    eksemp.eks_7,
-                    eksemp.eks_8,
-                    eksemp.eks_9,
-                ],
+                label: 'Data Seluruhnya',
+                data: pEksemplar,
                 backgroundColor: [
-                    'rgba(130, 130, 130, 0.4)',
-                    'rgba(112, 169, 188, 0.4)',
-                    'rgba(88, 51, 84, 0.4)',
-                    'rgba(174, 199, 79, 0.4)',
-                    'rgba(240, 143, 56, 0.4)',
-                    'rgba(30, 137, 111, 0.4)',
-                    'rgba(40, 50, 73, 0.4)',
-                    'rgba(254, 202, 83, 0.4)',
-                    'rgba(179, 69, 104, 0.4)',
-                    'rgba(101, 63, 26, 0.4)',
+                    'rgba(130, 130, 130, 0.9)',
+                    'rgba(112, 169, 188, 0.9)',
+                    'rgba(88, 51, 84, 0.9)',
+                    'rgba(174, 199, 79, 0.9)',
+                    'rgba(240, 143, 56, 0.9)',
+                    'rgba(30, 137, 111, 0.9)',
+                    'rgba(40, 50, 73, 0.9)',
+                    'rgba(254, 202, 83, 0.9)',
+                    'rgba(179, 69, 104, 0.9)',
+                    'rgba(101, 63, 26, 0.9)',
                 ],
                 borderColor: [
-                    '#000000'
+                    '#FFFFFF'
                 ],
                 borderWidth: 1
             }, {
-                label: 'Filter',
-                data: [
-                    eksemp.eks_0,
-                    eksemp.eks_1,
-                    eksemp.eks_2,
-                    eksemp.eks_3,
-                    eksemp.eks_4,
-                    eksemp.eks_5,
-                    eksemp.eks_6,
-                    eksemp.eks_7,
-                    eksemp.eks_8,
-                    eksemp.eks_9,
-                ],
+                label: 'Data Filter',
+                data: pEksemplar,
                 backgroundColor: [
-                    'rgba(130, 130, 130, 0.4)',
-                    'rgba(112, 169, 188, 0.4)',
-                    'rgba(88, 51, 84, 0.4)',
-                    'rgba(174, 199, 79, 0.4)',
-                    'rgba(240, 143, 56, 0.4)',
-                    'rgba(30, 137, 111, 0.4)',
-                    'rgba(40, 50, 73, 0.4)',
-                    'rgba(254, 202, 83, 0.4)',
-                    'rgba(179, 69, 104, 0.4)',
-                    'rgba(101, 63, 26, 0.4)',
+                    'rgba(130, 130, 130, 0.9)',
+                    'rgba(112, 169, 188, 0.9)',
+                    'rgba(88, 51, 84, 0.9)',
+                    'rgba(174, 199, 79, 0.9)',
+                    'rgba(240, 143, 56, 0.9)',
+                    'rgba(30, 137, 111, 0.9)',
+                    'rgba(40, 50, 73, 0.9)',
+                    'rgba(254, 202, 83, 0.9)',
+                    'rgba(179, 69, 104, 0.9)',
+                    'rgba(101, 63, 26, 0.9)',
                 ],
                 borderColor: [
-                    '#000000'
+                    '#FFFFFF'
                 ],
                 borderWidth: 1
             }]
@@ -545,14 +475,7 @@
                     },
                     datalabels: {
                         formatter: (value, ctx) => {
-                            let sum = 0;
-                            let dataArr = ctx.chart.data.datasets[0].data;
-                            dataArr.map(data => {
-                                sum += data;
-                            });
-                            let percentage = (value * 100 / sum).toFixed(2) + "%";
-                            return value + '\n' + percentage;
-                            return value;
+                            return value + '%';
                         },
                         anchor: 'center',
                         align: 'end',
@@ -570,7 +493,7 @@
                     },
                     title: {
                         display: true,
-                        text: 'Data Klasifikasi Berdasarkan Jumlah Eksemplar',
+                        text: 'Perbandingan Persentase Klasifikasi - Total Koleksi dengan Tahun Pencarian (Eksemplar)',
                         padding: {
                             bottom: 30
                         }

@@ -38,9 +38,9 @@
                             </div>
                         </div>
                     </form>
-                    <div class="row">
+                    {{-- <div class="row">
                         @php $icons = array('bg-info', 'bg-success' ); @endphp
-                        @foreach ($result as $_result)
+                        @foreach ($result_judul as $_result)
                             <div class="col-sm-6">
                                 <div class="small-box {{ $icons[$loop->index] }}">
                                     <div class="inner">
@@ -56,7 +56,7 @@
                                 array_push($icons, $icons[$loop->index]);
                             @endphp
                         @endforeach
-                    </div>
+                    </div> --}}
                     <hr>
                     <div class="card mx-auto" style="width: 70vh;">
                         <p class=" mt-2 text-center">Chart</p>

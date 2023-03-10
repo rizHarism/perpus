@@ -205,7 +205,18 @@ class CollectionController extends Controller
 
     public function collectionSource()
     {
-        $result = DB::connection('inlislite')->table('collectionsources')
+        $katalog = DB::connection('inlislite')->table('catalogs')
+            ->select('catalogs.ID as catalog_id', 'collections.ID as collection_id', 'collections.Source_id as source_id')
+            ->leftjoin('collections', 'collections.Catalog_id', '=', 'catalogs.ID')
+            ->groupBy('catalogs.ID');
+
+        $result_judul = DB::connection('inlislite')->table('collectionsources')
+            ->select('collectionsources.Code', 'collectionsources.Name', DB::raw('count(catalogs.source_id) as total'))
+            ->leftjoinSub($katalog, 'catalogs', function ($join) {
+                $join->on('collectionsources.ID', '=', 'catalogs.source_id');
+            })->groupBy('collectionsources.Name')->get();
+
+        $result_eks = DB::connection('inlislite')->table('collectionsources')
             ->select('collectionsources.Code', 'collectionsources.Name', DB::raw('count(collections.Source_id) as total'))
             ->leftjoin('collections', 'collectionsources.ID', '=', 'collections.Source_id')
             ->groupBy('collectionsources.Name')
@@ -214,7 +225,8 @@ class CollectionController extends Controller
 
         $response = [
             'message' => 'Data Sumber Koleksi',
-            'result' => $result
+            'result_judul' => $result_judul,
+            'result_eks' => $result_eks
         ];
 
         return view('inlislite.koleksi.source.index', $response);

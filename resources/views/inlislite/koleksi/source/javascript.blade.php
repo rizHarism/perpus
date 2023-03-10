@@ -76,7 +76,7 @@
 
         //setting data chart Sumber koleksi
 
-        let arrayData = {!! json_encode($result) !!};
+        let arrayData = {!! json_encode($result_eks) !!};
         let sumberData = [];
         let labelData = [];
         $.each(arrayData, function(i, data) {
@@ -112,7 +112,7 @@
 
         // setup config
         const catalogConfig = {
-            type: 'bar',
+            type: 'pie',
             data: catalogData,
             options: {
                 responsive: true,
