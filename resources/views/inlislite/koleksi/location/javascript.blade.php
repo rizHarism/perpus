@@ -87,6 +87,7 @@
         //setting data chart lokasi koleksi
 
         let arrayData = {!! json_encode($result) !!};
+        console.log(arrayData);
         let lokasiData = [];
         let labelData = [];
         $.each(arrayData, function(i, data) {
@@ -133,7 +134,7 @@
 
         // setup config
         const config = {
-            type: 'bar',
+            type: 'pie',
             data: data,
             options: {
                 responsive: true,

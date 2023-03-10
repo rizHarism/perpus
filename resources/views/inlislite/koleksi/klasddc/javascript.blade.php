@@ -29,133 +29,575 @@
                 type: "GET",
                 url: url,
                 dataType: "json",
-                success: function(data) {
-                    $('#klas0').html(data.klas0)
-                    $('#klas1').html(data.klas1)
-                    $('#klas2').html(data.klas2)
-                    $('#klas3').html(data.klas3)
-                    $('#klas4').html(data.klas4)
-                    $('#klas5').html(data.klas5)
-                    $('#klas6').html(data.klas6)
-                    $('#klas7').html(data.klas7)
-                    $('#klas8').html(data.klas8)
-                    $('#klas9').html(data.klas9)
-                    $('#card-header').html('')
-                    $('#card-header').html(data.title)
+                success: function(d) {
 
-                    const newDdcData = {
-                        labels: ['000-099', '100-199', '200-299', '300-399', '400-499',
-                            '500-599', '600-699', '700-799',
-                            '800-899', '900-999'
+                    const pJudulDataFilter = {
+                        labels: ['Karya Umum', 'Filsafat & Psikologi', 'Agama',
+                            'Ilmu Sosial', 'Bahasa', 'Sains',
+                            'Ilmu Terapan & Teknologi', 'Seni & Olahraga',
+                            'Kesusastraan', 'Sejarah & Geografi'
                         ],
                         datasets: [{
-                            label: '# Jumlah',
-                            data: [data.klas0, data.klas1, data.klas2, data
-                                .klas3, data.klas4, data.klas5,
-                                data.klas6, data.klas7, data.klas8, data
-                                .klas9
+                            label: 'Total',
+                            data: [
+                                j.judul_0,
+                                j.judul_1,
+                                j.judul_2,
+                                j.judul_3,
+                                j.judul_4,
+                                j.judul_5,
+                                j.judul_6,
+                                j.judul_7,
+                                j.judul_8,
+                                j.judul_9,
                             ],
                             backgroundColor: [
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(255, 206, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
-                                'rgba(255, 159, 64, 0.2)',
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(255, 206, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(130, 130, 130, 0.4)',
+                                'rgba(112, 169, 188, 0.4)',
+                                'rgba(88, 51, 84, 0.4)',
+                                'rgba(174, 199, 79, 0.4)',
+                                'rgba(240, 143, 56, 0.4)',
+                                'rgba(30, 137, 111, 0.4)',
+                                'rgba(40, 50, 73, 0.4)',
+                                'rgba(254, 202, 83, 0.4)',
+                                'rgba(179, 69, 104, 0.4)',
+                                'rgba(101, 63, 26, 0.4)',
                             ],
                             borderColor: [
-                                'rgba(255, 99, 132, 1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(255, 159, 64, 1)',
-                                'rgba(255, 99, 132, 1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
+                                '#000000'
+                            ],
+                            borderWidth: 1
+                        }, {
+                            label: 'Filter',
+                            data: [
+                                d.judul.judul_0,
+                                d.judul.judul_1,
+                                d.judul.judul_2,
+                                d.judul.judul_3,
+                                d.judul.judul_4,
+                                d.judul.judul_5,
+                                d.judul.judul_6,
+                                d.judul.judul_7,
+                                d.judul.judul_8,
+                                d.judul.judul_9,
+                            ],
+                            backgroundColor: [
+                                'rgba(130, 130, 130, 0.4)',
+                                'rgba(112, 169, 188, 0.4)',
+                                'rgba(88, 51, 84, 0.4)',
+                                'rgba(174, 199, 79, 0.4)',
+                                'rgba(240, 143, 56, 0.4)',
+                                'rgba(30, 137, 111, 0.4)',
+                                'rgba(40, 50, 73, 0.4)',
+                                'rgba(254, 202, 83, 0.4)',
+                                'rgba(179, 69, 104, 0.4)',
+                                'rgba(101, 63, 26, 0.4)',
+                            ],
+                            borderColor: [
+                                '#000000'
                             ],
                             borderWidth: 1
                         }]
                     };
 
-                    ddcChart.data = newDdcData
-                    ddcChart.update()
+                    pJudulChart.data = pJudulDataFilter
+                    pJudulChart.update()
+
+                    const pEksDataFilter = {
+                        labels: ['Karya Umum', 'Filsafat & Psikologi', 'Agama',
+                            'Ilmu Sosial', 'Bahasa', 'Sains',
+                            'Ilmu Terapan & Teknologi', 'Seni & Olahraga',
+                            'Kesusastraan', 'Sejarah & Geografi'
+                        ],
+                        datasets: [{
+                            label: 'Total',
+                            data: [
+                                eksemp.eks_0,
+                                eksemp.eks_1,
+                                eksemp.eks_2,
+                                eksemp.eks_3,
+                                eksemp.eks_4,
+                                eksemp.eks_5,
+                                eksemp.eks_6,
+                                eksemp.eks_7,
+                                eksemp.eks_8,
+                                eksemp.eks_9,
+                            ],
+                            backgroundColor: [
+                                'rgba(130, 130, 130, 0.4)',
+                                'rgba(112, 169, 188, 0.4)',
+                                'rgba(88, 51, 84, 0.4)',
+                                'rgba(174, 199, 79, 0.4)',
+                                'rgba(240, 143, 56, 0.4)',
+                                'rgba(30, 137, 111, 0.4)',
+                                'rgba(40, 50, 73, 0.4)',
+                                'rgba(254, 202, 83, 0.4)',
+                                'rgba(179, 69, 104, 0.4)',
+                                'rgba(101, 63, 26, 0.4)',
+                            ],
+                            borderColor: [
+                                '#000000'
+                            ],
+                            borderWidth: 1
+                        }, {
+                            label: 'Filter',
+                            data: [
+                                d.eks.eks_0,
+                                d.eks.eks_1,
+                                d.eks.eks_2,
+                                d.eks.eks_3,
+                                d.eks.eks_4,
+                                d.eks.eks_5,
+                                d.eks.eks_6,
+                                d.eks.eks_7,
+                                d.eks.eks_8,
+                                d.eks.eks_9,
+                            ],
+                            backgroundColor: [
+                                'rgba(130, 130, 130, 0.4)',
+                                'rgba(112, 169, 188, 0.4)',
+                                'rgba(88, 51, 84, 0.4)',
+                                'rgba(174, 199, 79, 0.4)',
+                                'rgba(240, 143, 56, 0.4)',
+                                'rgba(30, 137, 111, 0.4)',
+                                'rgba(40, 50, 73, 0.4)',
+                                'rgba(254, 202, 83, 0.4)',
+                                'rgba(179, 69, 104, 0.4)',
+                                'rgba(101, 63, 26, 0.4)',
+                            ],
+                            borderColor: [
+                                '#000000'
+                            ],
+                            borderWidth: 1
+                        }]
+                    };
+
+                    pEksChart.data = pEksDataFilter
+                    pEksChart.update()
 
                 }
             });
         });
 
-        let klas0 = $('#klas0').text()
-        let klas1 = $('#klas1').text()
-        let klas2 = $('#klas2').text()
-        let klas3 = $('#klas3').text()
-        let klas4 = $('#klas4').text()
-        let klas5 = $('#klas5').text()
-        let klas6 = $('#klas6').text()
-        let klas7 = $('#klas7').text()
-        let klas8 = $('#klas8').text()
-        let klas9 = $('#klas9').text()
+        Chart.register(ChartDataLabels);
         // setup blog
-        const ddcData = {
-            labels: ['000-099', '100-199', '200-299', '300-399', '400-499', '500-599', '600-699', '700-799',
-                '800-899', '900-999'
+        let j = {!! json_encode($judul) !!}
+        let eksemp = {!! json_encode($eks) !!}
+        const judulData = {
+            labels: ['Karya Umum', 'Filsafat & Psikologi', 'Agama', 'Ilmu Sosial', 'Bahasa', 'Sains',
+                'Ilmu Terapan & Teknologi', 'Seni & Olahraga',
+                'Kesusastraan', 'Sejarah & Geografi'
             ],
             datasets: [{
-                label: '# Jumlah',
-                data: [klas0, klas1, klas2, klas3, klas4, klas5, klas6, klas7, klas8, klas9],
+                label: 'Jumlah',
+                data: [
+                    j.judul_0,
+                    j.judul_1,
+                    j.judul_2,
+                    j.judul_3,
+                    j.judul_4,
+                    j.judul_5,
+                    j.judul_6,
+                    j.judul_7,
+                    j.judul_8,
+                    j.judul_9,
+                ],
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(130, 130, 130, 0.4)',
+                    'rgba(112, 169, 188, 0.4)',
+                    'rgba(88, 51, 84, 0.4)',
+                    'rgba(174, 199, 79, 0.4)',
+                    'rgba(240, 143, 56, 0.4)',
+                    'rgba(30, 137, 111, 0.4)',
+                    'rgba(40, 50, 73, 0.4)',
+                    'rgba(254, 202, 83, 0.4)',
+                    'rgba(179, 69, 104, 0.4)',
+                    'rgba(101, 63, 26, 0.4)',
                 ],
                 borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)',
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
+                    '#000000'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        const eksData = {
+            labels: ['Karya Umum', 'Filsafat & Psikologi', 'Agama', 'Ilmu Sosial', 'Bahasa', 'Sains',
+                'Ilmu Terapan & Teknologi', 'Seni & Olahraga',
+                'Kesusastraan', 'Sejarah & Geografi'
+            ],
+            datasets: [{
+                label: 'Jumlah',
+                data: [
+                    eksemp.eks_0,
+                    eksemp.eks_1,
+                    eksemp.eks_2,
+                    eksemp.eks_3,
+                    eksemp.eks_4,
+                    eksemp.eks_5,
+                    eksemp.eks_6,
+                    eksemp.eks_7,
+                    eksemp.eks_8,
+                    eksemp.eks_9,
+                ],
+                backgroundColor: [
+                    'rgba(130, 130, 130, 0.4)',
+                    'rgba(112, 169, 188, 0.4)',
+                    'rgba(88, 51, 84, 0.4)',
+                    'rgba(174, 199, 79, 0.4)',
+                    'rgba(240, 143, 56, 0.4)',
+                    'rgba(30, 137, 111, 0.4)',
+                    'rgba(40, 50, 73, 0.4)',
+                    'rgba(254, 202, 83, 0.4)',
+                    'rgba(179, 69, 104, 0.4)',
+                    'rgba(101, 63, 26, 0.4)',
+                ],
+                borderColor: [
+                    '#000000'
                 ],
                 borderWidth: 1
             }]
         };
 
         // setup config
-        const ddcConfig = {
-            type: 'bar',
-            data: ddcData,
+        const judulConfig = {
+            type: 'pie',
+            data: judulData,
             options: {
                 responsive: true,
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    },
+                    datalabels: {
+                        formatter: (value, ctx) => {
+                            let sum = 0;
+                            let dataArr = ctx.chart.data.datasets[0].data;
+                            dataArr.map(data => {
+                                sum += data;
+                            });
+                            let percentage = (value * 100 / sum).toFixed(2) + "%";
+                            return value + '\n' + percentage;
+                            return value;
+                        },
+                        anchor: 'center',
+                        align: 'end',
+                        textAlign: 'center',
+                        labels: {
+                            value: {
+                                color: 'black',
+                                font: {
+                                    size: '10',
+                                    weight: 'bold',
+                                    lineHeight: '1'
+                                }
+                            }
                         }
-                    }]
+                    },
+                    title: {
+                        display: true,
+                        text: 'Data Klasifikasi Berdasarkan Jumlah Judul',
+                        padding: {
+                            bottom: 30
+                        }
+                    }
+                }
+            }
+        };
+
+        const eksConfig = {
+            type: 'pie',
+            data: eksData,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    },
+                    datalabels: {
+                        formatter: (value, ctx) => {
+                            let sum = 0;
+                            let dataArr = ctx.chart.data.datasets[0].data;
+                            dataArr.map(data => {
+                                sum += data;
+                            });
+                            let percentage = (value * 100 / sum).toFixed(2) + "%";
+                            return value + '\n' + percentage;
+                            return value;
+                        },
+                        anchor: 'center',
+                        align: 'end',
+                        textAlign: 'center',
+                        labels: {
+                            value: {
+                                color: 'black',
+                                font: {
+                                    size: '10',
+                                    weight: 'bold',
+                                    lineHeight: '1'
+                                }
+                            }
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: 'Data Klasifikasi Berdasarkan Jumlah Eksemplar',
+                        padding: {
+                            bottom: 30
+                        }
+                    }
+                }
+            }
+        };
+
+        // bar chart perbandingan total judul dan filter judul
+        const pJudulData = {
+            labels: ['Karya Umum', 'Filsafat & Psikologi', 'Agama', 'Ilmu Sosial', 'Bahasa', 'Sains',
+                'Ilmu Terapan & Teknologi', 'Seni & Olahraga',
+                'Kesusastraan', 'Sejarah & Geografi'
+            ],
+            // labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+            datasets: [{
+                label: 'Total',
+                data: [
+                    j.judul_0,
+                    j.judul_1,
+                    j.judul_2,
+                    j.judul_3,
+                    j.judul_4,
+                    j.judul_5,
+                    j.judul_6,
+                    j.judul_7,
+                    j.judul_8,
+                    j.judul_9,
+                ],
+                backgroundColor: [
+                    'rgba(130, 130, 130, 0.4)',
+                    'rgba(112, 169, 188, 0.4)',
+                    'rgba(88, 51, 84, 0.4)',
+                    'rgba(174, 199, 79, 0.4)',
+                    'rgba(240, 143, 56, 0.4)',
+                    'rgba(30, 137, 111, 0.4)',
+                    'rgba(40, 50, 73, 0.4)',
+                    'rgba(254, 202, 83, 0.4)',
+                    'rgba(179, 69, 104, 0.4)',
+                    'rgba(101, 63, 26, 0.4)',
+                ],
+                borderColor: [
+                    '#000000'
+                ],
+                borderWidth: 1
+            }, {
+                label: 'Filter',
+                data: [
+                    j.judul_0,
+                    j.judul_1,
+                    j.judul_2,
+                    j.judul_3,
+                    j.judul_4,
+                    j.judul_5,
+                    j.judul_6,
+                    j.judul_7,
+                    j.judul_8,
+                    j.judul_9,
+                ],
+                backgroundColor: [
+                    'rgba(130, 130, 130, 0.4)',
+                    'rgba(112, 169, 188, 0.4)',
+                    'rgba(88, 51, 84, 0.4)',
+                    'rgba(174, 199, 79, 0.4)',
+                    'rgba(240, 143, 56, 0.4)',
+                    'rgba(30, 137, 111, 0.4)',
+                    'rgba(40, 50, 73, 0.4)',
+                    'rgba(254, 202, 83, 0.4)',
+                    'rgba(179, 69, 104, 0.4)',
+                    'rgba(101, 63, 26, 0.4)',
+                ],
+                borderColor: [
+                    '#000000'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        const pJudulConfig = {
+            type: 'bar',
+            data: pJudulData,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    },
+                    datalabels: {
+                        formatter: (value, ctx) => {
+                            let sum = 0;
+                            let dataArr = ctx.chart.data.datasets[0].data;
+                            dataArr.map(data => {
+                                sum += data;
+                            });
+                            let percentage = (value * 100 / sum).toFixed(2) + "%";
+                            return value + '\n' + percentage;
+                            return value;
+                        },
+                        anchor: 'center',
+                        align: 'end',
+                        textAlign: 'center',
+                        labels: {
+                            value: {
+                                color: 'black',
+                                font: {
+                                    size: '10',
+                                    weight: 'bold',
+                                    lineHeight: '1'
+                                }
+                            }
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: 'Data Klasifikasi Berdasarkan Jumlah Judul',
+                        padding: {
+                            bottom: 30
+                        }
+                    }
+                }
+            }
+        };
+
+        // // bar chart perbandingan total judul dan filter judul
+        const pEksData = {
+            labels: ['Karya Umum', 'Filsafat & Psikologi', 'Agama', 'Ilmu Sosial', 'Bahasa', 'Sains',
+                'Ilmu Terapan & Teknologi', 'Seni & Olahraga',
+                'Kesusastraan', 'Sejarah & Geografi'
+            ],
+            datasets: [{
+                label: 'Total',
+                data: [
+                    eksemp.eks_0,
+                    eksemp.eks_1,
+                    eksemp.eks_2,
+                    eksemp.eks_3,
+                    eksemp.eks_4,
+                    eksemp.eks_5,
+                    eksemp.eks_6,
+                    eksemp.eks_7,
+                    eksemp.eks_8,
+                    eksemp.eks_9,
+                ],
+                backgroundColor: [
+                    'rgba(130, 130, 130, 0.4)',
+                    'rgba(112, 169, 188, 0.4)',
+                    'rgba(88, 51, 84, 0.4)',
+                    'rgba(174, 199, 79, 0.4)',
+                    'rgba(240, 143, 56, 0.4)',
+                    'rgba(30, 137, 111, 0.4)',
+                    'rgba(40, 50, 73, 0.4)',
+                    'rgba(254, 202, 83, 0.4)',
+                    'rgba(179, 69, 104, 0.4)',
+                    'rgba(101, 63, 26, 0.4)',
+                ],
+                borderColor: [
+                    '#000000'
+                ],
+                borderWidth: 1
+            }, {
+                label: 'Filter',
+                data: [
+                    eksemp.eks_0,
+                    eksemp.eks_1,
+                    eksemp.eks_2,
+                    eksemp.eks_3,
+                    eksemp.eks_4,
+                    eksemp.eks_5,
+                    eksemp.eks_6,
+                    eksemp.eks_7,
+                    eksemp.eks_8,
+                    eksemp.eks_9,
+                ],
+                backgroundColor: [
+                    'rgba(130, 130, 130, 0.4)',
+                    'rgba(112, 169, 188, 0.4)',
+                    'rgba(88, 51, 84, 0.4)',
+                    'rgba(174, 199, 79, 0.4)',
+                    'rgba(240, 143, 56, 0.4)',
+                    'rgba(30, 137, 111, 0.4)',
+                    'rgba(40, 50, 73, 0.4)',
+                    'rgba(254, 202, 83, 0.4)',
+                    'rgba(179, 69, 104, 0.4)',
+                    'rgba(101, 63, 26, 0.4)',
+                ],
+                borderColor: [
+                    '#000000'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        const pEksConfig = {
+            type: 'bar',
+            data: pEksData,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    },
+                    datalabels: {
+                        formatter: (value, ctx) => {
+                            let sum = 0;
+                            let dataArr = ctx.chart.data.datasets[0].data;
+                            dataArr.map(data => {
+                                sum += data;
+                            });
+                            let percentage = (value * 100 / sum).toFixed(2) + "%";
+                            return value + '\n' + percentage;
+                            return value;
+                        },
+                        anchor: 'center',
+                        align: 'end',
+                        textAlign: 'center',
+                        labels: {
+                            value: {
+                                color: 'black',
+                                font: {
+                                    size: '10',
+                                    weight: 'bold',
+                                    lineHeight: '1'
+                                }
+                            }
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: 'Data Klasifikasi Berdasarkan Jumlah Eksemplar',
+                        padding: {
+                            bottom: 30
+                        }
+                    }
                 }
             }
         };
 
         // render block
-        const ddcChart = new Chart(
-            $('#ddc-chart'),
-            ddcConfig
+        const judulChart = new Chart(
+            $('#chart-pie-judul'),
+            judulConfig
+        );
+
+        const pJudulChart = new Chart(
+            $('#chart-bar-judul'),
+            pJudulConfig
+        );
+
+        const eksChart = new Chart(
+            $('#chart-pie-eks'),
+            eksConfig
+        );
+
+        const pEksChart = new Chart(
+            $('#chart-bar-eks'),
+            pEksConfig
         );
 
     })

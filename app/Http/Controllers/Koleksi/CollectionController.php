@@ -47,51 +47,78 @@ class CollectionController extends Controller
 
     public function collectionKlas()
     {
-        $klas0 = Collection::select('id', 'Catalog_id')->whereHas('catalog', function ($q) {
+        $eks_0 = Collection::select('id', 'Catalog_id')->whereHas('catalog', function ($q) {
             $q->where('DeweyNo', '>=', '0')->where('DeweyNo', '<=', '099');
         })->get();
-        $klas1 = Collection::select('id', 'Catalog_id')->whereHas('catalog', function ($q) {
+        $eks_1 = Collection::select('id', 'Catalog_id')->whereHas('catalog', function ($q) {
             $q->where('DeweyNo', '>=', '100')->where('DeweyNo', '<=', '199');
         })->get();
-        $klas2 = Collection::select('id', 'Catalog_id')->whereHas('catalog', function ($q) {
+        $eks_2 = Collection::select('id', 'Catalog_id')->whereHas('catalog', function ($q) {
             $q->where('DeweyNo', '>=', '200')->where('DeweyNo', '<=', '299');
         })->get();
-        $klas3 = Collection::select('id', 'Catalog_id')->whereHas('catalog', function ($q) {
+        $eks_3 = Collection::select('id', 'Catalog_id')->whereHas('catalog', function ($q) {
             $q->where('DeweyNo', '>=', '300')->where('DeweyNo', '<=', '399');
         })->get();
-        $klas4 = Collection::select('id', 'Catalog_id')->whereHas('catalog', function ($q) {
+        $eks_4 = Collection::select('id', 'Catalog_id')->whereHas('catalog', function ($q) {
             $q->where('DeweyNo', '>=', '400')->where('DeweyNo', '<=', '499');
         })->get();
-        $klas5 = Collection::select('id', 'Catalog_id')->whereHas('catalog', function ($q) {
+        $eks_5 = Collection::select('id', 'Catalog_id')->whereHas('catalog', function ($q) {
             $q->where('DeweyNo', '>=', '500')->where('DeweyNo', '<=', '599');
         })->get();
-        $klas6 = Collection::select('id', 'Catalog_id')->whereHas('catalog', function ($q) {
+        $eks_6 = Collection::select('id', 'Catalog_id')->whereHas('catalog', function ($q) {
             $q->where('DeweyNo', '>=', '600')->where('DeweyNo', '<=', '699');
         })->get();
-        $klas7 = Collection::select('id', 'Catalog_id')->whereHas('catalog', function ($q) {
+        $eks_7 = Collection::select('id', 'Catalog_id')->whereHas('catalog', function ($q) {
             $q->where('DeweyNo', '>=', '700')->where('DeweyNo', '<=', '799');
         })->get();
-        $klas8 = Collection::select('id', 'Catalog_id')->whereHas('catalog', function ($q) {
+        $eks_8 = Collection::select('id', 'Catalog_id')->whereHas('catalog', function ($q) {
             $q->where('DeweyNo', '>=', '800')->where('DeweyNo', '<=', '899');
         })->get();
-        $klas9 = Collection::select('id', 'Catalog_id')->whereHas('catalog', function ($q) {
+        $eks_9 = Collection::select('id', 'Catalog_id')->whereHas('catalog', function ($q) {
             $q->where('DeweyNo', '>=', '900')->where('DeweyNo', '<=', '999.999');
         })->get();
 
-        // $catalogue = count(Catalog::get());
+        $judul_0 = Catalog::select('id')->where('DeweyNo', '>=', '0')->where('DeweyNo', '<=', '099')->get();
+        $judul_1 = Catalog::select('id')->where('DeweyNo', '>=', '100')->where('DeweyNo', '<=', '199')->get();
+        $judul_2 = Catalog::select('id')->where('DeweyNo', '>=', '200')->where('DeweyNo', '<=', '299')->get();
+        $judul_3 = Catalog::select('id')->where('DeweyNo', '>=', '300')->where('DeweyNo', '<=', '399')->get();
+        $judul_4 = Catalog::select('id')->where('DeweyNo', '>=', '400')->where('DeweyNo', '<=', '499')->get();
+        $judul_5 = Catalog::select('id')->where('DeweyNo', '>=', '500')->where('DeweyNo', '<=', '599')->get();
+        $judul_6 = Catalog::select('id')->where('DeweyNo', '>=', '600')->where('DeweyNo', '<=', '699')->get();
+        $judul_7 = Catalog::select('id')->where('DeweyNo', '>=', '700')->where('DeweyNo', '<=', '799')->get();
+        $judul_8 = Catalog::select('id')->where('DeweyNo', '>=', '800')->where('DeweyNo', '<=', '899')->get();
+        $judul_9 = Catalog::select('id')->where('DeweyNo', '>=', '900')->where('DeweyNo', '<=', '999.99')->get();
+
+
+        $klas_eks = [
+            'eks_0' => count($eks_0),
+            'eks_1' => count($eks_1),
+            'eks_2' => count($eks_2),
+            'eks_3' => count($eks_3),
+            'eks_4' => count($eks_4),
+            'eks_5' => count($eks_5),
+            'eks_6' => count($eks_6),
+            'eks_7' => count($eks_7),
+            'eks_8' => count($eks_8),
+            'eks_9' => count($eks_9),
+        ];
+
+        $klas_judul = [
+            'judul_0' => count($judul_0),
+            'judul_1' => count($judul_1),
+            'judul_2' => count($judul_2),
+            'judul_3' => count($judul_3),
+            'judul_4' => count($judul_4),
+            'judul_5' => count($judul_5),
+            'judul_6' => count($judul_6),
+            'judul_7' => count($judul_7),
+            'judul_8' => count($judul_8),
+            'judul_9' => count($judul_9),
+        ];
 
         $response = [
-            'message' => 'Data Klas DDC',
-            'klas0' => count($klas0),
-            'klas1' => count($klas1),
-            'klas2' => count($klas2),
-            'klas3' => count($klas3),
-            'klas4' => count($klas4),
-            'klas5' => count($klas5),
-            'klas6' => count($klas6),
-            'klas7' => count($klas7),
-            'klas8' => count($klas8),
-            'klas9' => count($klas9),
+            'judul' => $klas_judul,
+            'eks' => $klas_eks
         ];
 
         return view('inlislite.koleksi.klasddc.index', $response);
@@ -100,51 +127,77 @@ class CollectionController extends Controller
     public function collectionKlasFilter($years)
     {
         $year = explode(",", $years);
-        $klas0 = Collection::select('id', 'Catalog_id')->whereHas('catalog', function ($q) use ($year) {
+        $eks_0 = Collection::select('id', 'Catalog_id')->whereHas('catalog', function ($q) use ($year) {
             $q->where('DeweyNo', '>=', '0')->where('DeweyNo', '<=', '099')->where('PublishYear', '>=', $year[0])->where('PublishYear', '<=', $year[1]);
         })->get();
-        $klas1 = Collection::select('id', 'Catalog_id')->whereHas('catalog', function ($q) use ($year) {
+        $eks_1 = Collection::select('id', 'Catalog_id')->whereHas('catalog', function ($q) use ($year) {
             $q->where('DeweyNo', '>=', '100')->where('DeweyNo', '<=', '199')->where('PublishYear', '>=', $year[0])->where('PublishYear', '<=', $year[1]);
         })->get();
-        $klas2 = Collection::select('id', 'Catalog_id')->whereHas('catalog', function ($q) use ($year) {
+        $eks_2 = Collection::select('id', 'Catalog_id')->whereHas('catalog', function ($q) use ($year) {
             $q->where('DeweyNo', '>=', '200')->where('DeweyNo', '<=', '299')->where('PublishYear', '>=', $year[0])->where('PublishYear', '<=', $year[1]);
         })->get();
-        $klas3 = Collection::select('id', 'Catalog_id')->whereHas('catalog', function ($q) use ($year) {
+        $eks_3 = Collection::select('id', 'Catalog_id')->whereHas('catalog', function ($q) use ($year) {
             $q->where('DeweyNo', '>=', '300')->where('DeweyNo', '<=', '399')->where('PublishYear', '>=', $year[0])->where('PublishYear', '<=', $year[1]);
         })->get();
-        $klas4 = Collection::select('id', 'Catalog_id')->whereHas('catalog', function ($q) use ($year) {
+        $eks_4 = Collection::select('id', 'Catalog_id')->whereHas('catalog', function ($q) use ($year) {
             $q->where('DeweyNo', '>=', '400')->where('DeweyNo', '<=', '499')->where('PublishYear', '>=', $year[0])->where('PublishYear', '<=', $year[1]);
         })->get();
-        $klas5 = Collection::select('id', 'Catalog_id')->whereHas('catalog', function ($q) use ($year) {
+        $eks_5 = Collection::select('id', 'Catalog_id')->whereHas('catalog', function ($q) use ($year) {
             $q->where('DeweyNo', '>=', '500')->where('DeweyNo', '<=', '599')->where('PublishYear', '>=', $year[0])->where('PublishYear', '<=', $year[1]);
         })->get();
-        $klas6 = Collection::select('id', 'Catalog_id')->whereHas('catalog', function ($q) use ($year) {
+        $eks_6 = Collection::select('id', 'Catalog_id')->whereHas('catalog', function ($q) use ($year) {
             $q->where('DeweyNo', '>=', '600')->where('DeweyNo', '<=', '699')->where('PublishYear', '>=', $year[0])->where('PublishYear', '<=', $year[1]);
         })->get();
-        $klas7 = Collection::select('id', 'Catalog_id')->whereHas('catalog', function ($q) use ($year) {
+        $eks_7 = Collection::select('id', 'Catalog_id')->whereHas('catalog', function ($q) use ($year) {
             $q->where('DeweyNo', '>=', '700')->where('DeweyNo', '<=', '799')->where('PublishYear', '>=', $year[0])->where('PublishYear', '<=', $year[1]);
         })->get();
-        $klas8 = Collection::select('id', 'Catalog_id')->whereHas('catalog', function ($q) use ($year) {
+        $eks_8 = Collection::select('id', 'Catalog_id')->whereHas('catalog', function ($q) use ($year) {
             $q->where('DeweyNo', '>=', '800')->where('DeweyNo', '<=', '899')->where('PublishYear', '>=', $year[0])->where('PublishYear', '<=', $year[1]);
         })->get();
-        $klas9 = Collection::select('id', 'Catalog_id')->whereHas('catalog', function ($q) use ($year) {
+        $eks_9 = Collection::select('id', 'Catalog_id')->whereHas('catalog', function ($q) use ($year) {
             $q->where('DeweyNo', '>=', '900')->where('DeweyNo', '<=', '999.999')->where('PublishYear', '>=', $year[0])->where('PublishYear', '<=', $year[1]);
         })->get();
 
-        // $catalogue = count(Catalog::get());
+        $judul_0 = Catalog::select('id')->where('DeweyNo', '>=', '0')->where('DeweyNo', '<=', '099')->where('PublishYear', '>=', $year[0])->where('PublishYear', '<=', $year[1])->get();
+        $judul_1 = Catalog::select('id')->where('DeweyNo', '>=', '100')->where('DeweyNo', '<=', '199')->where('PublishYear', '>=', $year[0])->where('PublishYear', '<=', $year[1])->get();
+        $judul_2 = Catalog::select('id')->where('DeweyNo', '>=', '200')->where('DeweyNo', '<=', '299')->where('PublishYear', '>=', $year[0])->where('PublishYear', '<=', $year[1])->get();
+        $judul_3 = Catalog::select('id')->where('DeweyNo', '>=', '300')->where('DeweyNo', '<=', '399')->where('PublishYear', '>=', $year[0])->where('PublishYear', '<=', $year[1])->get();
+        $judul_4 = Catalog::select('id')->where('DeweyNo', '>=', '400')->where('DeweyNo', '<=', '499')->where('PublishYear', '>=', $year[0])->where('PublishYear', '<=', $year[1])->get();
+        $judul_5 = Catalog::select('id')->where('DeweyNo', '>=', '500')->where('DeweyNo', '<=', '599')->where('PublishYear', '>=', $year[0])->where('PublishYear', '<=', $year[1])->get();
+        $judul_6 = Catalog::select('id')->where('DeweyNo', '>=', '600')->where('DeweyNo', '<=', '699')->where('PublishYear', '>=', $year[0])->where('PublishYear', '<=', $year[1])->get();
+        $judul_7 = Catalog::select('id')->where('DeweyNo', '>=', '700')->where('DeweyNo', '<=', '799')->where('PublishYear', '>=', $year[0])->where('PublishYear', '<=', $year[1])->get();
+        $judul_8 = Catalog::select('id')->where('DeweyNo', '>=', '800')->where('DeweyNo', '<=', '899')->where('PublishYear', '>=', $year[0])->where('PublishYear', '<=', $year[1])->get();
+        $judul_9 = Catalog::select('id')->where('DeweyNo', '>=', '900')->where('DeweyNo', '<=', '999.99')->where('PublishYear', '>=', $year[0])->where('PublishYear', '<=', $year[1])->get();
+
+        $klas_eks = [
+            'eks_0' => count($eks_0),
+            'eks_1' => count($eks_1),
+            'eks_2' => count($eks_2),
+            'eks_3' => count($eks_3),
+            'eks_4' => count($eks_4),
+            'eks_5' => count($eks_5),
+            'eks_6' => count($eks_6),
+            'eks_7' => count($eks_7),
+            'eks_8' => count($eks_8),
+            'eks_9' => count($eks_9),
+        ];
+
+        $klas_judul = [
+            'judul_0' => count($judul_0),
+            'judul_1' => count($judul_1),
+            'judul_2' => count($judul_2),
+            'judul_3' => count($judul_3),
+            'judul_4' => count($judul_4),
+            'judul_5' => count($judul_5),
+            'judul_6' => count($judul_6),
+            'judul_7' => count($judul_7),
+            'judul_8' => count($judul_8),
+            'judul_9' => count($judul_9),
+        ];
 
         $response = [
-            'title' => 'Data Klas DDC Tahun Terbit ' . $year[0] . ' s/d ' . $year[1],
-            'klas0' => count($klas0),
-            'klas1' => count($klas1),
-            'klas2' => count($klas2),
-            'klas3' => count($klas3),
-            'klas4' => count($klas4),
-            'klas5' => count($klas5),
-            'klas6' => count($klas6),
-            'klas7' => count($klas7),
-            'klas8' => count($klas8),
-            'klas9' => count($klas9),
+            'judul' => $klas_judul,
+            'eks' => $klas_eks
         ];
 
         return response()->json($response, Response::HTTP_OK);

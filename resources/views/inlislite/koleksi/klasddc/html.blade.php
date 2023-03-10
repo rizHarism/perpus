@@ -1,7 +1,7 @@
 <section class="content">
     <div class="container-fluid">
         <div class="card">
-            <div class="card-header h6" id="card-header">{{ $message }}</div>
+            <div class="card-header h6" id="card-header">Data Klasifikasi</div>
             <div class="card-body">
                 <div class="container">
                     <form id="filter-ddc">
@@ -39,7 +39,7 @@
                             </div>
                         </div>
                     </form>
-                    <div class="row">
+                    {{-- <div class="row">
                         <div class="col-sm-6">
                             <div class="small-box bg-info">
                                 <div class="inner">
@@ -134,12 +134,40 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <hr>
-                    <div class="card mx-auto" style="width: 70vh;">
-                        <p class=" mt-2 text-center">Chart</p>
-                        <div class="card-body">
-                            <canvas id="ddc-chart"></canvas>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="card mx-auto">
+                                <div class="card-body">
+                                    <canvas id="chart-pie-judul"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="card mx-auto">
+                                <div class="card-body">
+                                    <canvas id="chart-pie-eks"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card mx-auto">
+                                <div class="card-body">
+                                    <canvas id="chart-bar-judul"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card mx-auto">
+                                <div class="card-body">
+                                    <canvas id="chart-bar-eks"></canvas>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
