@@ -29,129 +29,253 @@
                 url: url,
                 dataType: "json",
                 success: function(data) {
-                    $('#card-header').html('');
-                    $('#card-header').html(data.title);
-                    $('#lok-' + data.ID).html('0');
-                    let lokasiData = [];
-                    let labelData = [];
-                    $.each(data.result, (i, data) => {
-                        console.log(data)
-                        $('#lok-' + data.ID).html(data.total);
-                        lokasiData.push(data.total);
-                        labelData.push(data.Name);
-                    })
+                    $('#card-header').html(data.title)
+                    let dataJudul = [];
+                    let labelJudul = [];
+                    let dataEks = [];
+                    let labelEks = [];
+                    $.each(data.judul, function(i, data) {
+                        // do your stuf
+                        dataJudul.push(data.total);
+                        labelJudul.push(data.Name);
+                    });
+                    $.each(data.eksemplar, function(i, data) {
+                        // do your stuf
+                        dataEks.push(data.total);
+                        labelEks.push(data.Name);
+                    });
 
                     // setup blog
-                    const newData = {
-                        labels: labelData,
+                    const newDataJudulSetup = {
+                        labels: labelJudul,
                         datasets: [{
                             label: '# Jumlah',
-                            data: lokasiData,
+                            data: dataJudul,
                             backgroundColor: [
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(255, 206, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
-                                'rgba(255, 159, 64, 0.2)',
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(255, 206, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(0, 191, 255, 0.7)',
+                                'rgba(34, 139, 34, 0.7)',
+                                'rgba(218, 165, 32, 0.7)',
+                                'rgba(255, 105, 180, 0.7)',
+                                'rgba(75, 0, 130, 0.7)',
+                                'rgba(230, 230, 250, 0.7)',
+                                'rgba(107, 142, 35, 0.7)',
+                                'rgba(152, 251, 152, 0.7)',
+                                'rgba(188, 143, 143, 0.7)',
+                                'rgba(160, 82, 45, 0.7)',
+                                'rgba(70, 130, 180, 0.7)',
+                                'rgba(255, 99, 71, 0.7)',
                             ],
                             borderColor: [
-                                'rgba(255, 99, 132, 1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(255, 159, 64, 1)',
-                                'rgba(255, 99, 132, 1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(255, 159, 64, 1)'
+                                '#FFFFFF'
                             ],
                             borderWidth: 1
                         }]
                     };
 
-                    chart.data = newData;
-                    chart.update()
+                    const newDataEksSetup = {
+                        labels: labelEks,
+                        datasets: [{
+                            label: '# Jumlah',
+                            data: dataEks,
+                            backgroundColor: [
+                                'rgba(0, 191, 255, 0.7)',
+                                'rgba(34, 139, 34, 0.7)',
+                                'rgba(218, 165, 32, 0.7)',
+                                'rgba(255, 105, 180, 0.7)',
+                                'rgba(75, 0, 130, 0.7)',
+                                'rgba(230, 230, 250, 0.7)',
+                                'rgba(107, 142, 35, 0.7)',
+                                'rgba(152, 251, 152, 0.7)',
+                                'rgba(188, 143, 143, 0.7)',
+                                'rgba(160, 82, 45, 0.7)',
+                                'rgba(70, 130, 180, 0.7)',
+                                'rgba(255, 99, 71, 0.7)',
+                            ],
+                            borderColor: [
+                                '#FFFFFF'
+                            ],
+                            borderWidth: 1
+                        }]
+                    };
+
+                    chartJudul.data = newDataJudulSetup
+                    chartEks.data = newDataEksSetup
+                    chartJudul.update()
+                    chartEks.update()
+
                 }
             });
         });
 
         //setting data chart lokasi koleksi
 
-        let arrayData = {!! json_encode($result) !!};
-        console.log(arrayData);
-        let lokasiData = [];
-        let labelData = [];
-        $.each(arrayData, function(i, data) {
+        Chart.register(ChartDataLabels)
+
+        let arrayJudul = {!! json_encode($judul) !!};
+        let arrayEks = {!! json_encode($eksemplar) !!};
+
+        let dataJudul = [];
+        let labelJudul = [];
+        let dataEks = [];
+        let labelEks = [];
+        $.each(arrayJudul, function(i, data) {
             // do your stuf
-            lokasiData.push(data.total);
-            labelData.push(data.Name);
+            dataJudul.push(data.total);
+            labelJudul.push(data.Name);
         });
+        $.each(arrayEks, function(i, data) {
+            // do your stuf
+            dataEks.push(data.total);
+            labelEks.push(data.Name);
+        });
+
         // setup blog
-        const data = {
-            labels: labelData,
+        const dataJudulSetup = {
+            labels: labelJudul,
             datasets: [{
                 label: '# Jumlah',
-                data: lokasiData,
+                data: dataJudul,
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(0, 191, 255, 0.7)',
+                    'rgba(34, 139, 34, 0.7)',
+                    'rgba(218, 165, 32, 0.7)',
+                    'rgba(255, 105, 180, 0.7)',
+                    'rgba(75, 0, 130, 0.7)',
+                    'rgba(230, 230, 250, 0.7)',
+                    'rgba(107, 142, 35, 0.7)',
+                    'rgba(152, 251, 152, 0.7)',
+                    'rgba(188, 143, 143, 0.7)',
+                    'rgba(160, 82, 45, 0.7)',
+                    'rgba(70, 130, 180, 0.7)',
+                    'rgba(255, 99, 71, 0.7)',
                 ],
                 borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)',
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
+                    '#FFFFFF'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        const dataEksSetup = {
+            labels: labelEks,
+            datasets: [{
+                label: '# Jumlah',
+                data: dataEks,
+                backgroundColor: [
+                    'rgba(0, 191, 255, 0.7)',
+                    'rgba(34, 139, 34, 0.7)',
+                    'rgba(218, 165, 32, 0.7)',
+                    'rgba(255, 105, 180, 0.7)',
+                    'rgba(75, 0, 130, 0.7)',
+                    'rgba(230, 230, 250, 0.7)',
+                    'rgba(107, 142, 35, 0.7)',
+                    'rgba(152, 251, 152, 0.7)',
+                    'rgba(188, 143, 143, 0.7)',
+                    'rgba(160, 82, 45, 0.7)',
+                    'rgba(70, 130, 180, 0.7)',
+                    'rgba(255, 99, 71, 0.7)',
+                ],
+                borderColor: [
+                    '#FFFFFF'
                 ],
                 borderWidth: 1
             }]
         };
 
         // setup config
-        const config = {
+        const configJudulSetup = {
             type: 'pie',
-            data: data,
+            data: dataJudulSetup,
             options: {
                 responsive: true,
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    },
+                    datalabels: {
+                        formatter: (value, ctx) => {
+                            let sum = 0;
+                            let dataArr = ctx.chart.data.datasets[0].data;
+                            dataArr.map(data => {
+                                sum += data;
+                            });
+                            let percentage = (value * 100 / sum).toFixed(2) + "%";
+                            return value + '\n' + percentage;
+                            // return value;
+                        },
+                        anchor: 'center',
+                        align: 'end',
+                        textAlign: 'center',
+                        labels: {
+                            value: {
+                                color: 'black',
+                                font: {
+                                    size: '10',
+                                    weight: 'bold',
+                                    lineHeight: '1'
+                                }
+                            }
                         }
-                    }]
+                    },
+                    title: {
+                        text: 'Data Lokasi Koleksi Berdasarkan Jumlah Judul',
+                        display: true,
+                    }
+                }
+            }
+        };
+
+        const configEksSetup = {
+            type: 'pie',
+            data: dataEksSetup,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    },
+                    datalabels: {
+                        formatter: (value, ctx) => {
+                            let sum = 0;
+                            let dataArr = ctx.chart.data.datasets[0].data;
+                            dataArr.map(data => {
+                                sum += data;
+                            });
+                            let percentage = (value * 100 / sum).toFixed(2) + "%";
+                            return value + '\n' + percentage;
+                            // return value;
+                        },
+                        anchor: 'center',
+                        align: 'end',
+                        textAlign: 'center',
+                        labels: {
+                            value: {
+                                color: 'black',
+                                font: {
+                                    size: '10',
+                                    weight: 'bold',
+                                    lineHeight: '1'
+                                }
+                            }
+                        }
+                    },
+                    title: {
+                        text: 'Data Lokasi Koleksi Berdasarkan Jumlah Eksemplar',
+                        display: true,
+                    }
                 }
             }
         };
 
         // render block
-        const chart = new Chart(
-            $('#lokasi-chart'),
-            config
+        const chartJudul = new Chart(
+            $('#lokasi-judul'),
+            configJudulSetup
+        );
+
+        const chartEks = new Chart(
+            $('#lokasi-eks'),
+            configEksSetup
         );
     })
 </script>

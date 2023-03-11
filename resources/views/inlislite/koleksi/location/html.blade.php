@@ -39,32 +39,21 @@
                             </div>
                         </div>
                     </form>
-                    <div class="row">
-                        <div class="row">
-                            @php $icons = array('bg-info', 'bg-success' ); @endphp
-                            @foreach ($result as $_result)
-                                <div class="col-sm-6">
-                                    <div class="small-box {{ $icons[$loop->index] }}">
-                                        <div class="inner">
-                                            <h3 id="lok-{{ $_result->ID }}">{{ $_result->total }}</h3>
-                                            <p>{{ $_result->Name }}</p>
-                                        </div>
-                                        <div class="icon">
-                                            <i class="fas fa-book"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                @php
-                                    array_push($icons, $icons[$loop->index]);
-                                @endphp
-                            @endforeach
-                        </div>
-                    </div>
                     <hr>
-                    <div class="card mx-auto" style="width: 70vh;">
-                        <p class=" mt-2 text-center">Chart</p>
-                        <div class="card-body">
-                            <canvas id="lokasi-chart"></canvas>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="card mx-auto">
+                                <div class="card-body">
+                                    <canvas id="lokasi-judul"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="card mx-auto">
+                                <div class="card-body">
+                                    <canvas id="lokasi-eks"></canvas>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

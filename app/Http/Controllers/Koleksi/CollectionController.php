@@ -214,7 +214,9 @@ class CollectionController extends Controller
             ->select('collectionsources.Code', 'collectionsources.Name', DB::raw('count(catalogs.source_id) as total'))
             ->leftjoinSub($katalog, 'catalogs', function ($join) {
                 $join->on('collectionsources.ID', '=', 'catalogs.source_id');
-            })->groupBy('collectionsources.Name')->get();
+            })->groupBy('collectionsources.Name')
+            ->orderBy('collectionsources.ID', 'asc')
+            ->get();
 
         $result_eks = DB::connection('inlislite')->table('collectionsources')
             ->select('collectionsources.Code', 'collectionsources.Name', DB::raw('count(collections.Source_id) as total'))
@@ -224,7 +226,8 @@ class CollectionController extends Controller
             ->get();
 
         $response = [
-            'message' => 'Data Sumber Koleksi',
+            'message' => 'Data Sumber Koleksi Keseluruhan',
+            'status' => 'index',
             'result_judul' => $result_judul,
             'result_eks' => $result_eks
         ];
@@ -235,7 +238,8 @@ class CollectionController extends Controller
     public function collectionSourceFilter($years)
     {
         $year = explode(',', $years);
-        $result = DB::connection('inlislite')->table('collectionsources')
+        DB::enableQueryLog();
+        $result_eks = DB::connection('inlislite')->table('collectionsources')
             ->select('collectionsources.Code', 'collectionsources.Name', DB::raw('count(collections.Source_id) as total'))
             ->leftjoin('collections', 'collectionsources.ID', '=', 'collections.Source_id')
             ->leftjoin('catalogs', 'collections.Catalog_id', '=', 'catalogs.ID')
@@ -243,19 +247,26 @@ class CollectionController extends Controller
             ->groupBy('collectionsources.Name')
             ->orderBy('collectionsources.ID', 'asc')
             ->get();
-        // $catalogue = DB::connection('inlislite')->table('catalogs')->select('id')->where('catalogs.PublishYear', '>=', $year[0])->where('catalogs.PublishYear', '<=', $year[1]);
-        // $result = DB::connection('inlislite')->table('collectionsources')
-        //     ->select('collectionsources.Code', 'collectionsources.Name', DB::raw('count(collections.Source_id) as total'))
-        //     ->leftjoin('collections', 'collectionsources.ID', '=', 'collections.Source_id')
-        //     ->leftjoinSub($catalogue, 'catalogs', function ($join) {
-        //         $join->on('collections.Catalog_id', '=', 'catalogs.ID');
-        //     })->groupBy('collectionsources.Name')->orderby('collectionsources.ID')->get();
 
-        // dd($result);
+        $katalog = DB::connection('inlislite')->table('catalogs')
+            ->select('catalogs.ID as catalog_id', 'collections.ID as collection_id', 'collections.Source_id as source_id', 'catalogs.PublishYear as publish_year')
+            ->rightjoin('collections', 'collections.Catalog_id', '=', 'catalogs.ID')
+            ->groupBy('catalogs.ID');
+
+        $result_judul = DB::connection('inlislite')->table('collectionsources')
+            ->select('collectionsources.Code', 'collectionsources.Name', DB::raw('count(catalogs.source_id) as total'))
+            ->rightjoinSub($katalog, 'catalogs', function ($join) {
+                $join->on('collectionsources.ID', '=', 'catalogs.source_id');
+            })->where('catalogs.publish_year', '>=', $year[0])->where('catalogs.publish_year', '<=', $year[1])
+            ->groupBy('collectionsources.Name')
+            ->orderBy('collectionsources.ID', 'asc')
+            ->get();
 
         $response = [
             'title' => 'Data Sumber Koleksi ' . $year[0] . ' s/d ' . $year[1],
-            'result' => $result
+            'status' => 'filter',
+            'result_judul' => $result_judul,
+            'result_eks' => $result_eks
         ];
 
         return response()->json($response, Response::HTTP_OK);
@@ -264,16 +275,30 @@ class CollectionController extends Controller
     public function collectionLocation()
     {
 
-        $result = DB::connection('inlislite')->table('locations')
+        $result_eks = DB::connection('inlislite')->table('locations')
             ->select('locations.ID', 'locations.Name', DB::raw('count(collections.Location_id) as total'))
             ->leftjoin('collections', 'locations.ID', '=', 'collections.Location_id')
             ->groupBy('locations.Name')
-            ->orderBy('locations.Name', 'desc')
+            ->orderBy('locations.Name', 'asc')
+            ->get();
+
+        $katalog = DB::connection('inlislite')->table('catalogs')
+            ->select('catalogs.ID as catalog_id', 'collections.ID as collection_id', 'collections.Location_id as location_id', 'catalogs.PublishYear as publish_year')
+            ->rightjoin('collections', 'collections.Catalog_id', '=', 'catalogs.ID')
+            ->groupBy('catalogs.ID');
+
+        $result_judul = DB::connection('inlislite')->table('locations')
+            ->select('locations.ID', 'locations.Name', DB::raw('count(catalogs.location_id) as total'))
+            ->rightjoinSub($katalog, 'catalogs', function ($join) {
+                $join->on('locations.ID', '=', 'catalogs.location_id');
+            })->groupBy('locations.Name')
+            ->orderBy('locations.Name', 'asc')
             ->get();
 
         $response = [
             'message' => 'Data Lokasi Koleksi',
-            'result' => $result,
+            'judul' => $result_judul,
+            'eksemplar' => $result_eks,
         ];
 
         return view('inlislite.koleksi.location.index', $response);
@@ -282,7 +307,7 @@ class CollectionController extends Controller
     public function collectionLocationFilter($years)
     {
         $year = explode(',', $years);
-        $result = DB::connection('inlislite')->table('locations')
+        $result_eks = DB::connection('inlislite')->table('locations')
             ->select('locations.ID', 'locations.Name', DB::raw('count(collections.Location_id) as total'))
             ->leftjoin('collections', 'locations.ID', '=', 'collections.Location_id')
             ->leftjoin('catalogs', 'catalogs.ID', '=', 'collections.Catalog_id')
@@ -291,9 +316,24 @@ class CollectionController extends Controller
             ->orderBy('locations.Name', 'desc')
             ->get();
 
+        $katalog = DB::connection('inlislite')->table('catalogs')
+            ->select('catalogs.ID as catalog_id', 'collections.ID as collection_id', 'collections.Location_id as location_id', 'catalogs.PublishYear as publish_year')
+            ->rightjoin('collections', 'collections.Catalog_id', '=', 'catalogs.ID')
+            ->groupBy('catalogs.ID');
+
+        $result_judul = DB::connection('inlislite')->table('locations')
+            ->select('locations.ID', 'locations.Name', DB::raw('count(catalogs.location_id) as total'))
+            ->rightjoinSub($katalog, 'catalogs', function ($join) {
+                $join->on('locations.ID', '=', 'catalogs.location_id');
+            })->where('catalogs.publish_year', '>=', $year[0])->where('catalogs.publish_year', '<=', $year[1])
+            ->groupBy('locations.Name')
+            ->orderBy('locations.Name', 'desc')
+            ->get();
+
         $response = [
             'title' => 'Data Lokasi Koleksi ' . $year[0] . ' s/d ' . $year[1],
-            'result' => $result,
+            'eksemplar' => $result_eks,
+            'judul' => $result_judul,
         ];
 
         return response()->json($response, Response::HTTP_OK);
