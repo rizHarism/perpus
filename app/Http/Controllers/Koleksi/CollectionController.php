@@ -246,9 +246,7 @@ class CollectionController extends Controller
             ->where('catalogs.PublishYear', '>=', $year[0])->where('catalogs.PublishYear', '<=', $year[1])
             ->groupBy('collectionsources.Name')
             ->orderBy('collectionsources.ID', 'asc')
-            // ->get();
-            ->toSql();
-        dd($result_eks);
+            ->get();
 
         $katalog = DB::connection('inlislite')->table('catalogs')
             ->select('catalogs.ID as catalog_id', 'collections.ID as collection_id', 'collections.Source_id as source_id', 'catalogs.PublishYear as publish_year')
