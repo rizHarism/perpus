@@ -26,7 +26,7 @@
 
                     </form>
 
-                    <div class="row mt-3">
+                    {{-- <div class="row mt-3">
                         <div class="col-sm-6">
                             <div class="small-box bg-info">
                                 <div class="inner">
@@ -77,12 +77,24 @@
                             </div>
                         </div>
                         <canvas id="koleksi-chart" width="100" height="50"></canvas>
-                    </div>
+                    </div> --}}
                     <hr>
-                    <div class="card mx-auto" style="width: 70vh;">
-                        <p class=" mt-2 text-center">Chart</p>
-                        <div class="card-body">
-                            <canvas id="pemustaka-chart"></canvas>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="card mx-auto">
+                                {{-- <p class=" mt-2 text-center">Chart</p> --}}
+                                <div class="card-body">
+                                    <canvas id="lokasi-chart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="card mx-auto">
+                                {{-- <p class=" mt-2 text-center">Chart</p> --}}
+                                <div class="card-body">
+                                    <canvas id="kelamin-chart"></canvas>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

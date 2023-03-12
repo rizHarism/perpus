@@ -25,7 +25,7 @@
                         </div>
 
                     </form>
-                    <div class="row mt-3">
+                    {{-- <div class="row mt-3">
                         <div class="col-sm-6">
                             <div class="small-box bg-info">
                                 <div class="inner">
@@ -93,12 +93,16 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <hr>
-                    <div class="card mx-auto" style="width: 70vh;">
-                        <p class=" mt-2 text-center">Chart</p>
-                        <div class="card-body">
-                            <canvas id="usia-chart"></canvas>
+                    <div class="row">
+                        <div class="col-sm">
+                            <div class="card mx-auto">
+                                {{-- <p class=" mt-2 text-center">Chart</p> --}}
+                                <div class="card-body">
+                                    <canvas id="usia-chart"></canvas>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

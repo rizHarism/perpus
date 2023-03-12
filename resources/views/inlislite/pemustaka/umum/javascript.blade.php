@@ -28,105 +28,203 @@
                 dataType: "json",
                 success: function(data) {
                     console.log(data);
-                    $('#card-header').html(data.message);
-                    $('#total-member').html(data.total_member);
-                    $('#member-male').html(data.member_male);
-                    $('#member-female').html(data.member_female);
-                    $('#member-blitar').html(data.member_blitar);
-                    $('#member-nonblitar').html(data.member_non_blitar);
 
-                    const newData = {
-                        labels: ['Total Pemustaka', 'Pemustaka Blitar Kota',
-                            'Pemustaka Non Blitar Kota',
-                            'Pemustaka Pria', 'Pemustaka Wanita'
+                    
+
+                    // setup blog
+                const dataLokasiNew = {
+                    labels: ['Pemustaka Blitar Kota', 'Pemustaka Non Blitar Kota',
                         ],
-                        datasets: [{
-                            label: '# Jumlah',
-                            data: [data.total_member, data.member_blitar, data
-                                .member_non_blitar, data.member_male, data
-                                .member_female
-                            ],
-                            backgroundColor: [
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(255, 206, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
-                                'rgba(255, 159, 64, 0.2)'
-                            ],
-                            borderColor: [
-                                'rgba(255, 99, 132, 1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(255, 159, 64, 1)'
-                            ],
-                            borderWidth: 1
-                        }]
-                    };
+                    datasets: [{
+                    label: '# Jumlah',
+                    data: [ data.member_blitar, data.member_non_blitar,],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.9)',
+                        'rgba(54, 162, 235, 0.9)',
+                        'rgba(255, 206, 86, 0.9)',
+                        'rgba(75, 192, 192, 0.9)',
+                        'rgba(153, 102, 255, 0.9)',
+                        'rgba(255, 159, 64, 0.9)'
+                        ],
+                        borderColor: [
+                            '#FFFFFF'
+                        ],
+                        borderWidth: 1
+                    }]
+                };
 
-                    chart.data = newData;
-                    chart.update()
+                const dataKelaminNew = {
+                    labels: ['Pemustaka Laki-Laki', 'Pemustaka Perempuan',
+                    ],
+                    datasets: [{
+                        label: '# Jumlah',
+                        data: [ data.member_male, data.member_female,],
+                        backgroundColor: [
+                            'rgba(255, 206, 86, 0.9)',
+                            'rgba(75, 192, 192, 0.9)',
+                            'rgba(255, 99, 132, 0.9)',
+                            'rgba(54, 162, 235, 0.9)',
+                            'rgba(153, 102, 255, 0.9)',
+                            'rgba(255, 159, 64, 0.9)'
+                        ],
+                        borderColor: [
+                            '#FFFFFF'
+                        ],
+                        borderWidth: 1
+                    }]
+                };
+
+                    chartLokasi.data = dataLokasiNew;
+                    chartKelamin.data = dataKelaminNew;
+                    chartLokasi.update()
+                    chartKelamin.update()
                 }
             });
         });
 
         //setting data chart Data Umum Pemustaka
+        Chart.register(ChartDataLabels);
+        let blitar = {!! json_encode($member_blitar) !!};
+        let nonBlitar = {!! json_encode($member_non_blitar) !!};
+        let laki = {!! json_encode($member_male) !!};
+        let perempuan = {!! json_encode($member_female) !!};
 
-        let total = $('#total-member').text();
-        let blitar = $('#member-blitar').text();
-        let nonBlitar = $('#member-nonblitar').text();
-        let male = $('#member-male').text();
-        let female = $('#member-female').text();
         // setup blog
-        const data = {
-            labels: ['Total Pemustaka', 'Pemustaka Blitar Kota', 'Pemustaka Non Blitar Kota',
-                'Pemustaka Pria', 'Pemustaka Wanita'
+        const dataLokasi = {
+            labels: ['Pemustaka Blitar Kota', 'Pemustaka Non Blitar Kota',
             ],
             datasets: [{
                 label: '# Jumlah',
-                data: [total, blitar, nonBlitar, male, female],
+                data: [ blitar, nonBlitar,],
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
+                    'rgba(255, 99, 132, 0.9)',
+                    'rgba(54, 162, 235, 0.9)',
+                    'rgba(255, 206, 86, 0.9)',
+                    'rgba(75, 192, 192, 0.9)',
+                    'rgba(153, 102, 255, 0.9)',
+                    'rgba(255, 159, 64, 0.9)'
                 ],
                 borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
+                    '#FFFFFF'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        const dataKelamin = {
+            labels: ['Pemustaka Laki-Laki', 'Pemustaka Perempuan',
+            ],
+            datasets: [{
+                label: '# Jumlah',
+                data: [ laki, perempuan,],
+                backgroundColor: [
+                    'rgba(255, 206, 86, 0.9)',
+                    'rgba(75, 192, 192, 0.9)',
+                    'rgba(255, 99, 132, 0.9)',
+                    'rgba(54, 162, 235, 0.9)',
+                    'rgba(153, 102, 255, 0.9)',
+                    'rgba(255, 159, 64, 0.9)'
+                ],
+                borderColor: [
+                    '#FFFFFF'
                 ],
                 borderWidth: 1
             }]
         };
 
         // setup config
-        const config = {
-            type: 'bar',
-            data: data,
+        const configLokasi = {
+            type: 'pie',
+            data: dataLokasi,
             options: {
                 responsive: true,
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
+                plugins:{
+                    legend:{
+                        position:'bottom'
+                    },
+                    datalabels: {
+                        formatter: (value, ctx) => {
+                            let sum = 0;
+                            let dataArr = ctx.chart.data.datasets[0].data;
+                            dataArr.map(data => {
+                                sum += data;
+                            });
+                            let percentage = (value * 100 / sum).toFixed(2) + "%";
+                            return value + '\n' + percentage;
+                            // return value;
+                        },
+                        anchor: 'center',
+                        align: 'end',
+                        textAlign: 'center',
+                        labels: {
+                            value: {
+                                color: 'black',
+                                font: {
+                                    size: '10',
+                                    weight: 'bold',
+                                    lineHeight: '1'
+                                }
+                            }
                         }
-                    }]
+                    },
+                    title: {
+                        text: 'Data Pemustaka Berdasarkan Lokasi Tinggal',
+                        display: true,
+                    }
+                }
+            }
+        };
+
+        const configKelamin = {
+            type: 'pie',
+            data: dataKelamin,
+            options: {
+                responsive: true,
+                plugins:{
+                    legend:{
+                        position:'bottom'
+                    },
+                    datalabels: {
+                        formatter: (value, ctx) => {
+                            let sum = 0;
+                            let dataArr = ctx.chart.data.datasets[0].data;
+                            dataArr.map(data => {
+                                sum += data;
+                            });
+                            let percentage = (value * 100 / sum).toFixed(2) + "%";
+                            return value + '\n' + percentage;
+                            // return value;
+                        },
+                        anchor: 'center',
+                        align: 'end',
+                        textAlign: 'center',
+                        labels: {
+                            value: {
+                                color: 'black',
+                                font: {
+                                    size: '10',
+                                    weight: 'bold',
+                                    lineHeight: '1'
+                                }
+                            }
+                        }
+                    },
+                    title: {
+                        text: 'Data Pemustaka Berdasarkan Jenis Kelamin',
+                        display: true,
+                    }
                 }
             }
         };
 
         // render block
-        const chart = new Chart(
-            $('#pemustaka-chart'),
-            config
+        const chartLokasi = new Chart(
+            $('#lokasi-chart'),
+            configLokasi
+        );
+        const chartKelamin = new Chart(
+            $('#kelamin-chart'),
+            configKelamin
         );
     })
 </script>

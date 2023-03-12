@@ -18,14 +18,17 @@ class CirculationController extends Controller
     public function CirculationCatalogue()
     {
         $location_library = LocationLibrary::orderBy('ID', 'asc')->get();
-        $catalogLoan = DB::connection('inlislite')->table('collectionloanitems')
-            ->select('collectionloanitems.ID', 'catalogs.ID')
-            ->join('collections', 'collections.ID', '=', 'collectionloanitems.Collection_id')
-            ->join('catalogs', 'catalogs.ID', '=', 'collections.Catalog_id')
-            ->where('collectionloanitems.LoanStatus', '=', 'Loan')
+
+        $catalogLoan = DB::connection('inlislite')->table('catalogs')
+            ->select('catalogs.ID')
+            ->join('collections', 'collections.Catalog_id', '=', 'catalogs.ID')
+            ->join('collectionloanitems', 'collections.ID', '=', 'collectionloanitems.Collection_id')
             ->groupBy('catalogs.ID')
             ->get();
-        $collectionLoan = DB::connection('inlislite')->table('collectionloanitems')->where('LoanStatus', '=', 'Loan')->get();
+            
+        $collectionLoan = DB::connection('inlislite')->table('collectionloanitems')
+            ->groupBy('collectionloanitems.Collection_id')
+            ->get();
 
         $response = [
             'message' => 'Data Sirkulasi Catalog dan Koleksi',
@@ -46,7 +49,7 @@ class CirculationController extends Controller
                 ->select('collectionloanitems.ID', 'catalogs.ID')
                 ->join('collections', 'collections.ID', '=', 'collectionloanitems.Collection_id')
                 ->join('catalogs', 'catalogs.ID', '=', 'collections.Catalog_id')
-                ->where('collectionloanitems.LoanStatus', '=', 'Loan')
+                // ->where('collectionloanitems.LoanStatus', '=', 'Loan')
                 ->where('catalogs.PublishYear', '>=', $_req[1])->where('catalogs.PublishYear', '<=', $_req[2])
                 ->groupBy('catalogs.ID')
                 ->get();
@@ -54,9 +57,9 @@ class CirculationController extends Controller
                 ->select('collectionloanitems.ID', 'catalogs.ID')
                 ->join('collections', 'collections.ID', '=', 'collectionloanitems.Collection_id')
                 ->join('catalogs', 'catalogs.ID', '=', 'collections.Catalog_id')
-                ->where('collectionloanitems.LoanStatus', '=', 'Loan')
+                // ->where('collectionloanitems.LoanStatus', '=', 'Loan')
                 ->where('catalogs.PublishYear', '>=', $_req[1])->where('catalogs.PublishYear', '<=', $_req[2])
-                ->groupBy('collectionloanitems.ID')
+                ->groupBy('collections.ID')
                 ->get();
         } else {
             $location_library = LocationLibrary::where('ID', $_req[0])->pluck('Name');

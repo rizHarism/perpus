@@ -30,14 +30,6 @@
                 dataType: "json",
                 success: function(data) {
                     console.log(data)
-                    $('#card-header').html(data.message);
-                    $('#member-anak').html(data.member_anak);
-                    $('#member-sd').html(data.member_sd);
-                    $('#member-smp').html(data.member_smp);
-                    $('#member-sma').html(data.member_sma);
-                    $('#member-remaja').html(data.member_remaja);
-                    $('#member-dewasa').html(data.member_dewasa);
-                    $('#member-lansia').html(data.member_lansia);
 
                     const newData = {
                         labels: ['Pemustaka Usia 0-6', 'Pemustaka Usia 7-12',
@@ -47,27 +39,45 @@
                             'Pemustaka Usia 60 keatas'
                         ],
                         datasets: [{
-                            label: '# Jumlah',
+                            label: '#Pemustaka Total',
+                            data: [anak, sd, smp, sma, remaja, dewasa, lansia],
+                            backgroundColor: [
+                                'rgba(255, 51, 0, 0.9)',
+                                'rgba(255, 153, 0, 0.9)',
+                                'rgba(0, 204, 102, 0.9)',
+                                'rgba(51, 204, 204, 0.9)',
+                                'rgba(51, 153, 255, 0.9)',
+                                'rgba(204, 51, 153, 0.9)',
+                                'rgba(153, 153, 153, 0.9)',
+                                'rgba(102, 102, 255, 0.9)',
+                                'rgba(204, 153, 255, 0.9)',
+                                'rgba(255, 204, 0, 0.9)',
+                            ],
+                            borderColor: [
+                                '#FFFFFF    '
+                            ],
+                            borderWidth: 1
+                        },{
+                            label: '#Pemustaka '+ data.status,
                             data: [data.member_anak, data.member_sd, data
                                 .member_smp, data.member_sma, data
                                 .member_remaja, data.member_dewasa, data
                                 .member_lansia
                             ],
                             backgroundColor: [
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(255, 206, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
-                                'rgba(255, 159, 64, 0.2)'
+                                'rgba(255, 51, 0, 0.6)',
+                                'rgba(255, 153, 0, 0.6)',
+                                'rgba(0, 204, 102, 0.6)',
+                                'rgba(51, 204, 204, 0.6)',
+                                'rgba(51, 153, 255, 0.6)',
+                                'rgba(204, 51, 153, 0.6)',
+                                'rgba(153, 153, 153, 0.6)',
+                                'rgba(102, 102, 255, 0.6)',
+                                'rgba(204, 153, 255, 0.6)',
+                                'rgba(255, 204, 0, 0.6)',
                             ],
                             borderColor: [
-                                'rgba(255, 99, 132, 1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(255, 159, 64, 1)'
+                                '#FFFFFF'
                             ],
                             borderWidth: 1
                         }]
@@ -79,14 +89,14 @@
         });
 
         //setting data chart Usia Pemustaka
-
-        let anak = $('#member-anak').text();
-        let sd = $('#member-sd').text();
-        let smp = $('#member-smp').text();
-        let sma = $('#member-sma').text();
-        let remaja = $('#member-remaja').text();
-        let dewasa = $('#member-dewasa').text();
-        let lansia = $('#member-lansia').text();
+        Chart.register(ChartDataLabels);
+        let anak = {!! json_encode($member_anak) !!}
+        let sd = {!! json_encode($member_sd) !!}
+        let smp = {!! json_encode($member_smp) !!}
+        let sma = {!! json_encode($member_sma) !!}
+        let remaja = {!! json_encode($member_remaja) !!}
+        let dewasa = {!! json_encode($member_dewasa) !!}
+        let lansia = {!! json_encode($member_lansia) !!}
         // setup blog
         const data = {
             labels: ['Pemustaka Usia 0-6', 'Pemustaka Usia 7-12', 'Pemustaka Usia 12-15',
@@ -94,26 +104,45 @@
                 'Pemustaka Usia 60 keatas'
             ],
             datasets: [{
-                label: '# Jumlah',
+                label: '#Pemustaka Total',
                 data: [anak, sd, smp, sma, remaja, dewasa, lansia],
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
+                    'rgba(255, 51, 0, 0.9)',
+                    'rgba(255, 153, 0, 0.9)',
+                    'rgba(0, 204, 102, 0.9)',
+                    'rgba(51, 204, 204, 0.9)',
+                    'rgba(51, 153, 255, 0.9)',
+                    'rgba(204, 51, 153, 0.9)',
+                    'rgba(153, 153, 153, 0.9)',
+                    'rgba(102, 102, 255, 0.9)',
+                    'rgba(204, 153, 255, 0.9)',
+                    'rgba(255, 204, 0, 0.9)',
                 ],
                 borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
+                    '#FFFFFF    '
                 ],
                 borderWidth: 1
-            }]
+            },{
+                label: '#Pemustaka Total',
+                data: [anak, sd, smp, sma, remaja, dewasa, lansia],
+                backgroundColor: [
+                    'rgba(255, 51, 0, 0.6)',
+                    'rgba(255, 153, 0, 0.6)',
+                    'rgba(0, 204, 102, 0.6)',
+                    'rgba(51, 204, 204, 0.6)',
+                    'rgba(51, 153, 255, 0.6)',
+                    'rgba(204, 51, 153, 0.6)',
+                    'rgba(153, 153, 153, 0.6)',
+                    'rgba(102, 102, 255, 0.6)',
+                    'rgba(204, 153, 255, 0.6)',
+                    'rgba(255, 204, 0, 0.6)',
+                ],
+                borderColor: [
+                    '#FFFFFF    '
+                ],
+                borderWidth: 1
+            }
+        ]
         };
 
         // setup config
@@ -122,12 +151,40 @@
             data: data,
             options: {
                 responsive: true,
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
+                plugins:{
+                    legend:{
+                        position:'bottom'
+                    },
+                    datalabels: {
+                        formatter: (value, ctx) => {
+                            let sum = 0;
+                            let dataArr = ctx.chart.data.datasets[ctx.datasetIndex].data;
+                            dataArr.map(data => {
+                                sum += data;
+                            });
+                            let percentage = (value * 100 / sum).toFixed(2) + "%";
+                            return value + '\n' 
+                            // + percentage;
+                            // return value;
+                        },
+                        anchor: 'center',
+                        align: 'end',
+                        textAlign: 'center',
+                        labels: {
+                            value: {
+                                color: 'black',
+                                font: {
+                                    size: '10',
+                                    weight: 'bold',
+                                    lineHeight: '1'
+                                }
+                            }
                         }
-                    }]
+                    },
+                    title: {
+                        text: 'Data Pemustaka Berdasarkan Lokasi Tinggal',
+                        display: true,
+                    }
                 }
             }
         };

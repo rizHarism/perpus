@@ -27,17 +27,17 @@ class MemberController extends Controller
             'member_female' => $member_female,
             'member_blitar' => $member_blitar,
             'member_non_blitar' => $member_non_blitar,
+            'status' => 'Total',
         ];
-        // dd($response);
+
         return view('inlislite.pemustaka.umum.index', $response);
     }
 
     public function memberUmumFilter($status)
     {
-        // dd($status);
-
         if ($status == "0") {
             $message = 'Data Umum Pemustaka';
+            $status = 'Total';
             $total_member = count(Member::select('ID')->get());
             $member_male = count(Member::select('ID')->where('Sex_id', '1')->get());
             $member_female = count(Member::select('ID')->where('Sex_id', '2')->get());
@@ -105,6 +105,7 @@ class MemberController extends Controller
 
         $response = [
             'message' => $message,
+            'status' => $status,
             'total_member' => $total_member,
             'member_male' => $member_male,
             'member_female' => $member_female,
@@ -134,6 +135,7 @@ class MemberController extends Controller
             'member_remaja' => $member_remaja,
             'member_dewasa' => $member_dewasa,
             'member_lansia' => $member_lansia,
+            'status' => 'Total',
         ];
         return view('inlislite.pemustaka.usia.index', $response);
     }
@@ -151,6 +153,7 @@ class MemberController extends Controller
 
         if ($status == "0") {
             $message = 'Data Usia Pemustaka';
+            $status = 'Total';
             $_member_anak = $member_anak;
             $_member_sd = $member_sd;
             $_member_smp = $member_smp;
@@ -160,6 +163,7 @@ class MemberController extends Controller
             $_member_lansia = $member_lansia;
         } elseif ($status == "aktif") {
             $message = 'Data Usia Pemustaka Aktif';
+            $status = 'Aktif';
             $_member_anak = count(Member::where(DB::raw('TIMESTAMPDIFF(YEAR, DateOfBirth, CURDATE())'), '<=', 6)->whereHas('loanItem', function ($q) {
                 $q->where('LoanDate', '>=', DB::raw('DATE_SUB(now(), INTERVAL 6 MONTH)'));
             })->get());
@@ -205,6 +209,7 @@ class MemberController extends Controller
             })->get());
 
             $message = 'Data Usia Pemustaka Non Aktif';
+            $status = 'Non Aktif';
             $_member_anak = $member_anak - $anak_aktif;
             $_member_sd = $member_sd - $sd_aktif;
             $_member_smp = $member_smp - $smp_aktif;
@@ -223,6 +228,7 @@ class MemberController extends Controller
             'member_remaja' => $_member_remaja,
             'member_dewasa' => $_member_dewasa,
             'member_lansia' => $_member_lansia,
+            'status' => $status
         ];
 
         return response()->json($response, Response::HTTP_OK);
@@ -246,11 +252,13 @@ class MemberController extends Controller
 
         if ($status == "0") {
             $message = 'Data Status Pekerjaan Pemustaka';
+            $status = 'Total';
             $result = DB::connection('inlislite')->table('members')->select('master_pekerjaan.id', 'master_pekerjaan.Pekerjaan', DB::raw('count(master_pekerjaan.Pekerjaan) as total'))
                 ->join('master_pekerjaan', 'master_pekerjaan.id', '=', 'members.Job_id')
                 ->groupBy('master_pekerjaan.Pekerjaan')->orderby('master_pekerjaan.id')->get();
         } elseif ($status == "aktif") {
             $message = 'Data Status Pekerjaan Pemustaka Aktif';
+            $status = 'Aktif';
             $member = DB::connection('inlislite')->table('members')->select('members.Job_id')->whereExists(function ($query) {
                 $query->select(DB::raw('ID'))->from('collectionloanitems')->where('LoanDate', '>=', DB::raw('DATE_SUB(now(), INTERVAL 6 MONTH)'))->whereColumn('collectionloanitems.member_id', 'members.id');
             });
@@ -261,6 +269,7 @@ class MemberController extends Controller
                 })->groupBy('master_pekerjaan.Pekerjaan')->orderby('master_pekerjaan.id')->get();
         } elseif ($status == "nonaktif") {
             $message = 'Data Status Pekerjaan Pemustaka Non Aktif';
+            $status = 'Non Aktif';
             $member = DB::connection('inlislite')->table('members')->whereNotExists(function ($query) {
                 $query->select(DB::raw('ID'))->from('collectionloanitems')->where('LoanDate', '>=', DB::raw('DATE_SUB(now(), INTERVAL 6 MONTH)'))->whereColumn('collectionloanitems.member_id', 'members.id');
             });
@@ -273,6 +282,7 @@ class MemberController extends Controller
 
         $response = [
             'message' => $message,
+            'status' => $status,
             'result' => $result,
         ];
         return response()->json($response, Response::HTTP_OK);

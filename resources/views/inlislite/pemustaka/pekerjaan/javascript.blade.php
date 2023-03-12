@@ -33,47 +33,57 @@
                     $('#card-header').html('');
                     $('#card-header').html(data.message);
                     $('#status-' + data.id).html('0');
-                    let pekerjaanData = [];
-                    let labelData = [];
+                    let pekerjaanDataNew = [];
+                    let labelDataNew = [];
                     $.each(data.result, (i, data) => {
                         $('#status-' + data.id).html(data.total);
-                        pekerjaanData.push(data.total);
-                        labelData.push(data.Pekerjaan);
+                        pekerjaanDataNew.push(data.total);
+                        labelDataNew.push(data.Pekerjaan);
                     })
 
                     // setup blog
                     const newData = {
                         labels: labelData,
                         datasets: [{
-                            label: '# Jumlah',
+                            label: '#Pemustaka Total',
                             data: pekerjaanData,
                             backgroundColor: [
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(255, 206, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
-                                'rgba(255, 159, 64, 0.2)',
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(255, 206, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
-                                'rgba(255, 159, 64, 0.2)'
+                                'rgba(255, 0, 0, 0.9)',
+                                'rgba(0, 128, 0, 0.9)',
+                                'rgba(0, 0, 255, 0.9)',
+                                'rgba(255, 255, 0, 0.9)',
+                                'rgba(255, 0, 255, 0.9)',
+                                'rgba(0, 255, 255, 0.9)',
+                                'rgba(128, 0, 0, 0.9)',
+                                'rgba(0, 128, 128, 0.9)',
+                                'rgba(128, 128, 0, 0.9)',
+                                'rgba(128, 0, 128, 0.9)',
+                                'rgba(255, 165, 0, 0.9)',
+                                'rgba(0, 0, 128, 0.9)',
                             ],
                             borderColor: [
-                                'rgba(255, 99, 132, 1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(255, 159, 64, 1)',
-                                'rgba(255, 99, 132, 1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(255, 159, 64, 1)',
+                                '#FFFFFF'
+                            ],
+                            borderWidth: 1
+                        },{
+                            label: '#Pemustaka ' + data.status,
+                            data: pekerjaanDataNew,
+                            backgroundColor: [
+                                'rgba(255, 0, 0, 0.7)',
+                                'rgba(0, 128, 0, 0.7)',
+                                'rgba(0, 0, 255, 0.7)',
+                                'rgba(255, 255, 0, 0.7)',
+                                'rgba(255, 0, 255, 0.7)',
+                                'rgba(0, 255, 255, 0.7)',
+                                'rgba(128, 0, 0, 0.7)',
+                                'rgba(0, 128, 128, 0.7)',
+                                'rgba(128, 128, 0, 0.7)',
+                                'rgba(128, 0, 128, 0.7)',
+                                'rgba(255, 165, 0, 0.7)',
+                                'rgba(0, 0, 128, 0.7)',
+                            ],
+                            borderColor: [
+                                '#FFFFFF'
                             ],
                             borderWidth: 1
                         }]
@@ -85,6 +95,8 @@
             });
         })
 
+
+        Chart.register(ChartDataLabels);
         let arrayData = {!! json_encode($result) !!};
         let pekerjaanData = [];
         let labelData = [];
@@ -97,35 +109,45 @@
         const data = {
             labels: labelData,
             datasets: [{
-                label: '# Jumlah',
+                label: '#Pemustaka Total',
                 data: pekerjaanData,
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
+                    'rgba(255, 0, 0, 0.9)',
+                    'rgba(0, 128, 0, 0.9)',
+                    'rgba(0, 0, 255, 0.9)',
+                    'rgba(255, 255, 0, 0.9)',
+                    'rgba(255, 0, 255, 0.9)',
+                    'rgba(0, 255, 255, 0.9)',
+                    'rgba(128, 0, 0, 0.9)',
+                    'rgba(0, 128, 128, 0.9)',
+                    'rgba(128, 128, 0, 0.9)',
+                    'rgba(128, 0, 128, 0.9)',
+                    'rgba(255, 165, 0, 0.9)',
+                    'rgba(0, 0, 128, 0.9)',
                 ],
                 borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)',
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)',
+                    '#FFFFFF'
+                ],
+                borderWidth: 1
+            },{
+                label: '#Pemustaka Total',
+                data: pekerjaanData,
+                backgroundColor: [
+                    'rgba(255, 0, 0, 0.7)',
+                    'rgba(0, 128, 0, 0.7)',
+                    'rgba(0, 0, 255, 0.7)',
+                    'rgba(255, 255, 0, 0.7)',
+                    'rgba(255, 0, 255, 0.7)',
+                    'rgba(0, 255, 255, 0.7)',
+                    'rgba(128, 0, 0, 0.7)',
+                    'rgba(0, 128, 128, 0.7)',
+                    'rgba(128, 128, 0, 0.7)',
+                    'rgba(128, 0, 128, 0.7)',
+                    'rgba(255, 165, 0, 0.7)',
+                    'rgba(0, 0, 128, 0.7)',
+                ],
+                borderColor: [
+                    '#FFFFFF'
                 ],
                 borderWidth: 1
             }]
@@ -137,12 +159,42 @@
             data: data,
             options: {
                 responsive: true,
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
+                plugins:{
+                    legend:{
+                        position: 'bottom',
+                    },
+                    datalabels: {
+                        formatter: (value, ctx) => {
+                            console.log(ctx)
+                            // console.log(value)
+                            let sum = 0;
+                            let dataArr = ctx.chart.data.datasets[ctx.datasetIndex].data;
+                            dataArr.map(data => {
+                                sum += data;
+                            });
+                            let percentage = (value * 100 / sum).toFixed(2) + "%";
+                            return value + '\n' 
+                            // + percentage;
+                            // return value;
+                        },
+                        anchor: 'center',
+                        align: 'end',
+                        textAlign: 'center',
+                        labels: {
+                            value: {
+                                color: 'black',
+                                font: {
+                                    size: '10',
+                                    weight: 'bold',
+                                    lineHeight: '1'
+                                }
+                            }
                         }
-                    }]
+                    },
+                    title: {
+                        text: 'Data Pemustaka Berdasarkan Status Pekerjaan',
+                        display: true,
+                    }
                 }
             }
         };
