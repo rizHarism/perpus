@@ -59,7 +59,7 @@
                         <div class="col-sm-6">
                             <div class="small-box bg-info">
                                 <div class="inner">
-                                    <h3 id="klas0">{{ $klas0 }}</h3>
+                                    <h3 id="klas0">{{ $judul_0 }}</h3>
                                     <p>Klas 000-099</p>
                                 </div>
                                 <div class="icon">
@@ -68,7 +68,7 @@
                             </div>
                             <div class="small-box bg-info">
                                 <div class="inner">
-                                    <h3 id="klas1">{{ $klas1 }}</h3>
+                                    <h3 id="klas1">{{ $judul_1 }}</h3>
                                     <p>Klas 100-199</p>
                                 </div>
                                 <div class="icon">
@@ -77,7 +77,7 @@
                             </div>
                             <div class="small-box bg-info">
                                 <div class="inner">
-                                    <h3 id="klas2">{{ $klas2 }}</h3>
+                                    <h3 id="klas2">{{ $judul_2 }}</h3>
                                     <p>Klas 200-299</p>
                                 </div>
                                 <div class="icon">
@@ -86,7 +86,7 @@
                             </div>
                             <div class="small-box bg-info">
                                 <div class="inner">
-                                    <h3 id="klas3">{{ $klas3 }}</h3>
+                                    <h3 id="klas3">{{ $judul_3 }}</h3>
                                     <p>Klas 300-399</p>
                                 </div>
                                 <div class="icon">
@@ -95,7 +95,7 @@
                             </div>
                             <div class="small-box bg-info">
                                 <div class="inner">
-                                    <h3 id="klas4">{{ $klas4 }}</h3>
+                                    <h3 id="klas4">{{ $judul_4 }}</h3>
                                     <p>Klas 400-499</p>
                                 </div>
                                 <div class="icon">
@@ -106,7 +106,7 @@
                         <div class="col-sm-6">
                             <div class="small-box bg-success">
                                 <div class="inner">
-                                    <h3 id="klas5">{{ $klas5 }}</h3>
+                                    <h3 id="klas5">{{ $judul_5 }}</h3>
                                     <p>Klas 500-599</p>
                                 </div>
                                 <div class="icon">
@@ -115,7 +115,7 @@
                             </div>
                             <div class="small-box bg-success">
                                 <div class="inner">
-                                    <h3 id="klas6">{{ $klas6 }}</h3>
+                                    <h3 id="klas6">{{ $judul_6 }}</h3>
                                     <p>Klas 600-699</p>
                                 </div>
                                 <div class="icon">
@@ -124,7 +124,7 @@
                             </div>
                             <div class="small-box bg-success">
                                 <div class="inner">
-                                    <h3 id="klas7">{{ $klas7 }}</h3>
+                                    <h3 id="klas7">{{ $judul_7 }}</h3>
                                     <p>Klas 700-799</p>
                                 </div>
                                 <div class="icon">
@@ -133,7 +133,7 @@
                             </div>
                             <div class="small-box bg-success">
                                 <div class="inner">
-                                    <h3 id="klas8">{{ $klas8 }}</h3>
+                                    <h3 id="klas8">{{ $judul_8 }}</h3>
                                     <p>Klas 800-899</p>
                                 </div>
                                 <div class="icon">
@@ -142,7 +142,7 @@
                             </div>
                             <div class="small-box bg-success">
                                 <div class="inner">
-                                    <h3 id="klas9">{{ $klas9 }}</h3>
+                                    <h3 id="klas9">{{ $judul_9 }}</h3>
                                     <p>Klas 900-999</p>
                                 </div>
                                 <div class="icon">

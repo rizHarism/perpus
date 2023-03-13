@@ -19,15 +19,15 @@ class CirculationController extends Controller
     {
         $location_library = LocationLibrary::orderBy('ID', 'asc')->get();
 
-        $catalogLoan = DB::connection('inlislite')->table('catalogs')
-            ->select('catalogs.ID')
-            ->join('collections', 'collections.Catalog_id', '=', 'catalogs.ID')
+        $catalogLoan = DB::connection('inlislite')->table('collections')
+            ->select('collections.id', 'collectionloanitems.ID')
+            // ->join('collections', 'collections.Catalog_id', '=', 'catalogs.ID')
             ->join('collectionloanitems', 'collections.ID', '=', 'collectionloanitems.Collection_id')
-            ->groupBy('catalogs.ID')
+            ->groupBy('collections.Catalog_id')
             ->get();
-            
+
         $collectionLoan = DB::connection('inlislite')->table('collectionloanitems')
-            ->groupBy('collectionloanitems.Collection_id')
+            // ->groupBy('collectionloanitems.Collection_id')
             ->get();
 
         $response = [
@@ -59,7 +59,7 @@ class CirculationController extends Controller
                 ->join('catalogs', 'catalogs.ID', '=', 'collections.Catalog_id')
                 // ->where('collectionloanitems.LoanStatus', '=', 'Loan')
                 ->where('catalogs.PublishYear', '>=', $_req[1])->where('catalogs.PublishYear', '<=', $_req[2])
-                ->groupBy('collections.ID')
+                // ->groupBy('collections.ID')
                 ->get();
         } else {
             $location_library = LocationLibrary::where('ID', $_req[0])->pluck('Name');
@@ -68,7 +68,7 @@ class CirculationController extends Controller
                 ->select('collectionloanitems.ID', 'catalogs.ID')
                 ->join('collections', 'collections.ID', '=', 'collectionloanitems.Collection_id')
                 ->join('catalogs', 'catalogs.ID', '=', 'collections.Catalog_id')
-                ->where('collectionloanitems.LoanStatus', '=', 'Loan')
+                // ->where('collectionloanitems.LoanStatus', '=', 'Loan')
                 ->where('collections.Location_Library_id', '=', $_req[0])
                 ->where('catalogs.PublishYear', '>=', $_req[1])->where('catalogs.PublishYear', '<=', $_req[2])
                 ->groupBy('catalogs.ID')
@@ -77,10 +77,10 @@ class CirculationController extends Controller
                 ->select('collectionloanitems.ID', 'catalogs.ID')
                 ->join('collections', 'collections.ID', '=', 'collectionloanitems.Collection_id')
                 ->join('catalogs', 'catalogs.ID', '=', 'collections.Catalog_id')
-                ->where('collectionloanitems.LoanStatus', '=', 'Loan')
+                // ->where('collectionloanitems.LoanStatus', '=', 'Loan')
                 ->where('collections.Location_Library_id', '=', $_req[0])
                 ->where('catalogs.PublishYear', '>=', $_req[1])->where('catalogs.PublishYear', '<=', $_req[2])
-                ->groupBy('collectionloanitems.ID')
+                // ->groupBy('collections.ID')
                 ->get();
         }
 
@@ -97,64 +97,119 @@ class CirculationController extends Controller
 
     public function circulationKlas()
     {
-        // contoh filter tahun terbit dan lokasi library
-        // $contoh = count(CollectionLoanItem::with('collection', 'collection.catalog', 'collection.location_library')->where('LoanStatus', 'Loan')->whereHas('collection.catalog', function ($q) {
-        //     $q->where('DeweyNo', '>=', '0')->where('DeweyNo', '<=', '099')
-        //         ->where('PublishYear', '<=', '2023')->where('PublishYear', '>=', '1900');
-        // })->whereHas('collection.location_library', function ($q) {
-        //     $q->where('ID', '=', '6');
-        // })->get());
-
-        // dd($contoh);
 
         $location_library = LocationLibrary::orderBy('ID', 'asc')->get();
 
-        $klas0 = count(CollectionLoanItem::with('collection', 'collection.catalog')->where('LoanStatus', 'Loan')->whereHas('collection.catalog', function ($q) {
+        $judul_0 = DB::connection('inlislite')->table('catalogs')
+            ->select('catalogs.ID', 'collections.ID')
+            ->join('collections', 'collections.Catalog_id', 'catalogs.ID')
+            ->join('collectionloanitems', 'collectionloanitems.Collection_id', 'collections.ID')
+            ->where('DeweyNo', '>=', '000')->where('DeweyNo', '<=', '099')
+            ->groupBy('catalogs.ID')->get();
+        $judul_1 = DB::connection('inlislite')->table('catalogs')
+            ->select('catalogs.ID', 'collections.ID')
+            ->join('collections', 'collections.Catalog_id', 'catalogs.ID')
+            ->join('collectionloanitems', 'collectionloanitems.Collection_id', 'collections.ID')
+            ->where('DeweyNo', '>=', '100')->where('DeweyNo', '<=', '199')
+            ->groupBy('catalogs.ID')->get();
+        $judul_2 = DB::connection('inlislite')->table('catalogs')
+            ->select('catalogs.ID', 'collections.ID')
+            ->join('collections', 'collections.Catalog_id', 'catalogs.ID')
+            ->join('collectionloanitems', 'collectionloanitems.Collection_id', 'collections.ID')
+            ->where('DeweyNo', '>=', '200')->where('DeweyNo', '<=', '299')
+            ->groupBy('catalogs.ID')->get();
+        $judul_3 = DB::connection('inlislite')->table('catalogs')
+            ->select('catalogs.ID', 'collections.ID')
+            ->join('collections', 'collections.Catalog_id', 'catalogs.ID')
+            ->join('collectionloanitems', 'collectionloanitems.Collection_id', 'collections.ID')
+            ->where('DeweyNo', '>=', '300')->where('DeweyNo', '<=', '399')
+            ->groupBy('catalogs.ID')->get();
+        $judul_4 = DB::connection('inlislite')->table('catalogs')
+            ->select('catalogs.ID', 'collections.ID')
+            ->join('collections', 'collections.Catalog_id', 'catalogs.ID')
+            ->join('collectionloanitems', 'collectionloanitems.Collection_id', 'collections.ID')
+            ->where('DeweyNo', '>=', '400')->where('DeweyNo', '<=', '499')
+            ->groupBy('catalogs.ID')->get();
+        $judul_5 = DB::connection('inlislite')->table('catalogs')
+            ->select('catalogs.ID', 'collections.ID')
+            ->join('collections', 'collections.Catalog_id', 'catalogs.ID')
+            ->join('collectionloanitems', 'collectionloanitems.Collection_id', 'collections.ID')
+            ->where('DeweyNo', '>=', '500')->where('DeweyNo', '<=', '599')
+            ->groupBy('catalogs.ID')->get();
+        $judul_6 = DB::connection('inlislite')->table('catalogs')
+            ->select('catalogs.ID', 'collections.ID')
+            ->join('collections', 'collections.Catalog_id', 'catalogs.ID')
+            ->join('collectionloanitems', 'collectionloanitems.Collection_id', 'collections.ID')
+            ->where('DeweyNo', '>=', '600')->where('DeweyNo', '<=', '699')
+            ->groupBy('catalogs.ID')->get();
+        $judul_7 = DB::connection('inlislite')->table('catalogs')
+            ->select('catalogs.ID', 'collections.ID')
+            ->join('collections', 'collections.Catalog_id', 'catalogs.ID')
+            ->join('collectionloanitems', 'collectionloanitems.Collection_id', 'collections.ID')
+            ->where('DeweyNo', '>=', '700')->where('DeweyNo', '<=', '799')
+            ->groupBy('catalogs.ID')->get();
+        $judul_8 = DB::connection('inlislite')->table('catalogs')
+            ->select('catalogs.ID', 'collections.ID')
+            ->join('collections', 'collections.Catalog_id', 'catalogs.ID')
+            ->join('collectionloanitems', 'collectionloanitems.Collection_id', 'collections.ID')
+            ->where('DeweyNo', '>=', '800')->where('DeweyNo', '<=', '899')
+            ->groupBy('catalogs.ID')->get();
+        $judul_9 = DB::connection('inlislite')->table('catalogs')
+            ->select('catalogs.ID', 'collections.ID')
+            ->join('collections', 'collections.Catalog_id', 'catalogs.ID')
+            ->join('collectionloanitems', 'collectionloanitems.Collection_id', 'collections.ID')
+            ->where('DeweyNo', '>=', '900')->where('DeweyNo', '<=', '999')
+            ->groupBy('catalogs.ID')->get();
+        // dd(count($judul_0));
+
+
+        $klas0 = count(CollectionLoanItem::select('ID')->with('collection', 'collection.catalog')->whereHas('collection.catalog', function ($q) {
             $q->where('DeweyNo', '>=', '000')->where('DeweyNo', '<=', '099');
-        })->get());
-        $klas1 = count(CollectionLoanItem::with('collection', 'collection.catalog')->where('LoanStatus', 'Loan')->whereHas('collection.catalog', function ($q) {
+        })->groupBy('collection_id')->get());
+        $klas1 = count(CollectionLoanItem::select('ID')->with('collection', 'collection.catalog')->whereHas('collection.catalog', function ($q) {
             $q->where('DeweyNo', '>=', '100')->where('DeweyNo', '<=', '199');
-        })->get());
-        $klas2 = count(CollectionLoanItem::with('collection', 'collection.catalog')->where('LoanStatus', 'Loan')->whereHas('collection.catalog', function ($q) {
+        })->groupBy('collection_id')->get());
+        $klas2 = count(CollectionLoanItem::select('ID')->with('collection', 'collection.catalog')->whereHas('collection.catalog', function ($q) {
             $q->where('DeweyNo', '>=', '200')->where('DeweyNo', '<=', '299');
-        })->get());
-        $klas3 = count(CollectionLoanItem::with('collection', 'collection.catalog')->where('LoanStatus', 'Loan')->whereHas('collection.catalog', function ($q) {
+        })->groupBy('collection_id')->get());
+        $klas3 = count(CollectionLoanItem::select('ID')->with('collection', 'collection.catalog')->whereHas('collection.catalog', function ($q) {
             $q->where('DeweyNo', '>=', '300')->where('DeweyNo', '<=', '399');
-        })->get());
-        $klas4 = count(CollectionLoanItem::with('collection', 'collection.catalog')->where('LoanStatus', 'Loan')->whereHas('collection.catalog', function ($q) {
+        })->groupBy('collection_id')->get());
+        $klas4 = count(CollectionLoanItem::select('ID')->with('collection', 'collection.catalog')->whereHas('collection.catalog', function ($q) {
             $q->where('DeweyNo', '>=', '400')->where('DeweyNo', '<=', '499');
-        })->get());
-        $klas5 = count(CollectionLoanItem::with('collection', 'collection.catalog')->where('LoanStatus', 'Loan')->whereHas('collection.catalog', function ($q) {
+        })->groupBy('collection_id')->get());
+        $klas5 = count(CollectionLoanItem::select('ID')->with('collection', 'collection.catalog')->whereHas('collection.catalog', function ($q) {
             $q->where('DeweyNo', '>=', '500')->where('DeweyNo', '<=', '599');
-        })->get());
-        $klas6 = count(CollectionLoanItem::with('collection', 'collection.catalog')->where('LoanStatus', 'Loan')->whereHas('collection.catalog', function ($q) {
+        })->groupBy('collection_id')->get());
+        $klas6 = count(CollectionLoanItem::select('ID')->with('collection', 'collection.catalog')->whereHas('collection.catalog', function ($q) {
             $q->where('DeweyNo', '>=', '600')->where('DeweyNo', '<=', '699');
-        })->get());
-        $klas7 = count(CollectionLoanItem::with('collection', 'collection.catalog')->where('LoanStatus', 'Loan')->whereHas('collection.catalog', function ($q) {
+        })->groupBy('collection_id')->get());
+        $klas7 = count(CollectionLoanItem::select('ID')->with('collection', 'collection.catalog')->whereHas('collection.catalog', function ($q) {
             $q->where('DeweyNo', '>=', '700')->where('DeweyNo', '<=', '799');
-        })->get());
-        $klas8 = count(CollectionLoanItem::with('collection', 'collection.catalog')->where('LoanStatus', 'Loan')->whereHas('collection.catalog', function ($q) {
+        })->groupBy('collection_id')->get());
+        $klas8 = count(CollectionLoanItem::select('ID')->with('collection', 'collection.catalog')->whereHas('collection.catalog', function ($q) {
             $q->where('DeweyNo', '>=', '800')->where('DeweyNo', '<=', '899');
-        })->get());
-        $klas9 = count(CollectionLoanItem::with('collection', 'collection.catalog')->where('LoanStatus', 'Loan')->whereHas('collection.catalog', function ($q) {
+        })->groupBy('collection_id')->get());
+        $klas9 = count(CollectionLoanItem::select('ID')->with('collection', 'collection.catalog')->whereHas('collection.catalog', function ($q) {
             $q->where('DeweyNo', '>=', '900')->where('DeweyNo', '<=', '999.999');
-        })->get());
+        })->groupBy('collection_id')->get());
 
         // $catalogue = count(Catalog::get());
-
+        $total = count($judul_0) + count($judul_1) + count($judul_2) + count($judul_3) + count($judul_4) + count($judul_5) + count($judul_6) + count($judul_7) + count($judul_8) + count($judul_9);
+        dd($total);
         $response = [
             'message' => 'Data Klas DDC Sirkulasi',
             'location_library' => $location_library,
-            'klas0' => $klas0,
-            'klas1' => $klas1,
-            'klas2' => $klas2,
-            'klas3' => $klas3,
-            'klas4' => $klas4,
-            'klas5' => $klas5,
-            'klas6' => $klas6,
-            'klas7' => $klas7,
-            'klas8' => $klas8,
-            'klas9' => $klas9,
+            'judul_0' => count($judul_0),
+            'judul_1' => count($judul_1),
+            'judul_2' => count($judul_2),
+            'judul_3' => count($judul_3),
+            'judul_4' => count($judul_4),
+            'judul_5' => count($judul_5),
+            'judul_6' => count($judul_6),
+            'judul_7' => count($judul_7),
+            'judul_8' => count($judul_8),
+            'judul_9' => count($judul_9),
         ];
 
         return view('inlislite.sirkulasi.klasddc.index', $response);
